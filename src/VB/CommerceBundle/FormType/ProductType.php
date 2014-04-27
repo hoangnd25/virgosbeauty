@@ -13,7 +13,9 @@ class ProductType extends AbstractType {
         $builder
             ->add('name',null,array())
             ->add('price',null,array())
-            ->add('old_price',null,array())
+            ->add('old_price',null,array(
+                'required' => false
+            ))
             ->add('tag_line',null,array())
             ->add('short_description','textarea',array(
                 'attr' => array(
@@ -34,6 +36,26 @@ class ProductType extends AbstractType {
                     'required'=>false,
                     'widget_remove_btn' => array('label' => 'remove', 'attr' => array('class' => 'btn btn-warning remove-image-btn')),
                     'label_render' => false
+                ),
+                'attr'=>array(
+                    'class' => 'image-collection'
+                )
+            ))
+
+            ->add('properties','collection', array(
+                'type' => new PropertyType(),
+                'label' => 'Property',
+                'allow_add' => true,
+                'allow_delete' => true,
+                'prototype' => true,
+                'widget_add_btn' => array('label' => 'add property', 'attr' => array('class' => 'btn btn-success')),
+                'options' => array(
+                    'required'=>false,
+                    'widget_remove_btn' => array('label' => 'remove property', 'attr' => array('class' => 'btn btn-warning')),
+                    'label_render' => false
+                ),
+                'attr'=>array(
+                    'class' => 'property-collection'
                 )
             ))
 
@@ -53,6 +75,6 @@ class ProductType extends AbstractType {
 
     public function getName()
     {
-        return 'vb_commercebundle_productform';
+        return 'product';
     }
 }

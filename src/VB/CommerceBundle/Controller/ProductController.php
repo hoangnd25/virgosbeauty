@@ -11,7 +11,10 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use VB\CommerceBundle\Entity\ProductImage;
+use VB\CommerceBundle\Entity\ProductProperty;
 use VB\CommerceBundle\FormType\ProductType;
+use VB\CommerceBundle\FormType\PropertyEditType;
+use VB\CommerceBundle\FormType\PropertyType;
 
 class ProductController extends Controller
 {
@@ -161,7 +164,6 @@ class ProductController extends Controller
 
         $form = $this->createForm(new ProductType(), $product, array(
         ));
-
         if($this->getRequest()->getMethod() == 'POST'){
             $form->handleRequest($this->getRequest());
             if ($form->isValid()) {
@@ -175,6 +177,12 @@ class ProductController extends Controller
                         $formData->getImages()->add($image);
                     }
                 }
+
+                $properties = $formData->getProperties();
+                foreach($properties as $property){
+                    $property->setProduct($formData);
+                }
+
                 $em->persist($formData);
                 $em->flush();
                 return new RedirectResponse($this->generateUrl('product_by_slug',array('slug'=>$product->getSlug())));
@@ -223,6 +231,10 @@ class ProductController extends Controller
                         $category->getProducts()->add($formData);
                     }
                 }
+                $properties = $formData->getProperties();
+                foreach($properties as $property){
+                    $property->setProduct($formData);
+                }
                 $em->persist($formData);
                 $em->flush();
                 return new RedirectResponse($this->generateUrl('product_by_slug',array('slug'=>$formData->getSlug())));
@@ -230,5 +242,42 @@ class ProductController extends Controller
         }
 
         return array('form'=>$form->createView(),'category'=>$category);
+    }
+
+    /**
+     * @param $slug
+     * @return array
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     *
+     * @Route("/p/{slug}/properties/edit",name="product_edit_all_properties")
+     * @Template()
+     */
+    public function editPropertiesAction($slug){
+        /**
+         * @var $em EntityManager
+         */
+        $em = $this->getDoctrine()->getManager();
+
+        $product = $em->getRepository('VBCommerceBundle:Product')->findOneBy(array(
+            'slug' => $slug
+        ));
+        if(!$product)
+            throw new NotFoundHttpException();
+
+        $forms = array();
+        foreach($product->getProperties() as $property){
+            $form = $this->createForm(new PropertyEditType(),$property ,array(
+                'action' => $this->generateUrl('product_edit_property',array('id'=>$property->getId())),
+                'method' => 'POST'
+            ));
+            $forms[] = $form->createView();
+        }
+        $addPropertyForm  = $this->createForm(new PropertyEditType(),new ProductProperty() ,array(
+            'action' => $this->generateUrl('product_add_property',array('slug'=>$slug)),
+            'method' => 'POST'
+        ));
+
+        return array('forms'=>$forms,'product'=>$product,
+            'addPropertyForm'=>$addPropertyForm->createView());
     }
 }

@@ -1,0 +1,52 @@
+{% extends '::base.html.twig' %}
+
+{% block container %}
+    <section class="section-two-columns">
+        <div class="container">
+            <div class="row-fluid">
+                <div class="col-sm-3">
+                    <div class="sidebar">
+                    </div>
+                </div>
+                <div class="col-sm-9">
+                    <h2 style="margin-bottom: 30px">
+                        Editing properties of "{{ product.name }}"
+                        <a class="btn btn-info"
+                           href="{{ path('product_edit_by_slug',{'slug':product.slug}) }}"
+                                >Quay lại trang trước</a>
+                    </h2>
+                    <table class="table table-bordered table-striped" >
+                        {% for form in forms %}
+                            <tr><td style="padding: 30px">{{ form(form) }}</td></tr>
+                        {% endfor %}
+
+                        <tr><td style="padding: 30px">
+                                <h4 style="padding-bottom: 20px">Add new property</h4>
+                                {{ form(addPropertyForm) }}
+                        </td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock container %}
+
+{% block additional_script %}
+    <script>
+        $(document).ready(function(){
+            $('.remove-image').click(function(e){
+                e.preventDefault();
+                var url = $(e.target).attr('href');
+                $.ajax({
+                    url: url
+                })
+                .done(function( response ) {
+                    if(response.success == true){
+                        $($('.uploaded-image-'+response.id)).remove();
+                    }
+                });
+
+            });
+        });
+    </script>
+{% endblock additional_script %}

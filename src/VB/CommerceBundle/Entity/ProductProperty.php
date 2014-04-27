@@ -117,6 +117,24 @@ class ProductProperty
     }
 
     /**
+     * @param mixed $value
+     */
+    public function addValue($value)
+    {
+        $this->values->add($value);
+        $value->setProperty($this);
+    }
+
+    /**
+     * @param mixed $value
+     */
+    public function removeValue($value)
+    {
+        $this->values->removeElement($value);
+        $value->setProperty(null);
+    }
+
+    /**
      * @return mixed
      */
     public function getValues()

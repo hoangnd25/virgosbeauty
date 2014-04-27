@@ -327,6 +327,24 @@ class Product
     }
 
     /**
+     * @param mixed $property
+     */
+    public function addProperty($property)
+    {
+        $this->properties->add($property);
+        $property->setProduct($this);
+    }
+
+    /**
+     * @param mixed $property
+     */
+    public function removeProperty($property)
+    {
+        $this->properties->removeElement($property);
+        $property->setProduct(null);
+    }
+
+    /**
      * @param mixed $shortDescription
      */
     public function setShortDescription($shortDescription)

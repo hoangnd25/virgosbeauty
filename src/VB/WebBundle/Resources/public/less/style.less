@@ -1022,13 +1022,62 @@ ul.inline>li, ol.inline>li {
         }
     }
 }
-input[type="file"]{
-    width: 70%;
-    float: left;
-}
-.collection-item{
-    .form-group{
-        width: 100px;
-        float:left;
+
+.form-management{
+    > .form-group{
+        margin-bottom: 20px;
+
+        label{
+            font-size: 16px;
+        }
     }
+}
+
+.image-collection{
+    .collection-item{
+        .form-group{
+            width: 100px;
+            float:left;
+        }
+        input[type="file"]{
+            width: 75%;
+            float: left;
+        }
+    }
+}
+.value-collection{
+//    margin-left: 30px;
+    .collection-item{
+        > input{
+            width: 75% !important;
+            float:left;
+        }
+        > .form-group{
+            width: 25% !important;
+            float:left;
+        }
+    }
+}
+
+.property-collection{
+    > .collection-item{
+        border-bottom: 1px solid;
+        margin-bottom: 40px;
+        background-color: #eee;
+        padding: 20px 30px;
+    }
+    .col-lg-3.col-lg-offset-3{
+        margin: 0;
+        float: none;
+        display: inline;
+    }
+    .form-group.property-name,.form-group.property-code{
+        width: 48%;
+        margin-right: 1%;
+        float: left;
+    }
+}
+
+.collection-item::after{
+    clear: both;
 }

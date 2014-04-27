@@ -51,6 +51,8 @@ class PropertyValue
     public function setProperty($property)
     {
         if($property instanceof ProductProperty){
+            if($property->getId() == null && is_array($property->getValues()))
+                $property->setValues(new ArrayCollection($property->getValues()));
             $property->getValues()->add($this);
         }
         $this->property = $property;
