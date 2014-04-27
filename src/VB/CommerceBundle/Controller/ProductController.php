@@ -13,6 +13,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use VB\CommerceBundle\Entity\ProductImage;
 use VB\CommerceBundle\Entity\ProductProperty;
 use VB\CommerceBundle\FormType\ProductType;
+use VB\CommerceBundle\FormType\PropertyAddType;
 use VB\CommerceBundle\FormType\PropertyEditType;
 use VB\CommerceBundle\FormType\PropertyType;
 
@@ -272,7 +273,7 @@ class ProductController extends Controller
             ));
             $forms[] = $form->createView();
         }
-        $addPropertyForm  = $this->createForm(new PropertyEditType(),new ProductProperty() ,array(
+        $addPropertyForm  = $this->createForm(new PropertyAddType(),new ProductProperty() ,array(
             'action' => $this->generateUrl('product_add_property',array('slug'=>$slug)),
             'method' => 'POST'
         ));

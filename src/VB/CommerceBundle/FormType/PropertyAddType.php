@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class PropertyEditType extends AbstractType {
+class PropertyAddType extends AbstractType {
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -60,6 +60,6 @@ class PropertyEditType extends AbstractType {
 
     public function getName()
     {
-        return 'property_edit';
+        return 'property_add';
     }
 }

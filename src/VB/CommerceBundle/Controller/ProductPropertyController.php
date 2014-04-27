@@ -8,8 +8,10 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use VB\CommerceBundle\Entity\ProductProperty;
+use VB\CommerceBundle\FormType\PropertyAddType;
 use VB\CommerceBundle\FormType\PropertyEditType;
 
 class ProductPropertyController extends Controller
@@ -38,8 +40,13 @@ class ProductPropertyController extends Controller
             $property =  new ProductProperty();
         }
 
-        $form = $this->createForm(new PropertyEditType(),$property ,array(
-        ));
+        if($slug){
+            $form = $this->createForm(new PropertyAddType(),$property ,array(
+            ));
+        }else{
+            $form = $this->createForm(new PropertyEditType(),$property ,array(
+            ));
+        }
 
         if($this->getRequest()->getMethod() == 'POST'){
             $form->handleRequest($this->getRequest());
@@ -51,7 +58,7 @@ class ProductPropertyController extends Controller
                     $value->setProperty($property);
                 }
 
-                if($slug){
+                if($slug && !$id){
                     $formData->setProduct($em->getRepository('VBCommerceBundle:Product')->findOneBy(array(
                         'slug'=>$slug
                     )));
@@ -59,6 +66,7 @@ class ProductPropertyController extends Controller
 
                 $em->persist($formData);
                 $em->flush();
+
                 if(!$slug){
                     return new RedirectResponse($this->generateUrl('product_edit_all_properties',array(
                         'slug'=>$property->getProduct()->getSlug()
@@ -70,6 +78,6 @@ class ProductPropertyController extends Controller
                 }
             }
         }
-
+        return new Response();
     }
 }
