@@ -1,0 +1,17 @@
+<select class="top-cat-menu dropdown hidden-md hidden-lg">
+    <option value="{{ path('homepage') }}">
+        HOME
+    </option>
+    {% for item in menu %}
+        {% if item.lvl == 2 %}
+            {% set path = path('product_by_category_and_parent',{'category':item.slug,'parent':item.parent.slug}) %}
+        {% elseif item.lvl == 3 %}
+            {% set path = path('product_by_category_and_grandparent',{'category':item.slug,'parent':item.parent.slug,'grandparent':item.parent.parent.slug}) %}
+        {% else %}
+            {% set path = path('product_by_category',{'category':item.slug}) %}
+        {% endif %}
+        <option value="{{ path }}">
+            {{ item.nameWithLevel | upper}}
+        </option>
+    {% endfor %}
+</select>

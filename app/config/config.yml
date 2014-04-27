@@ -1,0 +1,209 @@
+imports:
+    - { resource: parameters.yml }
+    - { resource: security.yml }
+
+framework:
+    #esi:             ~
+    translator:      { fallback: %locale% }
+    secret:          %secret%
+    router:
+        resource: "%kernel.root_dir%/config/routing.yml"
+        strict_requirements: ~
+    form:            ~
+    csrf_protection: ~
+    validation:      { enable_annotations: true }
+    templating:
+        engines: ['twig']
+        #assets_version: SomeVersionScheme
+    default_locale:  "%locale%"
+    trusted_proxies: ~
+    session:         ~
+    fragments:       ~
+
+# Twig Configuration
+twig:
+    debug:            %kernel.debug%
+    strict_variables: %kernel.debug%
+
+# Assetic Configuration
+assetic:
+    debug:          %kernel.debug%
+    use_controller: false
+    bundles:        [ MopaBootstrapBundle , VBWebBundle]
+    #java: /usr/bin/java
+    filters:
+        cssrewrite: ~
+        less:
+            node: /usr/local/bin/node
+            node_paths: [/usr/local/lib/node_modules]
+            apply_to: "\.less$"
+        #closure:
+        #    jar: %kernel.root_dir%/Resources/java/compiler.jar
+        #yui_css:
+        #    jar: %kernel.root_dir%/Resources/java/yuicompressor-2.4.7.jar
+
+# Doctrine Configuration
+doctrine:
+    dbal:
+        driver:   %database_driver%
+        host:     %database_host%
+        port:     %database_port%
+        dbname:   %database_name%
+        user:     %database_user%
+        password: %database_password%
+        charset:  UTF8
+        # if using pdo_sqlite as your database driver, add the path in parameters.yml
+        # e.g. database_path: %kernel.root_dir%/data/data.db3
+        # path:     %database_path%
+
+    orm:
+        auto_generate_proxy_classes: %kernel.debug%
+        entity_managers:
+            default:
+                auto_mapping: true
+                mappings:
+                    gedmo_tree:
+                        type: annotation
+                        prefix: Gedmo\Tree\Entity
+                        dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Tree/Entity"
+                        is_bundle: false
+
+
+# Swiftmailer Configuration
+swiftmailer:
+    transport: %mailer_transport%
+    host:      %mailer_host%
+    username:  %mailer_user%
+    password:  %mailer_password%
+    spool:     { type: memory }
+
+fos_user:
+    db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
+    firewall_name: main
+    user_class: VB\UserBundle\Entity\User
+
+mopa_bootstrap:
+    form:
+        show_legend: false # default is true
+#        show_child_legend: false # default is true
+        error_type: block # or inline which is default
+    initializr:
+        meta:
+#            title:        "YYY"
+#            description:  "This is test site"
+#            keywords:     "keyword1,keyword 2"
+#            author_name:  "this is me"
+#            author_url:   "/human.txt"
+            nofollow:     false
+            noindex:      false
+        dns_prefetch:
+              - '//ajax.googleapis.com'
+        google:
+#            wt: 'xxx'
+            analytics: 'UA-xxxxxxx-xx'
+
+stof_doctrine_extensions:
+    orm:
+        default:
+            tree: true
+            timestampable: true
+            sluggable: true
+
+white_october_breadcrumbs:
+    separator: ''
+
+knp_paginator:
+    page_range: 5                      # default page range used in pagination control
+    default_options:
+        page_name: page                # page query parameter name
+        sort_field_name: sort          # sort field query parameter name
+        sort_direction_name: direction # sort direction query parameter name
+        distinct: true                 # ensure distinct results, useful when ORM queries are using GROUP BY statements
+    template:
+        pagination: KnpPaginatorBundle:Pagination:sliding.html.twig     # sliding pagination controls template
+        sortable: KnpPaginatorBundle:Pagination:sortable_link.html.twig # sort link template
+
+knp_disqus:
+    api_key: %knp_disqus.api_key%
+    secret_key: %knp_disqus.secret_key% # optional, for SSO auth only
+    forums:
+        virgosbeauty:
+            shortname: %knp_disqus.virgosbeauty.shortname%
+
+trsteel_ckeditor:
+    class: Trsteel\CkeditorBundle\Form\Type\CkeditorType
+    transformers: ['html_purifier']
+    toolbar: ['document', 'clipboard', 'editing', '/', 'basicstyles', 'paragraph', 'links', '/', 'insert', 'styles', 'tools']
+    toolbar_groups:
+        document: ['Source','-','Save','-','Templates']
+        clipboard: ['Cut','Copy','Paste','PasteText','PasteFromWord','-','Undo','Redo']
+        editing: ['Find','Replace','-','SelectAll']
+        basicstyles: ['Bold','Italic','Underline','Strike','Subscript','Superscript','-','RemoveFormat']
+        paragraph: ['NumberedList','BulletedList','-','Outdent','Indent','-','JustifyLeft', 'JustifyCenter','JustifyRight','JustifyBlock']
+        links: ['Link','Unlink','Anchor']
+        insert: ['Image','Flash','Table','HorizontalRule']
+        styles: ['Styles','Format']
+        tools: ['Maximize', 'ShowBlocks']
+    ui_color: '#000000'
+    startup_outline_blocks: true
+    width: 100% #Integer or %
+    height: 300 #Integer or %
+    language: 'en-au'
+#    filebrowser_upload_url:
+#        url: relative-url.php?type=file
+#    filebrowser_image_browse_url:
+#        route: route_name
+#        route_parameters:
+#            type: image
+
+vich_uploader:
+    db_driver: orm
+    gaufrette: true
+    storage: vich_uploader.storage.gaufrette
+    mappings:
+        product_image:
+            uri_prefix: /images/product
+            upload_destination: product_image_fs
+            delete_on_remove: true
+            delete_on_update: true
+            inject_on_load: true
+            namer: vich_uploader.namer_uniqid
+
+knp_gaufrette:
+    adapters:
+        product_image_adapter:
+            local:
+                directory: %kernel.root_dir%/../web/images/public/product_image
+
+    filesystems:
+        product_image_fs:
+            adapter:    product_image_adapter
+
+    stream_wrapper:
+        protocol: ~
+
+liip_imagine:
+    driver: gd
+    resolvers:
+        default:
+            web_path:
+                web_root: %kernel.root_dir%/../web
+                cache_prefix: images/cache
+    loaders:
+        default:
+            filesystem:
+                data_root: %kernel.root_dir%/../web
+    cache: default
+    data_loader: default
+    controller_action:    liip_imagine.controller:filterAction
+    filter_sets:
+        cache: ~
+        product_image_list_item:
+            filters:
+                thumbnail: {size: [250, 250], mode: inset }
+        product_image_slideshow:
+            filters:
+                thumbnail: {size: [400, 400], mode: inset }
+        product_image_slideshow_thumb:
+            filters:
+                thumbnail: {size: [100, 100], mode: outbound }

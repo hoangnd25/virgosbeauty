@@ -1,0 +1,19 @@
+<div class="widget widget-category">
+    <h1>Nhóm sản phẩm</h1>
+    <ul>
+        {% for item in menu %}
+            {% if item.lvl == 2 %}
+                {% set path = path('product_by_category_and_parent',{'category':item.slug,'parent':item.parent.slug}) %}
+            {% elseif item.lvl == 3 %}
+                {% set path = path('product_by_category_and_grandparent',{'category':item.slug,'parent':item.parent.slug,'grandparent':item.parent.parent.slug}) %}
+            {% else %}
+                {% set path = path('product_by_category',{'category':item.slug}) %}
+            {% endif %}
+
+
+            <li class="level-{{ item.lvl }}">
+                <a class="{% if item.slug == category.slug %}active{% endif %}" href="{{ path }}">{{ item.name | upper}}</a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>

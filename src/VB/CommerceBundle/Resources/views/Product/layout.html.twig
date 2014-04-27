@@ -1,0 +1,98 @@
+{% extends '::base.html.twig' %}
+
+{% block container %}
+    <section class="section-two-columns">
+        <div class="container">
+            <div class="row-fluid">
+                <div class="col-sm-3">
+                    <div class="sidebar">
+                        {% block sidebar %}
+                            {{ render(controller('VBWebBundle:Menu:categoryWidget',{'category':category})) }}
+                        {% endblock sidebar %}
+                        <div class="widget widget-order">
+                            <h1>Sắp xếp</h1>
+                            <ul>
+                                <li>
+                                    {{ knp_pagination_sortable(products, 'hàng mới', 'p.created') }}
+                                </li>
+                                <li>
+                                    {{ knp_pagination_sortable(products, 'giá tiền', 'p.price') }}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-9">
+                    <div class="products-list-head">
+                        {% block product_head %}
+                            <h1>
+                                {% block product_head_title %}{{ category.name }}{% endblock product_head_title%}
+                                <a class="cusmo-btn gray" href="{{ path('product_add_by_category',{'categorySlug':category.slug}) }}">Add product</a>
+                            </h1>
+                            <div class="tag-line">
+                                {% block product_head_text %}
+                                    {#Nulla tellus arcu,<br>#}
+                                    {#fermentum et interdum eu...#}
+                                {% endblock product_head_text%}
+                            </div>
+                            <div class="image-holder">
+                                {% block product_head_image %}
+                                {#<img alt="" src="http://amindiary.com/demo/cosmetico/images/woman.JPG">#}
+                                {% endblock product_head_image %}
+                            </div>
+                        {% endblock product_head %}
+                    </div>
+                    <div class="products-list products-holder">
+                        {% block product_list %}
+                            {% for product in products %}
+                                <div class="list-item">
+                                    <div class="row-fluid item-row">
+                                        <div class="col-sm-4">
+                                            <div class="thumb">
+                                                {% set image = product.images | first %}
+                                                {% if image %}
+                                                    {% set imagePath = 'images/public/product_image/'~image.fileName %}
+                                                    <img alt="{{ product.name }}" src="{{ imagePath | imagine_filter('product_image_list_item')}}">
+                                                {% else %}
+                                                    <img alt="{{ product.name }}" src="/images/no-image.jpg">
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <h1>{{ product.name }}</h1>
+                                            <div class="tag-line">
+                                                {{ product.tagLine }}
+                                            </div>
+                                            <div class="desc">
+                                                {{ product.shortDescription }}
+                                            </div>
+                                            <div class="price">
+                                                <span>{{ product.price | number_format(0, ',', '.') }} VND</span>
+                                                {% if product.oldPrice %}
+                                                <span class="old">{{ product.oldPrice | number_format(0, ',', '.') }} VND</span>
+                                                {% endif %}
+                                            </div>
+                                            <div class="buttons-holder">
+                                                <a class="cusmo-btn add-button" href="#">Thêm vào giỏ hàng</a>
+                                                <a class="cusmo-btn gray add-button" href="{{ path('product_by_slug',{'slug':product.slug}) }}">
+                                                    Xem thêm
+                                                </a>
+                                                {#<a class="add-to-wishlist-btn" href="#"><i class="icon-plus"></i> Add to wishlist</a>#}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            {% endfor %}
+                        {% endblock product_list %}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="pagination-holder">
+            {{ knp_pagination_render(products) }}
+        </div>
+    </section>
+{% endblock container %}

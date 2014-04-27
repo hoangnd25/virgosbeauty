@@ -1,0 +1,55 @@
+{% extends '::base.html.twig' %}
+
+{% block container %}
+    <section id="home" class="home-slider">
+        <div class="container">
+            <div class="flexslider">
+                <ul class="slides">
+                    <li class="slide">
+                        <img alt="" src="http://amindiary.com/demo/cosmetico/images/slide01.png" />
+                        <div class="flex-caption">
+                            <div class="medium">
+                                <span>to the new season</span>
+                            </div>
+                            <div class="small">
+                                <span>very short one or two sentences</span>
+                            </div>
+                            <div >
+                                <span><a class="cusmo-btn" href="#">see details</a></span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="slide">
+                        <img alt="" src="http://amindiary.com/demo/cosmetico/images/slide01.png" />
+                        <div class="flex-caption">
+                            <div class="medium">
+                                <span>you can use this theme</span>
+                            </div>
+                            <div class="small">
+                                <span>for your small business</span>
+                            </div>
+                            <div>
+                                <span><a class="cusmo-btn" href="#">learn more</a></span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+{% endblock container %}
+
+
+{% block additional_script %}
+    <script>
+        $(document).ready(function() {
+            $('.home-slider .flexslider').flexslider({
+                prevText: "",
+                nextText: "",
+                slideshow: true,
+                controlNav: false
+            });
+        });
+    </script>
+{% endblock additional_script %}

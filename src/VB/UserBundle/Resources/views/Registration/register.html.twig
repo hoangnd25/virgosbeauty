@@ -1,0 +1,23 @@
+{% extends "::base.html.twig" %}
+
+{% block container %}
+    {% trans_default_domain 'FOSUserBundle' %}
+    <section class="section-registration">
+        <div class="container">
+            <div class="row-fluid">
+                <div class="col-sm-6 col-sm-offset-3">
+
+                    <div class="section-title">
+                        <h1>Đăng ký</h1>
+                    </div>
+                    <form class="form-horizontal" action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="fos_user_registration_register">
+                        {{ form_widget(form) }}
+                        <div class="control-group">
+                            <input class="cusmo-btn pull-right" type="submit" value="{{ 'registration.submit'|trans }}" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock container %}

@@ -1,0 +1,113 @@
+{% extends '::base.html.twig' %}
+
+{% block container %}
+    <section class="section-two-columns">
+        <div class="container">
+            <div class="row-fluid">
+                <div class="col-sm-3">
+                    <div class="sidebar">
+                        {% block sidebar %}
+                            {{ render(controller('VBWebBundle:Menu:categoryWidget')) }}
+                        {% endblock sidebar %}
+                    </div>
+                </div>
+                <div class="col-sm-9">
+                    <div class="page-content">
+                        <div class="products-page-head">
+                            <h1>{{ product.name }}</h1>
+                            <div class="tag-line">
+                                {{ product.tagLine }}
+                            </div>
+
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <a class="cusmo-btn gray" href="{{ path('product_edit_by_slug',{'slug':product.slug}) }}">Edit</a>
+                            {% endif %}
+                        </div>
+                        <div class="row-fluid">
+                            <div class="col-sm-6">
+                                <div class="flexslider product-gallery">
+                                    <ul class="slides">
+                                        {% for image in product.images %}
+                                        {% set imagePath = 'images/public/product_image/'~image.fileName %}
+                                        <li data-thumb="{{ imagePath | imagine_filter('product_image_slideshow_thumb')}}">
+                                            <img alt="" src="{{ imagePath | imagine_filter('product_image_slideshow')}}" />
+                                        </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="product-info-box">
+                                    <form method="POST" action=".">
+                                        <div class="info-holder">
+                                            {{ product.shortDescription | raw }}
+                                        </div>
+                                        <hr>
+                                        <div class="drop-downs-holder">
+                                            {% for property in product.properties %}
+                                                <div class="drop-selector variation-selector">
+                                                    <span>{{ property.name }}</span>
+                                                    <select name="variant-{{ property.code }}" class="chosen-select">
+                                                        {% for value in property.values %}
+                                                        <option value="{{ value.id }}">{{ value.value }}</option>
+                                                        {% endfor %}
+                                                    </select>
+                                                </div>
+                                            {% endfor %}
+
+                                            <div class="drop-selector">
+                                                <span>số lượng</span>
+                                                <select name="amount" class="chosen-select">
+                                                    {% for value in 1..10 %}
+                                                        <option value="{{ value }}">{{ value }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="price-holder">
+                                            <div class="price">
+                                                <span>{{ product.price | number_format(0, ',', '.') }} VND</span>
+                                                {% if product.oldPrice %}
+                                                    <span class="old">{{ product.oldPrice | number_format(0, ',', '.') }} VND</span>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                        <div class="buttons-holder">
+                                            <input type="submit" value="Thêm vào giỏ hàng" class="cusmo-btn add-cart-btn add-button">
+                                            {#<a class="add-to-wishlist-btn" href="#"><i class="icon-plus"></i> Add to wishlist</a>#}
+                                        </div>
+                                    </form>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="clearfix"></div>
+                        <div class="product-tabs">
+                            <div class="controls-holder nav-tabs">
+                                <ul class="inline">
+                                    <li class="active"><a data-toggle="tab" href="#description">Thông tin</a></li>
+                                    <li><a data-toggle="tab" href="#how-to-use">Hướng dẫn sử dụng</a></li>
+                                    <li><a data-toggle="tab" href="#reviews">Comments</a></li>
+                                </ul>
+                            </div>
+                            <div class="tab-content">
+                                <div id="description" style="margin-left: 20px;" class=" tab-pane active">
+                                    {{ product.description | raw }}
+                                </div>
+                                <div id="how-to-use" style="margin-left: 20px;"  class=" tab-pane ">
+                                    {{ product.howToUse | raw }}
+                                </div>
+                                <div id="reviews" class=" tab-pane ">
+                                    {{ knp_disqus_render('virgosbeauty', {'identifier': app.request.getRequestURI(), 'language': 'vi', 'limit': 10}) }}
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock container %}

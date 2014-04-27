@@ -1,0 +1,60 @@
+{% extends '::base.html.twig' %}
+
+{% block container %}
+    <section class="section-two-columns">
+        <div class="container">
+            <div class="row-fluid">
+                <div class="col-sm-3">
+                    <div class="sidebar">
+                    </div>
+                </div>
+                <div class="col-sm-9">
+                    <h2 style="margin-bottom: 30px">Adding product to {{ category.name }}</h2>
+                    <form class="form-horizontal" action="{{ path('product_add_by_category',{'categorySlug':category.slug}) }}"
+                            {{ form_enctype(form) }} method="POST">
+
+                        {{ form_row(form.name) }}
+                        {{ form_row(form.price) }}
+                        {{ form_row(form.old_price) }}
+                        <div class="form-group" >
+                            <label class=" control-label col-lg-3">
+                                Category
+                            </label>
+                            <div class="col-lg-9">
+                                <ul>
+                                    <li> {{ category.name }}</li>
+                                </ul>
+                            </div>
+                        </div>
+                        {{ form_row(form.tag_line) }}
+                        {{ form_row(form.short_description) }}
+                        {{ form_row(form.description) }}
+                        {{ form_row(form.how_to_use) }}
+                        {{ form_row(form.images) }}
+                        {{ form_rest(form)}}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock container %}
+
+{% block additional_script %}
+    <script>
+        $(document).ready(function(){
+            $('.remove-image').click(function(e){
+                e.preventDefault();
+                var url = $(e.target).attr('href');
+                $.ajax({
+                    url: url
+                })
+                .done(function( response ) {
+                    if(response.success == true){
+                        $($('.uploaded-image-'+response.id)).remove();
+                    }
+                });
+
+            });
+        });
+    </script>
+{% endblock additional_script %}

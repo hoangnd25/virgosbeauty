@@ -1,0 +1,188 @@
+{% extends 'MopaBootstrapBundle::base_initializr.html.twig' %}
+
+{% block head_style %}
+    {# Override this block to add your own files! #}
+    {% stylesheets
+    '@MopaBootstrapBundle/Resources/public/less/mopabootstrapbundle-fa.less'
+    '@VBWebBundle/Resources/public/css/flexslider.css'
+    '@VBWebBundle/Resources/public/css/chosen.css'
+    '@VBWebBundle/Resources/public/less/style.less'
+    %}
+    <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
+    {% endstylesheets %}
+{% endblock head_style %}
+
+{% block body %}
+    <div class="wrapper">
+        <section class="section-head">
+            <div class="container">
+                <div class="row-fluid top-row">
+                    <div class="col-sm-4">
+                        <div class="top-menu left">
+                            <ul class="inline">
+                                {% if app.user %}
+                                    <li><a href="{{ path('fos_user_profile_show') }}">{{ app.user.username }}</a></li>
+                                    <li><a href="{{ path('fos_user_security_logout') }}">logout</a></li>
+                                {% else %}
+                                    <li><a href="{{ path('fos_user_security_login') }}">đăng nhập</a></li>
+                                    <li><a href="{{ path('fos_user_registration_register') }}">đăng kí</a></li>
+                                {% endif %}
+                                <li><a href="contact.html">liên hệ</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 logo-holder">
+                        <div class="logo">
+                            <span class="icon">
+                                <img alt="" src="http://amindiary.com/demo/cosmetico/images/logo.png">
+                            </span>
+                            <span class="text">
+                                <a href="{{ path('homepage') }}">Virgos<span>Beauty</span></a>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4 cart-holder">
+                        <div class="top-menu cart-menu">
+                            <ul class="inline">
+                                <li>
+                                    <a href="#">đặt hàng</a>
+                                </li>
+                                <li>
+                                    <div class="basket">
+                                        <div class="basket-item-count">
+                                            3
+                                        </div>
+                                        <div class="total-price-basket">
+                                            $0.00
+                                        </div>
+                                        <div class="dropdown">
+                                            <a class="dropdown-toggle" data-hover="dropdown" href="#">
+                                                <img src="/images/icon-basket.png" alt="basket" />
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <div class="basket-item">
+                                                        <div class="row-fluid">
+                                                            <div class="col-sm-4">
+                                                                <div class="thumb">
+                                                                    <img alt="" src="http://amindiary.com/demo/cosmetico/images/p1.jpg">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-8">
+                                                                <div class="title">Blueberry</div>
+                                                                <div class="price">$270.00</div>
+                                                            </div>
+                                                            <div class="clearfix"></div>
+                                                        </div>
+                                                        <a class="close-btn" href="#"></a>
+                                                    </div>
+                                                </li>
+
+                                                <li class="checkout">
+                                                    <a href="shopping-cart.html" class="cusmo-btn">đặt hàng</a>
+                                                </li>
+                                            </ul>
+
+                                        </div>
+
+                                    </div>
+                                </li>
+
+                            </ul>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% block navbar %}
+                <div class="top-categories">
+                    <div class="container">
+                        <div class="row-fluid">
+                            <div class="col-sm-8 col-md-9">
+                                {% if category is not defined %}
+                                    {% set category = null %}
+                                {% endif %}
+                                {% render(controller('VBWebBundle:Menu:mainMenu',{'category':category})) %}
+                                {% render(controller('VBWebBundle:Menu:mobileMainMenu')) %}
+                            </div>
+                            <div class="col-sm-4 col-md-3">
+                                <div class="search-field-holder">
+                                    <form>
+                                        <input class="col-sm-12" type="text" placeholder="Type and hit enter">
+                                        <i class="icon-search"></i>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endblock navbar %}
+
+            {{ wo_render_breadcrumbs() }}
+        </section>
+
+        {% block container %}
+
+        {% endblock container %}
+
+        {% include 'footer.html.twig' %}
+    </div>
+
+    {% block foot_script %}
+        {# Load jQuery from Google CDN
+           http://encosia.com/3-reasons-why-you-should-let-google-host-jquery-for-you/ #}
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="../js/libs/jquery-1.11.0.min.js"><\/script>')</script>
+
+        {# Asynchronous Google Analytics snippet grabbed from:
+           http://mathiasbynens.be/notes/async-analytics-snippet#dont-push-it #}
+        {# more GA tweaks:
+           http://html5boilerplate.com/docs/ga-augments/ #}
+        {% if google['analytics'] is defined %}
+            <script>
+                (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+                        function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+                    e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+                    e.src='//www.google-analytics.com/analytics.js';
+                    r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+                ga('create','{{ google['analytics'] }}');ga('send','pageview');
+            </script>
+        {% endif %}
+        <script type="text/javascript">
+            WebFontConfig = {
+                google: { families: [ 'Open+Sans:300italic,300,600:latin,vietnamese'  ] }
+            };
+            (function() {
+                var wf = document.createElement('script');
+                wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+                        '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+                wf.type = 'text/javascript';
+                wf.async = 'true';
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(wf, s);
+            })();
+        </script>
+        {% block foot_script_assetic %}
+            {% javascripts
+            '@MopaBootstrapBundle/Resources/public/bootstrap/js/tooltip.js'
+            '@MopaBootstrapBundle/Resources/public/bootstrap/js/*.js'
+            '@MopaBootstrapBundle/Resources/public/js/mopabootstrap-collection.js'
+            '@MopaBootstrapBundle/Resources/public/js/mopabootstrap-subnav.js'
+            '@VBWebBundle/Resources/public/js/css_browser_selector.js'
+            '@VBWebBundle/Resources/public/js/twitter-bootstrap-hover-dropdown.js'
+            '@VBWebBundle/Resources/public/js/jquery.flexslider.js'
+            '@VBWebBundle/Resources/public/js/chosen.js'
+            '@FOSJsRoutingBundle/Resources/public/js/router.js'
+            '@VBWebBundle/Resources/public/js/script.js'
+            %}
+            <script type="text/javascript" src="{{ asset_url }}"></script>
+            {% endjavascripts %}
+        {% endblock foot_script_assetic %}
+        <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+
+        {% block additional_script %}
+        {% endblock additional_script %}
+    {% endblock foot_script %}
+{% endblock body %}

@@ -1,0 +1,73 @@
+{
+    "name": "symfony/framework-standard-edition",
+    "license": "MIT",
+    "type": "project",
+    "description": "The \"Symfony Standard Edition\" distribution",
+    "autoload": {
+        "psr-0": { "": "src/" }
+    },
+    "require": {
+        "php": ">=5.3.3",
+        "symfony/symfony": "2.3.*",
+        "doctrine/orm": ">=2.2.3,<2.4-dev",
+        "doctrine/doctrine-bundle": "1.2.*",
+        "twig/extensions": "1.0.*",
+        "symfony/assetic-bundle": "2.3.*",
+        "symfony/swiftmailer-bundle": "2.3.*",
+        "symfony/monolog-bundle": "2.3.*",
+        "sensio/distribution-bundle": "2.3.*",
+        "sensio/framework-extra-bundle": "2.3.*",
+        "sensio/generator-bundle": "2.3.*",
+        "incenteev/composer-parameter-handler": "~2.0",
+        "friendsofsymfony/user-bundle": "2.0.*@dev",
+        "mopa/bootstrap-bundle": "dev-master#ca6c2d4147ba8682324049c3c4507f451260de2c",
+        "twbs/bootstrap": "dev-master",
+        "knplabs/knp-paginator-bundle": "dev-master",
+        "friendsofsymfony/elastica-bundle": "3.0.*@dev",
+        "raulfraile/ladybug-bundle": "dev-master",
+        "liip/imagine-bundle": "1.0.*@dev",
+        "vich/uploader-bundle": "dev-master",
+        "knplabs/knp-gaufrette-bundle": "0.2.*@dev",
+        "knplabs/gaufrette": "0.2.*@dev",
+        "trsteel/ckeditor-bundle": "1.3.*",
+        "exercise/htmlpurifier-bundle": "1.0.*@dev",
+        "stof/doctrine-extensions-bundle": "~1.1@dev",
+        "doctrine/doctrine-fixtures-bundle": "2.2.*",
+        "whiteoctober/breadcrumbs-bundle": "dev-master",
+        "knplabs/knp-disqus-bundle": "dev-master",
+        "sensio/buzz-bundle": "dev-master",
+        "friendsofsymfony/jsrouting-bundle": "@stable"
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
+            "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap"
+        ],
+        "post-update-cmd": [
+            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
+            "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap"
+        ]
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "minimum-stability": "stable",
+    "extra": {
+        "symfony-app-dir": "app",
+        "symfony-web-dir": "web",
+        "incenteev-parameters": {
+            "file": "app/config/parameters.yml"
+        },
+        "branch-alias": {
+            "dev-master": "2.3-dev"
+        }
+    }
+}

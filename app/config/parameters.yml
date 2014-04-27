@@ -1,0 +1,18 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_driver: pdo_mysql
+    database_host: 127.0.0.1
+    database_port: null
+    database_name: virgosbeauty
+    database_user: root
+    database_password: 123456
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    mailer_user: null
+    mailer_password: null
+    locale: vi
+    secret: ZVdAWYz8GU9sqICrmYk2229zkzQ9GYZ2
+    knp_paginator.template.pagination: ':Pagination:sliding.html.twig'
+    knp_disqus.api_key: uQFL7WjpnV2CLDqloCG5R7NGbbStnPiMb7IEm3KAX8SgZvrLGWQsK7XMCRUIFGqi
+    knp_disqus.secret_key: SxboanUyRu08loQKlkXFqtoaqgBS5qwZytUiLASfmb5svlpx2xLni3YItFYYhRno
+    knp_disqus.virgosbeauty.shortname: virgosbeauty
