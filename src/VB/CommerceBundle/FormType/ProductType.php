@@ -15,7 +15,11 @@ class ProductType extends AbstractType {
             ->add('price',null,array())
             ->add('old_price',null,array())
             ->add('tag_line',null,array())
-            ->add('short_description',null,array())
+            ->add('short_description','textarea',array(
+                'attr' => array(
+                    'rows' => 4
+                )
+            ))
             ->add('description','ckeditor',array())
             ->add('how_to_use','ckeditor',array())
 
