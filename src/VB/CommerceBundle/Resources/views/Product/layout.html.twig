@@ -49,6 +49,7 @@
                                     <div class="row-fluid item-row">
                                         <div class="col-sm-4">
                                             <div class="thumb">
+                                                <a href="{{ path('product_by_slug',{'slug':product.slug}) }}">
                                                 {% set image = product.images | first %}
                                                 {% if image %}
                                                     {% set imagePath = 'images/public/product_image/'~image.fileName %}
@@ -56,10 +57,15 @@
                                                 {% else %}
                                                     <img alt="{{ product.name }}" src="/images/no-image.jpg">
                                                 {% endif %}
+                                                </a>
                                             </div>
                                         </div>
                                         <div class="col-sm-8">
-                                            <h1>{{ product.name }}</h1>
+                                            <h1>
+                                                <a href="{{ path('product_by_slug',{'slug':product.slug}) }}">
+                                                    {{ product.name }}
+                                                </a>
+                                            </h1>
                                             <div class="tag-line">
                                                 {{ product.tagLine }}
                                             </div>

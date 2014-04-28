@@ -584,6 +584,7 @@ ul.inline>li, ol.inline>li {
     background-image: url(/images/slider-bg.jpg);
     background-position: center center;
     border-bottom: 4px solid #FFBB00;
+    overflow: hidden;
 
     .flexslider {
         .slides {
@@ -707,6 +708,7 @@ ul.inline>li, ol.inline>li {
     border-bottom: 4px solid #FFBB00;
     background-color: #f5f6f1;
     padding-bottom: 35px;
+    overflow: hidden;
     .breadcrumb{
         margin-left: 10px;
         background-color: transparent;
@@ -789,6 +791,9 @@ ul.inline>li, ol.inline>li {
         position: relative;
         max-width: 205px;
         max-height: 205px;
+        @media (max-width: 767px){
+            margin: 0 auto;
+        }
         img{
             width: 100%;
         }
@@ -799,7 +804,9 @@ ul.inline>li, ol.inline>li {
         height: 100%;
         position: absolute;
         width: 1px;
-        background-color: #e9e9e9;
+        @media (min-width: 768px){
+            background-color: #e9e9e9;
+        }
         right: -18px;
     }
     h1 {
@@ -859,7 +866,9 @@ ul.inline>li, ol.inline>li {
 }
 
 .sidebar{
-    border-right: 1px solid #E9E9E9;
+    @media (min-width: 768px){
+        border-right: 1px solid #E9E9E9;
+    }
     padding-right: 15px;
     .widget{
         margin-bottom: 30px;
