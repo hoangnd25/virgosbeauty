@@ -10,6 +10,8 @@ parameters:
     mailer_host:       smtp.zoho.com
     mailer_user:       no-reply@virogsbeauty.com
     mailer_password:   14022007
+    mailer_encryption: ssl
+    mailer_auth_mode: login
     locale: vi
     secret: ZVdAWYz8GU9sqICrmYk2229zkzQ9GYZ2
     knp_paginator.template.pagination: ':Pagination:sliding.html.twig'
