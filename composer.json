@@ -36,7 +36,8 @@
         "whiteoctober/breadcrumbs-bundle": "dev-master",
         "knplabs/knp-disqus-bundle": "dev-master",
         "sensio/buzz-bundle": "dev-master",
-        "friendsofsymfony/jsrouting-bundle": "@stable"
+        "friendsofsymfony/jsrouting-bundle": "@stable",
+        "hwi/oauth-bundle": "0.4.*@dev"
     },
     "scripts": {
         "post-install-cmd": [

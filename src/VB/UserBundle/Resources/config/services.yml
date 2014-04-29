@@ -1,0 +1,8 @@
+parameters:
+    vb_user_provider.class: VB\UserBundle\Provider\FOSUBUserProvider
+
+services:
+    vb_user_provider:
+        class: "%vb_user_provider.class%"
+        #this is the place where the properties are passed to the UserProvider - see config.yml
+        arguments: [@fos_user.user_manager,{facebook: facebook_id, google: google_id}]

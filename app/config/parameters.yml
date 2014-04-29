@@ -6,10 +6,10 @@ parameters:
     database_name: virgosbeauty
     database_user: root
     database_password: 123456
-    mailer_transport:  smtp
-    mailer_host:       smtp.zoho.com
-    mailer_user:       no-reply@virgosbeauty.com
-    mailer_password:   14022007
+    mailer_transport: smtp
+    mailer_host: smtp.zoho.com
+    mailer_user: no-reply@virgosbeauty.com
+    mailer_password: 14022007
     mailer_encryption: ssl
     mailer_auth_mode: login
     locale: vi
@@ -18,3 +18,7 @@ parameters:
     knp_disqus.api_key: uQFL7WjpnV2CLDqloCG5R7NGbbStnPiMb7IEm3KAX8SgZvrLGWQsK7XMCRUIFGqi
     knp_disqus.secret_key: SxboanUyRu08loQKlkXFqtoaqgBS5qwZytUiLASfmb5svlpx2xLni3YItFYYhRno
     knp_disqus.virgosbeauty.shortname: virgosbeauty
+    facebook_app_id: 1499107470317043
+    facebook_app_secret: c92a5910c4d06630a65ff3f3c0e9701b
+    google_app_id: 704193963519-9ccitlilndshd74t9suds088biaslq2v.apps.googleusercontent.com
+    google_app_secret: WbFY1LySsbDRNpnzSVvUVHir
