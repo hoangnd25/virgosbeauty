@@ -8,7 +8,7 @@ parameters:
     database_password: 123456
     mailer_transport:  smtp
     mailer_host:       smtp.zoho.com
-    mailer_user:       no-reply@virogsbeauty.com
+    mailer_user:       no-reply@virgosbeauty.com
     mailer_password:   14022007
     mailer_encryption: ssl
     mailer_auth_mode: login
