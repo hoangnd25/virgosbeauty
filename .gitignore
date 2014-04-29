@@ -7,7 +7,6 @@ build/
 vendor
 bin
 composer.phar
-config/parameters.yml
 nbproject/*
 .DS_Store
 web/images/public
@@ -18,5 +17,6 @@ web/css/
 .buildpath
 .project
 .settings/
+config/parameters.yml
 
 src/Local/TestBundle/Controller/DefaultController.php
