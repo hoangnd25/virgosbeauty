@@ -34,7 +34,6 @@
         "stof/doctrine-extensions-bundle": "~1.1@dev",
         "doctrine/doctrine-fixtures-bundle": "2.2.*",
         "whiteoctober/breadcrumbs-bundle": "dev-master",
-        "knplabs/knp-disqus-bundle": "dev-master",
         "sensio/buzz-bundle": "dev-master",
         "friendsofsymfony/jsrouting-bundle": "@stable",
         "hwi/oauth-bundle": "0.4.*@dev"

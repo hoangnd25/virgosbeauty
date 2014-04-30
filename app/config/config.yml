@@ -129,13 +129,6 @@ knp_paginator:
         pagination: KnpPaginatorBundle:Pagination:sliding.html.twig     # sliding pagination controls template
         sortable: KnpPaginatorBundle:Pagination:sortable_link.html.twig # sort link template
 
-knp_disqus:
-    api_key: %knp_disqus.api_key%
-    secret_key: %knp_disqus.secret_key% # optional, for SSO auth only
-    forums:
-        virgosbeauty:
-            shortname: %knp_disqus.virgosbeauty.shortname%
-
 trsteel_ckeditor:
     class: Trsteel\CkeditorBundle\Form\Type\CkeditorType
     transformers: ['html_purifier']

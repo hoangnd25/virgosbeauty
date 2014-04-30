@@ -23,7 +23,6 @@ class AppKernel extends Kernel
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new WhiteOctober\BreadcrumbsBundle\WhiteOctoberBreadcrumbsBundle(),
-            new Knp\Bundle\DisqusBundle\KnpDisqusBundle(),
             new Sensio\Bundle\BuzzBundle\SensioBuzzBundle(),
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
             new Trsteel\CkeditorBundle\TrsteelCkeditorBundle(),
