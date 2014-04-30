@@ -21,7 +21,11 @@
                         <div class="top-menu left">
                             <ul class="inline">
                                 {% if app.user %}
-                                    <li><a href="{{ path('fos_user_profile_show') }}">{{ app.user.username }}</a></li>
+                                    <li>
+                                        <a href="{{ path('fos_user_profile_show') }}">
+                                            {{ app.user.displayName | trim ? app.user.displayName : app.user.username }}
+                                        </a>
+                                    </li>
                                     <li><a href="{{ path('fos_user_security_logout') }}">logout</a></li>
                                 {% else %}
                                     <li><a href="{{ path('fos_user_security_login') }}">đăng nhập</a></li>

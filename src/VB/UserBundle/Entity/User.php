@@ -18,6 +18,9 @@ class User extends BaseUser
      */
     protected $id;
 
+    /** @ORM\Column(name="display_name", type="string", length=80, nullable=true) */
+    protected $displayName;
+
     /** @ORM\Column(name="facebook_id", type="string", length=255, nullable=true) */
     protected $facebook_id;
 
@@ -41,6 +44,22 @@ class User extends BaseUser
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @param mixed $displayName
+     */
+    public function setDisplayName($displayName)
+    {
+        $this->displayName = $displayName;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDisplayName()
+    {
+        return $this->displayName;
     }
 
     /**

@@ -1,0 +1,24 @@
+{% extends '::base.html.twig' %}
+
+{% block container %}
+    <div class="container">
+        <section class="section-login">
+            <div class="section-title">
+                {% if userInformation.profilePicture is defined and userInformation.profilePicture is not empty %}
+                    <img src="{{ userInformation.profilePicture }}" />
+                {% endif %}
+                <h3>{{ 'header.connecting' | trans({}, 'HWIOAuthBundle')}}</h3>
+            </div>
+            <div class="row-fluid" style="text-align: center;">
+                <form action="{{ path('hwi_oauth_connect_service', {'service': service, 'key': key}) }}" {{ form_enctype(form) }} method="POST" class="col-sm-6 col-sm-offset-3 form-horizontal">
+                    <p>{{ 'connect.confirm.text' | trans({'%service%': service | trans({}, 'HWIOAuthBundle'), '%name%': userInformation.realName}, 'HWIOAuthBundle') }}</p>
+                    {{ form_widget(form) }}
+                    <div style="text-align: center;">
+                        <button type="submit" class="btn btn-primary">{{ 'connect.confirm.submit' | trans({}, 'HWIOAuthBundle') }}</button>
+                        <a href="{{ path('homepage') }}" class="btn">{{ 'connect.confirm.cancel' | trans({}, 'HWIOAuthBundle') }}</a>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </div>
+{% endblock container %}

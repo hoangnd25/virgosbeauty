@@ -1,0 +1,14 @@
+header:
+    connecting: Kết nối với mạng xã hội
+    success: Kết nối thành công với tài khoản '%name%'!
+    register: Đăng kí với tài khoản '%name%'
+    registration_success: Đăng kí thành công với tài khoản '%username%'!
+
+connect:
+    confirm:
+        cancel: Huỷ
+        submit: Kết nối
+        text: Bạn có muốn kết nối với tài khoản %service%: '%name%'?
+    registration:
+        cancel: Huỷ
+        submit: Đăng kí tài khoản

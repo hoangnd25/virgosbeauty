@@ -1,0 +1,11 @@
+{% extends '::base.html.twig' %}
+
+{% block container %}
+    <div class="container">
+        <section class="section-login">
+            <div class="section-title">
+                <h3>{{ 'header.success' | trans({'%name%': userInformation.realName}, 'HWIOAuthBundle') }}</h3>
+            </div>
+        </section>
+    </div>
+{% endblock container %}

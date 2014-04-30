@@ -65,8 +65,9 @@ class FOSUBUserProvider extends BaseClass
 			}else{				
 				$user->setUsername($response->getNickname());
 			}
+            $user->setDisplayName($response->getRealName());
             $user->setEmail($response->getEmail());
-            $user->setPassword(uniqid());
+            $user->setPlainPassword(uniqid());
             $user->setEnabled(true);
             $this->userManager->updateUser($user);
             return $user;
