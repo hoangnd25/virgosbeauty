@@ -1079,7 +1079,7 @@ ul.inline>li, ol.inline>li {
     }
 }
 
-.property-collection{
+.property-collection,.variation-collection{
     > .collection-item{
         border-bottom: 1px solid;
         margin-bottom: 40px;
@@ -1091,9 +1091,19 @@ ul.inline>li, ol.inline>li {
         float: none;
         display: inline;
     }
-    .form-group.property-name,.form-group.property-code{
+    .form-group.property-name,.form-group.property-code,.form-group.variant-price{
         width: 48%;
         margin-right: 1%;
+        float: left;
+    }
+}
+
+.variation-collection .property-collection{
+    .collection-item{
+        padding: 0;
+        margin-bottom: 10px;
+        border-bottom: 0;
+        width: 30%;
         float: left;
     }
 }

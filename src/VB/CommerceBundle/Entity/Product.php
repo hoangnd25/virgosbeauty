@@ -360,4 +360,37 @@ class Product
         return $this->shortDescription;
     }
 
+    /**
+     * @param mixed $variants
+     */
+    public function setVariants($variants)
+    {
+        $this->variants = $variants;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getVariants()
+    {
+        return $this->variants;
+    }
+
+    /**
+     * @param mixed $variant
+     */
+    public function addVariant($variant)
+    {
+        $this->variants->add($variant);
+        $variant->setProduct($this);
+    }
+
+    /**
+     * @param mixed $variant
+     */
+    public function removeVariant($variant)
+    {
+        $this->variants->removeElement($variant);
+        $variant->setProduct(null);
+    }
 }

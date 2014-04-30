@@ -1,0 +1,33 @@
+{% extends '::base.html.twig' %}
+
+{% block container %}
+    <section class="section-two-columns">
+        <div class="container">
+            <div class="row-fluid">
+                <div class="col-sm-3">
+                    <div class="sidebar">
+                    </div>
+                </div>
+                <div class="col-sm-9">
+                    <h2 style="margin-bottom: 30px">
+                        Editing variants of "{{ product.name }}"
+                        <a class="btn btn-info"
+                           href="{{ path('product_edit_by_slug',{'slug':product.slug}) }}"
+                                >Quay lại trang trước</a>
+                        <a class="btn btn-success"
+                           href="{{ path('product_generate_variants',{'slug':product.slug}) }}"
+                                >Generate variants</a>
+                    </h2>
+
+                    {{ form(form) }}
+
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock container %}
+
+{% block additional_script %}
+    <script>
+    </script>
+{% endblock additional_script %}

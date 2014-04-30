@@ -27,6 +27,11 @@ class PropertyValue
     protected $property;
 
     /**
+     * @ORM\OneToMany(targetEntity="VariantProperty", mappedBy="propertyValue", cascade={"all"})
+     */
+    protected $variantProperties;
+
+    /**
      * @ORM\Column(length=80)
      */
     protected $value;

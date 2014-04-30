@@ -61,18 +61,26 @@ class VariantProperty
     }
 
     /**
-     * @param mixed $property
+     * @param mixed $propertyValue
      */
-    public function setProperty($property)
+    public function setPropertyValue($propertyValue)
     {
-        $this->property = $property;
+        $this->propertyValue = $propertyValue;
     }
 
     /**
      * @return mixed
      */
-    public function getProperty()
+    public function getPropertyValue()
     {
-        return $this->property;
+        return $this->propertyValue;
     }
+
+    function __toString()
+    {
+        $propertyValue = $this->getPropertyValue();
+        return $propertyValue->getProperty()->getName().": ".$propertyValue->getValue();
+    }
+
+
 }

@@ -9,10 +9,12 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use VB\CommerceBundle\Entity\ProductImage;
 use VB\CommerceBundle\Entity\ProductProperty;
 use VB\CommerceBundle\FormType\ProductType;
+use VB\CommerceBundle\FormType\ProductVariationType;
 use VB\CommerceBundle\FormType\PropertyAddType;
 use VB\CommerceBundle\FormType\PropertyEditType;
 use VB\CommerceBundle\FormType\PropertyType;
@@ -280,5 +282,45 @@ class ProductController extends Controller
 
         return array('forms'=>$forms,'product'=>$product,
             'addPropertyForm'=>$addPropertyForm->createView());
+    }
+
+    /**
+     * @param $slug
+     * @return array
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     *
+     * @Route("/p/{slug}/variation/edit",name="product_edit_variation")
+     * @Template()
+     */
+    public function editVariantsAction($slug=null){
+        /**
+         * @var $em EntityManager
+         */
+        $em = $this->getDoctrine()->getManager();
+
+        $product = $em->getRepository('VBCommerceBundle:Product')->findOneBy(array(
+            'slug' => $slug
+        ));
+        if(!$product){
+            throw new NotFoundHttpException();
+        }
+
+        $form = $this->createForm(new ProductVariationType(),$product ,array(
+        ));
+
+        if($this->getRequest()->getMethod() == 'POST'){
+            $form->handleRequest($this->getRequest());
+            if($form->isValid()){
+                $formData = $form->getData();
+
+                $em->persist($formData);
+                $em->flush();
+
+                return new RedirectResponse($this->generateUrl('product_edit_variation',array(
+                    'slug'=>$product->getSlug()
+                )));
+            }
+        }
+        return array('form'=>$form->createView(),'product'=>$product);
     }
 }

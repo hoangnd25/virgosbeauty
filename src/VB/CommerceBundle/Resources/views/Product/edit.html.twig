@@ -13,6 +13,7 @@
                         Editing {{ product.name }}
                         {#{% if product.properties is not empty %}#}
                         <a class="btn btn-success" href="{{ path('product_edit_all_properties',{'slug':product.slug}) }}">Edit properties</a>
+                        <a class="btn btn-success" href="{{ path('product_edit_variation',{'slug':product.slug}) }}">Edit variants</a>
                         {#{% endif %}#}
                     </h2>
                     <form class="form-management" action="{{ path('product_edit_by_slug',{'slug':product.slug}) }}" {{ form_enctype(form) }} method="POST">
@@ -34,7 +35,7 @@
                                         <li class="uploaded-image-{{ image.id }}">
                                             <img width="50px" src="/images/public/product_image/{{image.fileName }}" />
                                             <a class="btn btn-info" href="/images/public/product_image/{{image.fileName }}">view</a>
-                                            <a class="btn btn-warning" href="{{ path('product_image_delete',{'id':image.id}) }}" class="remove-image">delete</a>
+                                            <a class="btn btn-warning remove-image" href="{{ path('product_image_delete',{'id':image.id}) }}">delete</a>
                                         </li>
                                     {% endfor %}
                                 </ul>

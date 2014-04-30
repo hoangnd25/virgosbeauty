@@ -21,12 +21,12 @@ class ProductVariant
     protected $id;
 
     /**
-     * @ORM\Column(type="integer",length=8)
+     * @ORM\Column(type="integer",length=8,nullable=true)
      */
     protected $price;
 
     /**
-     * @ORM\Column(type="integer",length=8)
+     * @ORM\Column(type="integer",length=8,nullable=true)
      */
     protected $oldPrice;
 
@@ -37,7 +37,7 @@ class ProductVariant
     protected $product;
 
     /**
-     * @ORM\OneToMany(targetEntity="VariantProperty", mappedBy="variant", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="VariantProperty", mappedBy="variant", orphanRemoval=true, cascade="all")
      */
     protected $properties;
 
@@ -116,5 +116,23 @@ class ProductVariant
     public function getProperties()
     {
         return $this->properties;
+    }
+
+    /**
+     * @param mixed $property
+     */
+    public function addProperty($property)
+    {
+        $this->properties->add($property);
+        $property->setVariant($this);
+    }
+
+    /**
+     * @param mixed $property
+     */
+    public function removeProperty($property)
+    {
+        $this->properties->removeElement($property);
+        $property->setVariant(null);
     }
 }
