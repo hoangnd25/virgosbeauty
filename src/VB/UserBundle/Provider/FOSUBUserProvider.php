@@ -60,7 +60,11 @@ class FOSUBUserProvider extends BaseClass
             /**
              * @var PathUserResponse $response
              */
-            $user->setUsername($response->getNickname());
+			if($service == 'google'){				
+				$user->setUsername($username);
+			}else{				
+				$user->setUsername($response->getNickname());
+			}
             $user->setEmail($response->getEmail());
             $user->setPassword(uniqid());
             $user->setEnabled(true);
