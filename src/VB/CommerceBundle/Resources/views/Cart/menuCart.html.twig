@@ -10,31 +10,35 @@
             <img src="/images/icon-basket.png" alt="basket" />
         </a>
         <ul class="dropdown-menu">
-            <li>
-                {% for item in cart.items %}
-                    {% set productVariantId =  item.productVariation ? item.productVariation.id : null%}
-                    <div class="basket-item">
-                        <div class="row-fluid">
-                            <div class="col-sm-4">
-                                <div class="thumb">
-                                    {% if item.imagePath %}
-                                        {% set imagePath = 'images/public/product_image/'~item.imagePath %}
-                                        <img alt="{{ item.product.name }}" src="{{ imagePath | imagine_filter('product_image_list_item')}}">
-                                    {% else %}
-                                        <img alt="{{ item.product.name }}" src="/images/no-image.jpg">
-                                    {% endif %}
+            {% if cart.items |length %}
+                <li>
+                    {% for item in cart.items %}
+                        {% set productVariantId =  item.productVariation ? item.productVariation.id : null%}
+                        <div class="basket-item">
+                            <div class="row-fluid">
+                                <div class="col-sm-4">
+                                    <div class="thumb">
+                                        {% if item.imagePath %}
+                                            {% set imagePath = 'images/public/product_image/'~item.imagePath %}
+                                            <img alt="{{ item.product.name }}" src="{{ imagePath | imagine_filter('product_image_list_item')}}">
+                                        {% else %}
+                                            <img alt="{{ item.product.name }}" src="/images/no-image.jpg">
+                                        {% endif %}
+                                    </div>
                                 </div>
+                                <div class="col-sm-8">
+                                    <div class="title"><a href="{{ path('product_by_slug',{'slug':item.product.slug}) }}">{{ item.product.name }}</a> </div>
+                                    <div class="price">{{ item.amount }} <span style="text-transform: lowercase">x</span> {{ item.singlePrice | number_format(0, ',', '.') }} VND</div>
+                                </div>
+                                <div class="clearfix"></div>
                             </div>
-                            <div class="col-sm-8">
-                                <div class="title"><a href="{{ path('product_by_slug',{'slug':item.product.slug}) }}">{{ item.product.name }}</a> </div>
-                                <div class="price">{{ item.singlePrice | number_format(0, ',', '.') }} VND</div>
-                            </div>
-                            <div class="clearfix"></div>
+                            <a class="close-btn" href="{{ path('cart_remove',{'slug':item.product.slug,'variant':productVariantId}) }}"></a>
                         </div>
-                        <a class="close-btn" href="{{ path('cart_remove',{'slug':item.product.slug,'variant':productVariantId}) }}"></a>
-                    </div>
-                {% endfor %}
-            </li>
+                    {% endfor %}
+                </li>
+            {% else %}
+                <li style="text-align: center">Không có sản phẩm nào</li>
+            {% endif %}
 
             <li class="checkout">
                 <a href="{{ path('cart_show') }}" class="cusmo-btn">xem giỏ hàng</a>
