@@ -6,10 +6,13 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use VB\CommerceBundle\Util\StringUtil;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="product")
+ * @JMS\AccessType("public_method")
+ * @JMS\ExclusionPolicy("all")
  */
 class Product
 {
@@ -17,16 +20,23 @@ class Product
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @JMS\Type("integer")
+     * @JMS\ReadOnly()
+     * @JMS\Expose()
      */
     protected $id;
 
     /**
      * @ORM\Column(length=160)
+     * @JMS\Expose()
+     * @JMS\Type("string")
      */
     protected $name;
 
     /**
      * @ORM\Column(length=160,nullable=true)
+     * @JMS\Expose()
+     * @JMS\Type("string")
      */
     protected $tagLine;
 
@@ -37,6 +47,8 @@ class Product
 
     /**
      * @ORM\Column(type="integer",length=8)
+     * @JMS\Type("integer")
+     * @JMS\Expose()
      */
     protected $price;
 
@@ -68,6 +80,8 @@ class Product
     /**
      * @Gedmo\Slug(fields={"nameNonUnicode"})
      * @ORM\Column(length=180, unique=true)
+     * @JMS\Type("string")
+     * @JMS\Expose()
      */
     private $slug;
 
@@ -174,7 +188,7 @@ class Product
     }
 
     /**
-     * @return mixed
+     * @return ArrayCollection<ProductImage>
      */
     public function getImages()
     {

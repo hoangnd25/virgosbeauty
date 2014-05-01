@@ -38,7 +38,8 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="product-info-box">
-                                    <form method="POST" action=".">
+                                    <form method="POST" action="{{ path('cart_add') }}">
+                                        <input  type="hidden" name="slug" value="{{ product.slug }}">
                                         <div class="info-holder">
                                             {{ product.shortDescription | raw }}
                                         </div>
@@ -47,7 +48,7 @@
                                             {% for property in product.properties %}
                                                 <div class="drop-selector variation-selector">
                                                     <span>{{ property.name }}</span>
-                                                    <select name="variant-{{ property.code }}" class="chosen-select">
+                                                    <select name="property[{{ property.code }}]" class="chosen-select">
                                                         {% for value in property.values %}
                                                         <option value="{{ value.id }}">{{ value.value }}</option>
                                                         {% endfor %}
@@ -58,7 +59,7 @@
                                             <div class="drop-selector">
                                                 <span>số lượng</span>
                                                 <select name="amount" class="chosen-select">
-                                                    {% for value in 1..10 %}
+                                                    {% for value in 1..9 %}
                                                         <option value="{{ value }}">{{ value }}</option>
                                                     {% endfor %}
                                                 </select>

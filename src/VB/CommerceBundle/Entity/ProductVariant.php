@@ -6,10 +6,13 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use VB\CommerceBundle\Util\StringUtil;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="product_variant")
+ * @JMS\AccessType("public_method")
+ * @JMS\ExclusionPolicy("all")
  */
 class ProductVariant
 {
@@ -17,11 +20,15 @@ class ProductVariant
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @JMS\Type("integer")
+     * @JMS\Expose()
      */
     protected $id;
 
     /**
      * @ORM\Column(type="integer",length=8,nullable=true)
+     * @JMS\Type("integer")
+     * @JMS\Expose()
      */
     protected $price;
 
@@ -38,6 +45,7 @@ class ProductVariant
 
     /**
      * @ORM\OneToMany(targetEntity="VariantProperty", mappedBy="variant", orphanRemoval=true, cascade="all")
+     *
      */
     protected $properties;
 
@@ -52,6 +60,14 @@ class ProductVariant
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
     }
 
     /**

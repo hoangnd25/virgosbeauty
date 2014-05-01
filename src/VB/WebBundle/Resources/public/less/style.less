@@ -263,7 +263,7 @@ ul.inline>li, ol.inline>li {
         text-align: center;
     }
     .cart-menu {
-        margin-left: -40px !important;
+        margin-left: -100px !important;
     }
 }
 @media (min-width: 768px) {
@@ -274,7 +274,7 @@ ul.inline>li, ol.inline>li {
 
 @media (min-width: 768px) and (max-width: 991px) {
     .cart-menu{
-        margin-left: 30px !important;
+        margin-left: -20px !important;
     }
     .top-row .logo {
         margin-left: 0px;
@@ -286,7 +286,7 @@ ul.inline>li, ol.inline>li {
 
 @media (min-width: 1199px) {
     .cart-menu{
-        margin-left: 150px !important;
+        margin-left: 100px !important;
     }
 }
 
@@ -350,7 +350,7 @@ ul.inline>li, ol.inline>li {
     min-height: 52px;
 }
 .cart-menu {
-    margin: 17px 0 0 90px;
+    margin: 17px 0 0 60px;
     li:nth-last-child(2):after {
         content: "\00a0";
     }
@@ -378,9 +378,11 @@ ul.inline>li, ol.inline>li {
         top: 10px;
         position: absolute;
         left: 48px;
+        width: 150px;
+        display: block;
     }
     .dropdown-menu {
-        right: -52px;
+        right: -135px;
         left: auto;
         margin-top: 21px;
         width: 270px;
@@ -396,7 +398,7 @@ ul.inline>li, ol.inline>li {
             position: relative;
             padding-bottom: 17px;
             border-bottom: 1px solid #E2E4D9;
-            .title {
+            .title,.title a {
                 font-size: 13px;
                 margin-top: 2px;
                 line-height: 25px;
@@ -428,7 +430,7 @@ ul.inline>li, ol.inline>li {
 }
 .webkit {
     .cart-menu {
-        margin: 0px 0 0 90px;
+        margin: 0px 0 0 60px;
     }
     .basket {
         top: 17px;
@@ -1110,4 +1112,55 @@ ul.inline>li, ol.inline>li {
 
 .collection-item::after{
     clear: both;
+}
+
+// Cart page
+
+.section-cart{
+    margin-top: 40px;
+    h2{
+        text-align: center;
+    }
+    .container{
+        @media (max-width: 767px) {
+            padding: 0px;
+        }
+    }
+    table{
+        th{
+            font-size: 16px;
+            font-weight: 600;
+        }
+    }
+    .header-image{
+        width: 10%;
+    }
+    .item-image{
+        img{
+            width: 100%;
+
+            @media (max-width: 767px) {
+                width: 30px;
+            }
+        }
+    }
+    .item-price,.item-total-price{
+        font-size: 13px;
+        font-weight: 600;
+        color: #70543E;
+    }
+    .item-product{
+        font-size: 16px;
+        span{
+            font-size: 12px;
+            font-style: italic;
+            display: block;
+            width: 100%;
+        }
+    }
+    .item-action{
+        .btn{
+            padding:5px;
+        }
+    }
 }

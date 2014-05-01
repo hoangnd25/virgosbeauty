@@ -7,12 +7,12 @@ $(document).ready(function() {
     });
 
     $('[data-hover="dropdown"]').dropdownHover();
-    $('.basket .close-btn').click(function() {
-        $(this).parent().parent().fadeOut(function() {
-            $(this).remove();
-            checkBasketDropdown(true);
-        });
-    });
+//    $('.basket .close-btn').click(function() {
+//        $(this).parent().parent().fadeOut(function() {
+//            $(this).remove();
+//            checkBasketDropdown(true);
+//        });
+//    });
 
     $('[data-placeholder]').focus(function() {
         var input = $(this);

@@ -79,7 +79,7 @@ class VariantProperty
     function __toString()
     {
         $propertyValue = $this->getPropertyValue();
-        return $propertyValue->getProperty()->getName().": ".$propertyValue->getValue();
+        return $propertyValue->getProperty()->getName();
     }
 
 

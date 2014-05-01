@@ -50,47 +50,10 @@
                         <div class="top-menu cart-menu">
                             <ul class="inline">
                                 <li>
-                                    <a href="#">đặt hàng</a>
+                                    <a href="#">Xem giỏ hàng</a>
                                 </li>
                                 <li>
-                                    <div class="basket">
-                                        <div class="basket-item-count">
-                                            3
-                                        </div>
-                                        <div class="total-price-basket">
-                                            $0.00
-                                        </div>
-                                        <div class="dropdown">
-                                            <a class="dropdown-toggle" data-hover="dropdown" href="#">
-                                                <img src="/images/icon-basket.png" alt="basket" />
-                                            </a>
-                                            <ul class="dropdown-menu">
-                                                <li>
-                                                    <div class="basket-item">
-                                                        <div class="row-fluid">
-                                                            <div class="col-sm-4">
-                                                                <div class="thumb">
-                                                                    <img alt="" src="http://amindiary.com/demo/cosmetico/images/p1.jpg">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-sm-8">
-                                                                <div class="title">Blueberry</div>
-                                                                <div class="price">$270.00</div>
-                                                            </div>
-                                                            <div class="clearfix"></div>
-                                                        </div>
-                                                        <a class="close-btn" href="#"></a>
-                                                    </div>
-                                                </li>
-
-                                                <li class="checkout">
-                                                    <a href="shopping-cart.html" class="cusmo-btn">đặt hàng</a>
-                                                </li>
-                                            </ul>
-
-                                        </div>
-
-                                    </div>
+                                    {{ render(controller('VBCommerceBundle:Cart:menuCart')) }}
                                 </li>
 
                             </ul>

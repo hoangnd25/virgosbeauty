@@ -31,6 +31,7 @@ class AppKernel extends Kernel
             new Vich\UploaderBundle\VichUploaderBundle(),
             new Liip\ImagineBundle\LiipImagineBundle(),
             new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
+            new JMS\SerializerBundle\JMSSerializerBundle(),
 
             new VB\BlogBundle\VBBlogBundle(),
             new VB\CommerceBundle\VBCommerceBundle(),

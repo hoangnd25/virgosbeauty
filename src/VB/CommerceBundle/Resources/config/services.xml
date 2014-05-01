@@ -17,4 +17,10 @@
         </service>
     </services>
     -->
+    <services>
+        <service id="cart" class="VB\CommerceBundle\Service\CartService">
+            <argument type="service" id="jms_serializer" />
+            <argument type="service" id="session" />
+        </service>
+    </services>
 </container>
