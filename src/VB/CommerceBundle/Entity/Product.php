@@ -21,7 +21,6 @@ class Product
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      * @JMS\Type("integer")
-     * @JMS\ReadOnly()
      * @JMS\Expose()
      */
     protected $id;
@@ -92,6 +91,8 @@ class Product
 
     /**
      * @ORM\OneToMany(targetEntity="ProductProperty", mappedBy="product", orphanRemoval=true, cascade={"persist"})
+     * @JMS\Type("array<VB\CommerceBundle\Entity\ProductProperty>")
+     * @JMS\Expose()
      */
     protected $properties;
 
@@ -177,6 +178,14 @@ class Product
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
     }
 
     /**

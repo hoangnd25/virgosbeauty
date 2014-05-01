@@ -5,11 +5,13 @@ namespace VB\CommerceBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
-use VB\CommerceBundle\Util\StringUtil;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="product_property")
+ * @JMS\AccessType("public_method")
+ * @JMS\ExclusionPolicy("all")
  */
 class ProductProperty
 {
@@ -17,6 +19,8 @@ class ProductProperty
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @JMS\Type("integer")
+     * @JMS\Expose()
      */
     protected $id;
 
@@ -40,6 +44,14 @@ class ProductProperty
      * @ORM\OneToMany(targetEntity="PropertyValue", mappedBy="property", cascade={"persist"}, orphanRemoval=true)
      */
     protected $values;
+
+    /**
+     * @var string
+     *
+     * @JMS\Expose()
+     * @JMS\Type("string")
+     */
+    protected $serializedValue;
 
     public function __construct($code=null,$name=null,$product=null)
     {
@@ -71,6 +83,14 @@ class ProductProperty
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
     }
 
     /**
@@ -141,4 +161,21 @@ class ProductProperty
     {
         return $this->values;
     }
+
+    /**
+     * @param string $serializedValue
+     */
+    public function setSerializedValue($serializedValue)
+    {
+        $this->serializedValue = $serializedValue;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSerializedValue()
+    {
+        return $this->serializedValue;
+    }
+
 }

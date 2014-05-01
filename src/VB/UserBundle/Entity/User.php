@@ -33,6 +33,16 @@ class User extends BaseUser
     /** @ORM\Column(name="google_access_token", type="string", length=255, nullable=true) */
     protected $google_access_token;
 
+    /**
+     * @ORM\Column(length=12,nullable=true)
+     */
+    protected $phone;
+
+    /**
+     * @ORM\Column(type="text",nullable=true)
+     */
+    protected $address;
+
     public function __construct()
     {
         parent::__construct();
@@ -126,5 +136,36 @@ class User extends BaseUser
         return $this->google_id;
     }
 
+    /**
+     * @param mixed $address
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    /**
+     * @param mixed $phone
+     */
+    public function setPhone($phone)
+    {
+        $this->phone = $phone;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPhone()
+    {
+        return $this->phone;
+    }
 
 }
