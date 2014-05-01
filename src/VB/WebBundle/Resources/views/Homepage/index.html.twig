@@ -37,6 +37,45 @@
             </div>
         </div>
     </section>
+    <div class="clearfix"></div>
+    <section class="home-products">
+        <div class="container">
+            <div class="controls-holder nav-tabs">
+                <ul class="inline">
+                    <li class="active"><a data-toggle="tab" href="#new-products">Sản phẩm mới</a></li>
+                </ul>
+            </div>
+            <div class="tab-content">
+                <div id="hot-products" class="products-holder active tab-pane ">
+                    <div class="row-fluid">
+                        {% for product in products %}
+                            <div class="col-sm-3">
+                                <div class="product-item">
+                                    <a href="{{ path('product_by_slug',{'slug':product.slug}) }}">
+                                        {% set image = product.images | first %}
+                                        {% if image %}
+                                            {% set imagePath = 'images/public/product_image/'~image.fileName %}
+                                            <img alt="{{ product.name }}" src="{{ imagePath | imagine_filter('product_image_list_item')}}">
+                                        {% else %}
+                                            <img alt="{{ product.name }}" src="/images/no-image.jpg">
+                                        {% endif %}
+                                        <h1>{{ product.name }}</h1>
+                                    </a>
+                                    <div class="tag-line">
+                                        <span>{{ product.tagLine }}</span>
+                                    </div>
+                                    <div class="price">
+                                        {{ product.price | number_format(0, ',', '.') }} VND
+                                    </div>
+                                    <a class="cusmo-btn add-button" href="{{ path('cart_add',{'slug':product.slug}) }}">Thêm vào giỏ hàng</a>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
 {% endblock container %}
 

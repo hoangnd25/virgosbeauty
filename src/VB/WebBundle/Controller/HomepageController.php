@@ -2,6 +2,7 @@
 
 namespace VB\WebBundle\Controller;
 
+use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -15,6 +16,20 @@ class HomepageController extends Controller
      */
     public function indexAction()
     {
-        return array();
+        /**
+         * @var $em EntityManager
+         */
+        $em = $this->getDoctrine()->getManager();
+
+        $products = null;
+        $qb = $em->createQueryBuilder();
+        $qb->select('p')
+            ->from('VBCommerceBundle:Product','p')
+            ->join('p.categories','c')
+            ->leftJoin('p.images','i')
+            ->orderBy('p.id','desc');
+        $qb->setMaxResults(9);
+
+        return array('products' => $qb->getQuery()->getResult());
     }
 }

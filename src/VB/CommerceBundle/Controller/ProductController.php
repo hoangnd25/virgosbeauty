@@ -267,9 +267,9 @@ class ProductController extends Controller
                         $image = new ProductImage($item);
                         $image->setProduct($formData);
                         $formData->getImages()->add($image);
-                        $category->getProducts()->add($formData);
                     }
                 }
+                $category->getProducts()->add($formData);
                 $properties = $formData->getProperties();
                 foreach($properties as $property){
                     $property->setProduct($formData);
