@@ -1,10 +1,6 @@
 <div class="basket">
-    <div class="basket-item-count">
-        {{ cart.items | length }}
-    </div>
-    <div class="total-price-basket">
-        {{ cart.totalPrice  | number_format(0, ',', '.') }} VND
-    </div>
+    <div class="basket-item-count">{{ cart.items | length }}</div>
+    <div class="total-price-basket">{{ cart.totalPrice  | number_format(0, ',', '.') }} VND</div>
     <div class="dropdown">
         <a class="dropdown-toggle" data-hover="dropdown" href="#">
             <img src="/images/icon-basket.png" alt="basket" />

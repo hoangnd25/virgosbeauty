@@ -2,6 +2,12 @@
 
 {% from 'MopaBootstrapBundle::flash.html.twig' import session_flash %}
 
+{% block head %}
+    {% spaceless %}
+        {{ parent() }}
+    {% endspaceless %}
+{% endblock head %}
+
 {% block head_style %}
     {# Override this block to add your own files! #}
     {% stylesheets
@@ -15,6 +21,7 @@
 {% endblock head_style %}
 
 {% block body %}
+{% spaceless %}
     <div class="wrapper">
         <section class="section-head">
             <div class="container">
@@ -47,20 +54,16 @@
                             </span>
                         </div>
                     </div>
-
                     <div class="col-sm-4 cart-holder">
                         <div class="top-menu cart-menu">
                             <ul class="inline">
                                 <li>
-                                    <a href="#">Xem giỏ hàng</a>
+                                    <a href="{{ path('cart_show') }}">Xem giỏ hàng</a>
                                 </li>
                                 <li>
                                     {{ render(controller('VBCommerceBundle:Cart:menuCart')) }}
                                 </li>
-
                             </ul>
-
-
                         </div>
                     </div>
                 </div>
@@ -167,4 +170,6 @@
         {% block additional_script %}
         {% endblock additional_script %}
     {% endblock foot_script %}
+
+{% endspaceless %}
 {% endblock body %}
