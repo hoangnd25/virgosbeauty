@@ -1,6 +1,9 @@
 <ul class="inline top-cat-menu hidden-xs hidden-sm">
-    <li class="{% if app.request.attributes.get('_route') == 'homepage' %}active{% endif %}">
+    <li class="{% if route == 'homepage' %}active{% endif %}">
         <a href="{{ path("homepage") }}">Home</a>
+    </li>
+    <li class="{% if route == 'product_all' %}active{% endif %}">
+        <a href="{{ path("product_all") }}">Sản phẩm</a>
     </li>
     {% for item in menu %}
         <li class="{% if item.slug == category.slug %}active{% endif %}">

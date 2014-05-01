@@ -1,0 +1,18 @@
+{% extends '@VBCommerce/Product/layout.html.twig' %}
+
+{% block product_head %}
+<h1>
+    {% block product_head_title %}Các sản phẩm{% endblock product_head_title%}
+</h1>
+<div class="tag-line">
+    {% block product_head_text %}
+        {#Nulla tellus arcu,<br>#}
+        {#fermentum et interdum eu...#}
+    {% endblock product_head_text%}
+</div>
+<div class="image-holder">
+    {% block product_head_image %}
+        {#<img alt="" src="http://amindiary.com/demo/cosmetico/images/woman.JPG">#}
+    {% endblock product_head_image %}
+</div>
+{% endblock product_head %}

@@ -27,7 +27,10 @@
                         {% block product_head %}
                             <h1>
                                 {% block product_head_title %}{{ category.name }}{% endblock product_head_title%}
-                                <a class="cusmo-btn gray" href="{{ path('product_add_by_category',{'categorySlug':category.slug}) }}">Add product</a>
+
+                                {% if is_granted('ROLE_ADMIN') %}
+                                    <a class="cusmo-btn gray" href="{{ path('product_add_by_category',{'categorySlug':category.slug}) }}">Add product</a>
+                                {% endif %}
                             </h1>
                             <div class="tag-line">
                                 {% block product_head_text %}

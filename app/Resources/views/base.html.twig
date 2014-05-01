@@ -71,7 +71,7 @@
                                 {% if category is not defined %}
                                     {% set category = null %}
                                 {% endif %}
-                                {% render(controller('VBWebBundle:Menu:mainMenu',{'category':category})) %}
+                                {% render(controller('VBWebBundle:Menu:mainMenu',{'category':category,'route': app.request.attributes.get('_route')})) %}
                                 {% render(controller('VBWebBundle:Menu:mobileMainMenu')) %}
                             </div>
                             <div class="col-sm-4 col-md-3">

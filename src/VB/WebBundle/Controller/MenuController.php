@@ -17,13 +17,13 @@ class MenuController extends Controller
     /**
      * @Template()
      */
-    public function mainMenuAction($category=null)
+    public function mainMenuAction($category=null,$route=null)
     {
         $children = $this->getRepo()->children($this->getRoot(),true);
         if(!$category){
             $category = new ProductCategory();
         }
-        return array('menu'=>$children,'category'=>$category);
+        return array('menu'=>$children,'category'=>$category,'route'=>$route);
     }
 
     /**

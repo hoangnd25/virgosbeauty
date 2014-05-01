@@ -50,7 +50,8 @@ class ProductController extends Controller
         $qb->select('p')
             ->from('VBCommerceBundle:Product','p')
             ->join('p.categories','c')
-            ->leftJoin('p.images','i');
+            ->leftJoin('p.images','i')
+            ->orderBy('p.id','desc');
 
         $categoryArray =  array();
         $categoryArray[] = $category->getId();
@@ -96,6 +97,41 @@ class ProductController extends Controller
         );
 
         return array('products' => $pagination,'category'=>$category);
+    }
+
+    /**
+     * @return array
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     *
+     * @Route("/p",name="product_all")
+     * @Template()
+     */
+    public function allAction()
+    {
+        /**
+         * @var $em EntityManager
+         */
+        $em = $this->getDoctrine()->getManager();
+
+        $products = null;
+        $qb = $em->createQueryBuilder();
+        $qb->select('p')
+            ->from('VBCommerceBundle:Product','p')
+            ->join('p.categories','c')
+            ->leftJoin('p.images','i')
+            ->orderBy('p.id','desc');
+
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $qb->getQuery(),
+            $this->get('request')->query->get('page', 1)/*page number*/,
+            10/*limit per page*/
+        );
+
+        $breadcrumbs = $this->get("white_october_breadcrumbs");
+        $breadcrumbs->addItem("Home", $this->get("router")->generate("homepage"));
+        $breadcrumbs->addItem("Sản phẩm");
+        return array('products' => $pagination,'category'=>null);
     }
 
     /**
