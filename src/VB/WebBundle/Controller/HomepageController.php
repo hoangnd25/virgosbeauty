@@ -28,7 +28,7 @@ class HomepageController extends Controller
             ->join('p.categories','c')
             ->leftJoin('p.images','i')
             ->orderBy('p.id','desc');
-        $qb->setMaxResults(9);
+        $qb->setMaxResults(8);
 
         return array('products' => $qb->getQuery()->getResult());
     }
