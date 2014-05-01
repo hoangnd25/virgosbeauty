@@ -32,6 +32,7 @@ class AppKernel extends Kernel
             new Liip\ImagineBundle\LiipImagineBundle(),
             new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
+            new Gregwar\CaptchaBundle\GregwarCaptchaBundle(),
 
             new VB\BlogBundle\VBBlogBundle(),
             new VB\CommerceBundle\VBCommerceBundle(),

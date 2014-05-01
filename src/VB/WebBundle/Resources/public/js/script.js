@@ -79,6 +79,26 @@ $(document).ready(function() {
         });
     });
 
+    if($('.map-holder').length>0){
+        $('.map').gmap3({
+            map:{
+                options:{
+                    center:[21.0333,105.85],
+
+                    zoom:15,
+                    mapTypeControl: true,
+
+                    navigationControl: true,
+                    scrollwheel: false,
+                    streetViewControl: true
+                }
+            },
+            marker:{
+                latLng:[21.0333,105.85]
+            }
+        });
+    }
+
     function checkBasketDropdown(remove) {
         if (remove) {
             cn = parseInt($('.basket-item-count').text());

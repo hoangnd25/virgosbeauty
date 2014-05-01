@@ -1,5 +1,7 @@
 {% extends 'MopaBootstrapBundle::base_initializr.html.twig' %}
 
+{% from 'MopaBootstrapBundle::flash.html.twig' import session_flash %}
+
 {% block head_style %}
     {# Override this block to add your own files! #}
     {% stylesheets
@@ -31,7 +33,7 @@
                                     <li><a href="{{ path('fos_user_security_login') }}">đăng nhập</a></li>
                                     <li><a href="{{ path('fos_user_registration_register') }}">đăng kí</a></li>
                                 {% endif %}
-                                <li><a href="contact.html">liên hệ</a></li>
+                                <li><a href="{{ path('contact_us') }}">liên hệ</a></li>
                             </ul>
                         </div>
                     </div>
@@ -90,6 +92,18 @@
             {{ wo_render_breadcrumbs() }}
         </section>
 
+        {% block flashes %}
+        {% if app.session.flashbag.peekAll|length > 0 %}
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12" style="margin-top: 20px">
+                        {{ session_flash() }}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        {% endblock flashes %}
+
         {% block container %}
 
         {% endblock container %}
@@ -143,6 +157,7 @@
             '@VBWebBundle/Resources/public/js/chosen.js'
             '@FOSJsRoutingBundle/Resources/public/js/router.js'
             '@VBWebBundle/Resources/public/js/script.js'
+            '@VBWebBundle/Resources/public/js/gmap3.js'
             %}
             <script type="text/javascript" src="{{ asset_url }}"></script>
             {% endjavascripts %}

@@ -229,3 +229,7 @@ hwi_oauth:
             client_id:           "%google_app_id%"
             client_secret:       "%google_app_secret%"
             scope:               "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile"
+
+gregwar_captcha:
+    background_color: [255,255,255]
+    quality: 50
