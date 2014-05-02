@@ -15,6 +15,9 @@
     '@VBWebBundle/Resources/public/css/flexslider.css'
     '@VBWebBundle/Resources/public/css/chosen.css'
     '@VBWebBundle/Resources/public/less/style.less'
+
+    output="css/main.css"
+    filter='yui_css'
     %}
     <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
     {% endstylesheets %}
@@ -161,6 +164,9 @@
             '@FOSJsRoutingBundle/Resources/public/js/router.js'
             '@VBWebBundle/Resources/public/js/script.js'
             '@VBWebBundle/Resources/public/js/gmap3.js'
+
+            output="js/main.js"
+            filter='yui_js'
             %}
             <script type="text/javascript" src="{{ asset_url }}"></script>
             {% endjavascripts %}
