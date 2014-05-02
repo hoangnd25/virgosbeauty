@@ -92,10 +92,11 @@ $(document).ready(function() {
                     scrollwheel: false,
                     streetViewControl: true
                 }
-            },
-            marker:{
-                latLng:[21.0333,105.85]
             }
+//            ,
+//            marker:{
+//                latLng:[21.0333,105.85]
+//            }
         });
     }
 
