@@ -2,6 +2,16 @@
 
 {% from 'MopaBootstrapBundle::flash.html.twig' import session_flash %}
 
+{% block html_tag %}
+    <!--[if lt IE 7]>      <html {{ sonata_seo_html_attributes() }} class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+    <!--[if IE 7]>         <html {{ sonata_seo_html_attributes() }} class="no-js lt-ie9 lt-ie8"> <![endif]-->
+    <!--[if IE 8]>         <html {{ sonata_seo_html_attributes() }} class="no-js lt-ie9"> <![endif]-->
+    <!--[if gt IE 8]><!--> <html {{ sonata_seo_html_attributes() }} class="no-js"> <!--<![endif]-->
+
+{# make your site working offline with Application Cache (AppCache)
+   http://www.html5rocks.com/en/tutorials/appcache/beginner/
+<html manifest="manifest.appcache"> #}
+{% endblock html_tag %}
 
 {% block head %}
     {% spaceless %}
