@@ -109,7 +109,7 @@ mopa_bootstrap:
               - '//ajax.googleapis.com'
         google:
 #            wt: 'xxx'
-            analytics: 'UA-xxxxxxx-xx'
+            analytics: 'UA-47734275-2'
 
 stof_doctrine_extensions:
     orm:
