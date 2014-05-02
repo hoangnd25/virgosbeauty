@@ -2,6 +2,7 @@
 
 namespace VB\UserBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -44,6 +45,16 @@ class User extends BaseUser
     protected $address;
 
     /**
+     * @ORM\OneToMany(targetEntity="VB\CommerceBundle\Entity\Order", mappedBy="user", cascade="persist")
+     */
+    protected $orders;
+
+    /**
+     * @ORM\OneToMany(targetEntity="VB\CommerceBundle\Entity\Order", mappedBy="saleAssistant", cascade="persist")
+     */
+    protected $processingOrders;
+
+    /**
      * @ORM\Column(length=32,nullable=true)
      */
     protected $temporaryPassword;
@@ -51,6 +62,7 @@ class User extends BaseUser
     public function __construct()
     {
         parent::__construct();
+        $this->orders = new ArrayCollection();
     }
 
     /**

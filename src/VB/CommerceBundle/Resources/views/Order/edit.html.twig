@@ -1,0 +1,110 @@
+{% extends 'VBWebBundle::userArea.html.twig' %}
+
+{% block content %}
+    <div class="">
+        <h3>Đơn hàng</h3>
+    </div>
+
+    <div class="row-fluid">
+        <label class="col-xs-4 col-sm-3">Đơn hàng số:</label> <span class="col-xs-8 col-sm-9">{{ order.id }}</span>
+        <div class="clearfix"></div>
+    </div>
+
+    <div class="row-fluid">
+        <label class="col-xs-4 col-sm-3">Status:</label> <span class="col-xs-8 col-sm-9">{{ order.status }}</span>
+        <div class="clearfix"></div>
+    </div>
+
+    <div class="row-fluid">
+        <label class="col-xs-4 col-sm-3">Tên:</label> <span class="col-xs-8 col-sm-9">{{ order.contactName }}</span>
+        <div class="clearfix"></div>
+    </div>
+
+    <div class="row-fluid">
+        <label class="col-xs-4 col-sm-3">Số điện thoại:</label> <span class="col-xs-8 col-sm-9">{{ order.phone }}</span>
+        <div class="clearfix"></div>
+    </div>
+
+    <div class="row-fluid">
+        <label class="col-xs-4 col-sm-3">Email:</label> <span class="col-xs-8 col-sm-9">
+            <a href="mailto:{{ order.email }}">{{ order.email }}</a>
+        </span>
+        <div class="clearfix"></div>
+    </div>
+
+    <div class="row-fluid">
+        <label class="col-xs-4 col-sm-3">Địa chỉ:</label> <span class="col-xs-8 col-sm-9">{{ order.address }}</span>
+        <div class="clearfix"></div>
+    </div>
+
+    <div class="row-fluid">
+        <label class="col-xs-4 col-sm-3">Ngày đặt hàng:</label> <span class="col-xs-8 col-sm-9">{{ order.created | date('h:iA d/m/y') }}</span>
+        <div class="clearfix"></div>
+    </div>
+
+    <div class="row-fluid">
+        <label class="col-xs-4 col-sm-3">Tổng tiền đơn hàng</label> <span class="col-xs-8 col-sm-9">{{ order.totalPrice | number_format(0, ',', '.')}} VND</span>
+        <div class="clearfix"></div>
+    </div>
+
+    <div class="row-fluid" style="padding-bottom: 20px">
+        <div class="col-sm-12">
+            <a class="btn btn-warning" href="{{ path('order_cancel_order',{'id':order.id}) }}">Huỷ đơn hàng</a>
+            <a class="btn btn-success" href="{{ path('order_finish_order',{'id':order.id}) }}">Hoàn thành đơn hàng</a>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th style="width: 15%">Mã</th>
+                <th>Sản phẩm</th>
+                <th>Giá</th>
+                <th>SL</th>
+                <th class="hidden-xs">Tổng</th>
+                <th style="width: 5%">&nbsp;</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in order.items %}
+                <tr>
+                    <td class="item-image">
+                    </td>
+                    <td class="item-product">
+                        <a href="{{ path('product_by_slug',{'slug':item.product.slug}) }}">{{ item.product.name }}</a>
+                        {#&#123;&#35;<span>{{ item.product.tagLine }}</span>&#35;&#125;#}
+                        {% if item.product.properties %}
+                            {% for property in item.product.properties %}
+                                {% set firstValue = property.values | first %}
+                                <span class="property">
+                                    {{ property.name }}: {{ firstValue.value}}
+                                </span>
+                            {% endfor %}
+                        {% endif %}
+                    </td>
+                    <td class="item-price">{{ item.price | number_format(0, ',', '.')}} VND</td>
+                    <td class="item-quantity">{{ item.quantity }}</td>
+                    {% set totalPrice =  item.price * item.quantity%}
+                    <td class="item-total-price hidden-xs">{{ totalPrice | number_format(0, ',', '.')}} VND</td>
+                    <td class="item-action">
+                        <button class="btn btn-action btn-success" type="submit"><i class="icon-save"></i></button>
+                        <a class="btn btn-action btn-warning" href=""><i class="icon-trash"></i></a>
+                        {#<a class="btn btn-warning" href="{{ path('cart_remove',{'slug':item.product.slug,'variant':productVariantId}) }}"><i class="icon-trash"></i></a>#}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <style>
+        .btn-action{
+            padding: 5px;
+        }
+        .property{
+            display: block;
+            width: 100%;
+            font-size: 13px;
+        }
+    </style>
+{% endblock content %}

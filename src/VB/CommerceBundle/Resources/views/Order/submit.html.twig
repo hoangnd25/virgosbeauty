@@ -1,10 +1,10 @@
 {% extends '::base.html.twig' %}
 
 {% block container %}
-    <section class="section-cart">
+    <section class="section-order">
         <div class="container">
             <div class="row-fluid">
-                <h2>Giỏ hàng</h2>
+                <h2>Đơn hàng</h2>
                 {% if cart.items |length %}
                     <table class="table">
                         <thead>
@@ -14,7 +14,6 @@
                             <th class="header-price">giá</th>
                             <th class="header-quantity"><span class="visible-xs">sl</span><span class="hidden-xs">số lượng</span></th>
                             <th class="header-total-price hidden-xs">tổng</th>
-                            <th class="header-action">&nbsp;</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -43,24 +42,23 @@
                                     </td>
                                     <td class="item-price">{{ item.singlePrice | number_format(0, ',', '.')}} VND</td>
                                     <td class="item-quantity">
-                                        <select name="amount" class="chosen-select">
-                                            {% for i in 1..9 %}
-                                                <option {% if i == item.amount %}selected="selected" {% endif %} value="{{ i }}">{{ i }}</option>
-                                            {% endfor %}
-                                        </select>
+                                        {{ item.amount }}
                                     </td>
                                     <td class="item-total-price hidden-xs">{{ item.totalPrice | number_format(0, ',', '.')}} VND</td>
-                                    <td class="item-action">
-                                        <button class="btn btn-success" type="submit"><i class="icon-save"></i></button>
-                                        <a class="btn btn-warning" href="{{ path('cart_remove',{'slug':item.product.slug,'variant':productVariantId}) }}"><i class="icon-trash"></i></a>
-                                    </td>
                                 </form>
                             </tr>
                         {% endfor %}
                         </tbody>
                     </table>
 
-                    <a href="{{ path('order_submit') }}" style="margin-right: 20px" class="pull-right cusmo-btn">Đặt hàng</a>
+                    <form class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-7 col-lg-offset-2" action="{{ path('order_submit') }}" method="POST">
+                        {{ form_row(form) }}
+
+                        <div class="col-sm-12">
+                            <a href="{{ path('cart_show') }}" class="gray cusmo-btn">Quay lại giỏ hàng</a>
+                            <button type="submit" class="cusmo-btn">Đặt hàng</button>
+                        </div>
+                    </form>
                 {% else %}
                     <h4 style="text-align: center;margin-top: 20px">Không có sản phẩm nào trong giỏ hàng</h4>
                 {% endif %}

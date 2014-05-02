@@ -25,6 +25,14 @@
                                 <div class="col-sm-8">
                                     <div class="title"><a href="{{ path('product_by_slug',{'slug':item.product.slug}) }}">{{ item.product.name }}</a> </div>
                                     <div class="price">{{ item.amount }} <span style="text-transform: lowercase">x</span> {{ item.singlePrice | number_format(0, ',', '.') }} VND</div>
+
+                                    {% if item.productVariation %}
+                                        {% for property in item.productVariation.properties %}
+                                            <div class="property">
+                                            {{ property.propertyValue.property.name }}: {{ property.propertyValue.value}}
+                                            </div>
+                                        {% endfor %}
+                                    {% endif %}
                                 </div>
                                 <div class="clearfix"></div>
                             </div>

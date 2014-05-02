@@ -33,6 +33,13 @@ class Product
     protected $name;
 
     /**
+     * @ORM\Column(length=16)
+     * @JMS\Expose()
+     * @JMS\Type("string")
+     */
+    protected $sku;
+
+    /**
      * @ORM\Column(length=160,nullable=true)
      * @JMS\Expose()
      * @JMS\Type("string")
@@ -416,4 +423,21 @@ class Product
         $this->variants->removeElement($variant);
         $variant->setProduct(null);
     }
+
+    /**
+     * @param mixed $sku
+     */
+    public function setSku($sku)
+    {
+        $this->sku = $sku;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSku()
+    {
+        return $this->sku;
+    }
+
 }

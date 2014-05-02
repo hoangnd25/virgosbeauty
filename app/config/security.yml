@@ -38,6 +38,7 @@ security:
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/, role: ROLE_ADMIN }
+        - { path: ^/order-management/, role: ROLE_SALE_ASSISTANT }
         - { path: /edit$, role: ROLE_ADMIN }
         - { path: /add$, role: ROLE_ADMIN }
         - { path: /delete$, role: ROLE_ADMIN }

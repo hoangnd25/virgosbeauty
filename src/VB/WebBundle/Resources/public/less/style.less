@@ -391,18 +391,20 @@ ul.inline>li, ol.inline>li {
         -webkit-border-radius: 10px;
         li {
             line-height: 10px;
-            margin: 17px 0;
+            margin: 10px 0 15px 0;
         }
         .basket-item {
             margin: 0 20px;
             position: relative;
-            padding-bottom: 17px;
+            padding-bottom: 8px;
+            padding-top: 8px;
             border-bottom: 1px solid #E2E4D9;
             .title,.title a {
                 font-size: 13px;
                 margin-top: 2px;
                 line-height: 25px;
-                font-weight: normal;
+                font-weight: 400;
+                color: black;
             }
             .price {
                 font-weight: 600;
@@ -415,6 +417,12 @@ ul.inline>li, ol.inline>li {
                 img{
                     width: 100%;
                 }
+            }
+            .property{
+                padding-top: 7px;
+                font-size: 12px;
+                font-weight: 300;
+                color: #727272;
             }
         }
         .checkout {
@@ -1334,6 +1342,45 @@ ul.inline>li, ol.inline>li {
             }
         }
     }
+}
+
+// order
+
+.section-order{
+    margin-top: 40px;
+    h2{
+        text-align: center;
+    }
+    table{
+        tr{
+            td{
+                vertical-align: middle !important;
+                padding: 0;
+            }
+        }
+    }
+    .item-image{
+        width: 50px;
+        img{
+            max-width: 30px !important;
+        }
+    }
+
+    .item-price,.item-total-price{
+        font-weight: 600;
+        color: #70543E;
+    }
+
+    .item-product{
+        font-size: 16px;
+        span{
+            font-size: 12px;
+            font-style: italic;
+            display: block;
+            width: 100%;
+        }
+    }
+    .item-quantity{font-weight: 600}
 }
 // user area
 .section-user-area{

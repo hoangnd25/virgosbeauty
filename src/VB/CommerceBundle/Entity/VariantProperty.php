@@ -21,7 +21,7 @@ class VariantProperty
     protected $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="PropertyValue")
+     * @ORM\ManyToOne(targetEntity="PropertyValue", inversedBy="variantProperties")
      * @ORM\JoinColumn(name="property_value_id", referencedColumnName="id")
      */
     protected $propertyValue;

@@ -52,8 +52,10 @@ class CartController extends Controller
                 ;
             $qb->setMaxResults(1);
             $result = $qb->getQuery()->getResult();
-            $variantId = $result[0]['id'];
-            $productVariation = $em->getRepository('VBCommerceBundle:ProductVariant')->find($variantId);
+            if($result){
+                $variantId = $result[0]['id'];
+                $productVariation = $em->getRepository('VBCommerceBundle:ProductVariant')->find($variantId);
+            }
 
 //            $qb = $em->createQueryBuilder();
 //            $qb->select('pv')

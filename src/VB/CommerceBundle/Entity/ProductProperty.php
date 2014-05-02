@@ -26,11 +26,15 @@ class ProductProperty
 
     /**
      * @ORM\Column(length=32)
+     * @JMS\Type("string")
+     * @JMS\Expose()
      */
     protected $name;
 
     /**
      * @ORM\Column(length=32)
+     * @JMS\Type("string")
+     * @JMS\Expose()
      */
     protected $code;
 
@@ -42,6 +46,8 @@ class ProductProperty
 
     /**
      * @ORM\OneToMany(targetEntity="PropertyValue", mappedBy="property", cascade={"persist"}, orphanRemoval=true)
+     * @JMS\Type("array<VB\CommerceBundle\Entity\PropertyValue>")
+     * @JMS\Expose()
      */
     protected $values;
 

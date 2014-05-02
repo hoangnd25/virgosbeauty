@@ -23,7 +23,7 @@ class Order
     protected $id;
 
     /**
-     * @ORM\Column(length=80,nullable=true)
+     * @ORM\Column(length=80)
      */
     protected $contactName;
 
@@ -31,6 +31,18 @@ class Order
 //     * @ORM\ManyToOne(targetEntity="OrderStatus", inversedBy="orders")
 //     * @ORM\JoinColumn(name="status_code", referencedColumnName="code")
 //     */
+
+    /**
+     * @ORM\ManyToOne(targetEntity="VB\UserBundle\Entity\User", inversedBy="orders")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id",nullable = true)
+     */
+    protected $user;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="VB\UserBundle\Entity\User", inversedBy="processingOrders")
+     * @ORM\JoinColumn(name="sale_assistant_id", referencedColumnName="id",nullable = true)
+     */
+    protected $saleAssistant;
 
     /**
      * @ORM\Column(length=16)
@@ -43,7 +55,7 @@ class Order
     protected $email;
 
     /**
-     * @ORM\Column(length=12,nullable=true)
+     * @ORM\Column()
      */
     protected $phone;
 
@@ -53,7 +65,7 @@ class Order
     protected $address;
 
     /**
-     * @ORM\OneToMany(targetEntity="OrderItem", mappedBy="product", orphanRemoval=true, cascade="persist")
+     * @ORM\OneToMany(targetEntity="OrderItem", mappedBy="order", orphanRemoval=true, cascade="persist")
      */
     protected $items;
 
@@ -183,7 +195,7 @@ class Order
     }
 
     /**
-     * @param \VB\CommerceBundle\Entity\datetime $updated
+     * @param \datetime $updated
      */
     public function setUpdated($updated)
     {
@@ -191,7 +203,7 @@ class Order
     }
 
     /**
-     * @return \VB\CommerceBundle\Entity\datetime
+     * @return \datetime
      */
     public function getUpdated()
     {
@@ -212,6 +224,46 @@ class Order
     public function getStatus()
     {
         return $this->status;
+    }
+
+    /**
+     * @param mixed $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $saleAssistant
+     */
+    public function setSaleAssistant($saleAssistant)
+    {
+        $this->saleAssistant = $saleAssistant;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSaleAssistant()
+    {
+        return $this->saleAssistant;
+    }
+
+    public function getTotalPrice(){
+        $total = 0;
+        foreach($this->getItems() as $item){
+            $total += $item->getQuantity() * $item->getPrice();
+        }
+        return $total;
     }
 
 }

@@ -12,6 +12,11 @@ use JMS\Serializer\Annotation as JMS;
  */
 class OrderStatus
 {
+    CONST RECEIVED = 'received';
+    CONST PROCESSING = 'processing';
+    CONST FINISHED = 'finished';
+    CONST CANCELED = 'canceled';
+
     protected static $statuses = array(
         'received' => 'Đã nhận',
         'processing' => 'Đang xử lý',
@@ -20,7 +25,7 @@ class OrderStatus
     );
 
     static function getName($code){
-        foreach(self::statuses as $statusCode => $status){
+        foreach(self::$statuses as $statusCode => $status){
             if($statusCode == $code){
                 return $status;
             }

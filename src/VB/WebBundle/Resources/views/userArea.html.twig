@@ -25,8 +25,15 @@
 
                                 {% if is_granted('ROLE_SALE_ASSISTANT') %}
                                     <li class="level-1">Bán hàng</li>
-                                    <li class="level-2"><a class="" href="#">Đơn hàng chưa xử lí</a></li>
-                                    <li class="level-2"><a class="" href="#">Đơn hàng đang xử lí</a></li>
+                                    <li class="level-2"><a class="{% if app.request.attributes.get('_route') == 'order_received' %}active{% endif %}"
+                                                           href="{{ path('order_received') }}">Đơn hàng chưa xử lí</a></li>
+                                    <li class="level-2"><a class="{% if app.request.attributes.get('_route') == 'order_processing' %}active{% endif %}"
+                                                           href="{{ path('order_processing') }}">Đơn hàng đang xử lí</a></li>
+                                    <li class="level-2"><a class="{% if app.request.attributes.get('_route') == 'order_finished' %}active{% endif %}"
+                                                           href="{{ path('order_finished') }}">Đơn hàng đã xử lí</a></li>
+
+                                    <li class="level-2"><a class="{% if app.request.attributes.get('_route') == 'order_canceled' %}active{% endif %}"
+                                                           href="{{ path('order_canceled') }}">Đơn hàng đã huỷ</a></li>
                                 {% endif %}
 
                             </ul>

@@ -1,0 +1,49 @@
+{% extends 'VBWebBundle::userArea.html.twig' %}
+
+{% block content %}
+    <div class="">
+        <h3>Đơn hàng đang xử lí</h3>
+    </div>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th style="width: 15%">Tên</th>
+                <th>Sản phẩm</th>
+                <th class="hidden-xs">Tổng tiền</th>
+                <th style="width: 5%">&nbsp;</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in orders %}
+                <tr>
+                    <td>{{ order.contactName }}</td>
+                    <td>
+                        <ul style="list-style: none">
+                            {% for item in order.items %}
+                                <li style="padding-bottom: 5px">
+                                    {{ item.quantity }}x{{ item.product.name }}
+                                    <span>
+                                    {% if item.product.properties | length %}
+                                        {% for property in item.product.properties %}
+                                            {% set value = property.values | first %}
+                                            ({{ property.name }} : {{ value.value }})
+                                            {% if not loop.last %}, {% endif %}
+                                        {% endfor %}
+                                    {% endif %}
+
+                                    </span>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </td>
+                    <td class="hidden-xs">{{ order.totalPrice | number_format(0, ',', '.')}} VND</td>
+                    <td>
+                        <a href="{{ path('order_edit',{'id':order.id}) }}" class="btn btn-info" style="padding: 4px">
+                            <i class="icon-folder-open"></i><span class="hidden-xs"> Xem</span>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock content %}
