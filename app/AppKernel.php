@@ -33,6 +33,7 @@ class AppKernel extends Kernel
             new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
             new Gregwar\CaptchaBundle\GregwarCaptchaBundle(),
+            new Sonata\SeoBundle\SonataSeoBundle(),
 
             new VB\BlogBundle\VBBlogBundle(),
             new VB\CommerceBundle\VBCommerceBundle(),

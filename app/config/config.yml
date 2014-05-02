@@ -238,3 +238,29 @@ hwi_oauth:
 gregwar_captcha:
     background_color: [255,255,255]
     quality: 50
+
+sonata_seo:
+    page:
+        title: Virgos beauty | Sản phẩm làm đẹp và chăm sóc sức khoẻ từ Úc
+        metas:
+            name:
+                keywords:  >
+                    kem nhau thai cuu, kem duong da, phan trang diem, son moi, thuc pham thuc an, san pham tu uc
+                description:   >
+                    Virgos beauty cung cấp sản phẩm làm đẹp, chăm sóc sức khoẻ từ Úc. Sản phẩm làm đẹp chính gồm
+                     có kem nhau thai cừu, mỹ phẩm từ cac hãng nổi tiếng. Sản phẩm chăm sóc sức khoẻ chính gồm có thực
+                     phẩm chưc năng như hạt chia, các vitamin và dưỡng chất cần thiết dành cho mọi lứa tuổi.
+                robots:               index, follow
+            property:
+                'og:site_name':       VirgosBeauty.com
+                'og:description':     Sản phẩm làm đẹp và chăm sóc sức khoẻ từ Úc
+                'og:title':           VirgosBeauty.com
+                'og:url':             http://virgosbeauty.com
+            http-equiv:
+                'Content-Type':         text/html; charset=utf-8
+                #'X-Ua-Compatible':      IE=EmulateIE7
+
+        head:
+            'xmlns':              http://www.w3.org/1999/xhtml
+            'xmlns:og':           http://opengraphprotocol.org/schema/
+            'prefix':   og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# business: http://ogp.me/ns/business#

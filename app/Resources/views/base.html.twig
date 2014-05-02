@@ -2,26 +2,80 @@
 
 {% from 'MopaBootstrapBundle::flash.html.twig' import session_flash %}
 
+
 {% block head %}
     {% spaceless %}
-        {{ parent() }}
+    <head {{ sonata_seo_head_attributes() }}>
+        {# TODO: meta variable format, associative array or underscored string type #}
+        <meta charset="utf-8" />
+
+        {% block dns_prefetch %}
+            {% if dns_prefetch is defined %}
+                {% for domain in dns_prefetch %}
+                    <link rel="dns-prefetch" href="{{ domain }}" />
+                {% endfor %}
+            {% endif %}
+        {% endblock dns_prefetch %}
+
+        {# IE10 does not support plugins, such as Flash, in Metro Mode.
+           If your site requires plugins, you can let users know that via the
+           X-UA-Compatible meta element, which will prompt them to switch to Desktop Mode.
+           http://html5boilerplate.com/docs/html-head/#prompt-users-to-switch-to-desktop-mode-in-ie10-metro
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1,requiresActiveX=true"> #}
+        <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><![endif]-->
+
+        {# WARNING: do not add "initial-scale=1" to viewport, breaks iOS view!
+           https://github.com/h5bp/html5-boilerplate/issues/824 #}
+        <meta name="viewport" content="width=device-width" />
+
+        {{ sonata_seo_metadatas() }}
+        {# TODO: read more about canonical urls and then decide whether enable this part or remove
+               http://html5boilerplate.com/docs/html-head/#canonical-url
+            <link rel="canonical" href=""> #}
+        {{ sonata_seo_link_canonical() }}
+
+        {# TODO: Official short link, poorly supported now
+        <link rel="shortlink" href="h5bp.com"> #}
+
+        <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+        <link rel="apple-touch-icon" href="{{ asset('apple-touch-icon.png') }}" />
+        {{ sonata_seo_title() }}
+
+        {% if google['wt'] is defined %}
+            <meta name="google-site-verification" content="{{ google['wt'] }}" />
+        {% endif %}
+
+        {# TODO: Pingbacks http://html5boilerplate.com/docs/html-head/#pingbacks #}
+
+        {# TODO: Site Search Browser plugin:
+           http://www.google.com/search?ie=UTF-8&q=how+to+make+browser+search+plugin
+        <link rel="search" title="" type="application/opensearchdescription+xml" href=""> #}
+
+        {# Override this block to add your own files! #}
+        {% block head_style %}
+            {# Override this block to add your own files! #}
+            {% stylesheets
+            '@MopaBootstrapBundle/Resources/public/less/mopabootstrapbundle-fa.less'
+            '@VBWebBundle/Resources/public/css/flexslider.css'
+            '@VBWebBundle/Resources/public/css/chosen.css'
+            '@VBWebBundle/Resources/public/less/style.less'
+
+            output="css/main.css"
+            filter='yui_css'
+            %}
+            <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
+            {% endstylesheets %}
+            {% if diagnostic_mode %}
+                <link href="{{ asset('bundles/mopabootstrap/css/diagnostic.css') }}" type="text/css" rel="stylesheet" media="screen" />
+            {% endif %}
+        {% endblock head_style %}
+
+        {% block head_scripts %}
+            <script type="text/javascript" src="{{ asset('bundles/mopabootstrap/js/modernizr-2.7.1-respond-1.4.2.min.js') }}"></script>
+        {% endblock head_scripts %}
+    </head>
     {% endspaceless %}
 {% endblock head %}
-
-{% block head_style %}
-    {# Override this block to add your own files! #}
-    {% stylesheets
-    '@MopaBootstrapBundle/Resources/public/less/mopabootstrapbundle-fa.less'
-    '@VBWebBundle/Resources/public/css/flexslider.css'
-    '@VBWebBundle/Resources/public/css/chosen.css'
-    '@VBWebBundle/Resources/public/less/style.less'
-
-    output="css/main.css"
-    filter='yui_css'
-    %}
-    <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
-    {% endstylesheets %}
-{% endblock head_style %}
 
 {% block body %}
 {% spaceless %}
