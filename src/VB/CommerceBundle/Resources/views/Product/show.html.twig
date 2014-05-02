@@ -1,5 +1,7 @@
 {% extends '::base.html.twig' %}
 
+{% block wrapper_tag %}itemscope itemtype="http://schema.org/Product"{% endblock %}
+
 {% block container %}
     <section class="section-two-columns">
         <div class="container">
@@ -30,7 +32,7 @@
                                         {% for image in product.images %}
                                         {% set imagePath = 'images/public/product_image/'~image.fileName %}
                                         <li data-thumb="{{ imagePath | imagine_filter('product_image_slideshow_thumb')}}">
-                                            <img alt="" src="{{ imagePath | imagine_filter('product_image_slideshow')}}" />
+                                            <img itemprop="image" alt="{{ product.name }}" src="{{ imagePath | imagine_filter('product_image_slideshow')}}" />
                                         </li>
                                         {% endfor %}
                                     </ul>
@@ -41,7 +43,9 @@
                                     <form method="POST" action="{{ path('cart_add') }}">
                                         <input  type="hidden" name="slug" value="{{ product.slug }}">
                                         <div class="info-holder">
+                                            <span itemprop="description">
                                             {{ product.shortDescription | raw }}
+                                            </span>
                                         </div>
                                         <hr>
                                         <div class="drop-downs-holder">
@@ -67,8 +71,8 @@
                                         </div>
                                         <hr>
                                         <div class="price-holder">
-                                            <div class="price">
-                                                <span>{{ product.price | number_format(0, ',', '.') }} VND</span>
+                                            <div class="price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                                                <span itemprop="price">{{ product.price | number_format(0, ',', '.') }} VND</span>
                                                 {% if product.oldPrice %}
                                                     <span class="old">{{ product.oldPrice | number_format(0, ',', '.') }} VND</span>
                                                 {% endif %}

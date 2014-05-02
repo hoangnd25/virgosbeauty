@@ -25,7 +25,7 @@
 
 {% block body %}
 {% spaceless %}
-    <div class="wrapper">
+    <div class="wrapper" {% block wrapper_tag %} {% endblock %}>
         <section class="section-head">
             <div class="container">
                 <div class="row-fluid top-row">
@@ -48,12 +48,14 @@
                         </div>
                     </div>
                     <div class="col-sm-4 logo-holder">
-                        <div class="logo">
+                        <div itemprop="brand" itemscope itemtype="http://schema.org/Brand" class="logo">
                             <span class="icon">
                                 <img alt="" src="/images/logo.png">
                             </span>
                             <span class="text">
-                                <a href="{{ path('homepage') }}">Virgos<span>Beauty</span></a>
+                                <a href="{{ path('homepage') }}">
+                                    <span itemprop="name">Virgos<span>Beauty</span></span>
+                                </a>
                             </span>
                         </div>
                     </div>
