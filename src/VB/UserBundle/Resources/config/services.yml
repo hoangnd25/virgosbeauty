@@ -6,3 +6,13 @@ services:
         class: "%vb_user_provider.class%"
         #this is the place where the properties are passed to the UserProvider - see config.yml
         arguments: [@fos_user.user_manager,{facebook: facebook_id, google: google_id}]
+    vb_user.twig.check_password_extension:
+        class: VB\UserBundle\Twig\PasswordCheckExtension
+        tags:
+            - { name: twig.extension }
+        arguments: [@security.encoder_factory, @security.context]
+    vb_user.profile.form.type:
+        class: VB\UserBundle\Form\ProfileFormType
+        arguments: [%fos_user.model.user.class%]
+        tags:
+            - { name: form.type, alias: vb_user_profile }

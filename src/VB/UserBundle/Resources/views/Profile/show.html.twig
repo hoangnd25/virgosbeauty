@@ -1,5 +1,22 @@
-{% extends "FOSUserBundle::layout.html.twig" %}
+{% extends 'VBWebBundle::userArea.html.twig' %}
 
-{% block fos_user_content %}
-{% include "FOSUserBundle:Profile:show_content.html.twig" %}
-{% endblock fos_user_content %}
+{% block content %}
+    {% trans_default_domain 'FOSUserBundle' %}
+    <div class="">
+        <h3>Thông tin người dùng</h3>
+        <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
+        <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
+        <p>Tên hiển thị: {{ user.displayName }}</p>
+        <p>Số điện thoại: {{ user.phone }}</p>
+        <p>Địa chỉ: {{ user.address }}</p>
+        {% if check_password(user.temporaryPassword) %}
+            <p>Mật khẩu tạm thời: {{ user.temporaryPassword }}
+            <div class="alert alert-info">
+                Bạn đã tạo tài khoản từ Facebook hoặc Google+, mật khẩu tạm thời đã được tạo cho bạn.
+                Chúng tôi khuyến nghị bạn nên đổi mật khẩu ngay khi có thể, bạn có thể thay đổi mật khẩu ở đây:
+                <a class="btn btn-success" href="{{ path('fos_user_change_password') }}">Thay đổi mật khẩu</a>
+            </div>
+        {% endif %}
+        <a class="btn btn-success" href="{{ path('fos_user_profile_edit') }}">Thay đổi thông tin</a>
+    </div>
+{% endblock content %}

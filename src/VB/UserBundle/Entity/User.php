@@ -43,6 +43,11 @@ class User extends BaseUser
      */
     protected $address;
 
+    /**
+     * @ORM\Column(length=32,nullable=true)
+     */
+    protected $temporaryPassword;
+
     public function __construct()
     {
         parent::__construct();
@@ -168,4 +173,19 @@ class User extends BaseUser
         return $this->phone;
     }
 
+    /**
+     * @param mixed $temporaryPassword
+     */
+    public function setTemporaryPassword($temporaryPassword)
+    {
+        $this->temporaryPassword = $temporaryPassword;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTemporaryPassword()
+    {
+        return $this->temporaryPassword;
+    }
 }

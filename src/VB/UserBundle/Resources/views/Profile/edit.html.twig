@@ -1,5 +1,12 @@
-{% extends "FOSUserBundle::layout.html.twig" %}
+{% extends 'VBWebBundle::userArea.html.twig' %}
 
-{% block fos_user_content %}
-{% include "FOSUserBundle:Profile:edit_content.html.twig" %}
-{% endblock fos_user_content %}
+{% block content %}
+    {% trans_default_domain 'FOSUserBundle' %}
+    <h3>Thay đổi thông tin</h3>
+    <form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="">
+        {{ form_widget(form) }}
+        <div>
+            <input class="btn btn-success"  type="submit" value="{{ 'profile.edit.submit'|trans }}" />
+        </div>
+    </form>
+{% endblock content %}

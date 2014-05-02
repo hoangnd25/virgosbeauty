@@ -54,6 +54,11 @@ class ContactController extends Controller
                 )
             ))
             ->getForm();
+        if($this->getUser()){
+            $form->get('email')->setData($this->getUser()->getEmail());
+            $form->get('phone')->setData($this->getUser()->getPhone());
+            $form->get('name')->setData($this->getUser()->getDisplayName());
+        }
 
         if($this->getRequest()->getMethod() == 'POST'){
             $form->handleRequest($this->getRequest());

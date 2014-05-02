@@ -85,6 +85,9 @@ fos_user:
     from_email:
         address:        no-reply@virgosbeauty.com
         sender_name:    Virgos Beauty
+    profile:
+        form:
+            type: vb_user_profile
 
 mopa_bootstrap:
     form:

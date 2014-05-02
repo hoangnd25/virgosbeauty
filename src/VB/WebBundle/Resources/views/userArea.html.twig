@@ -1,0 +1,46 @@
+{% extends "::base.html.twig" %}
+
+{% block container %}
+    <section class="section-user-area">
+        <div class="container">
+            <div class="row-fluid">
+                <div class="col-sm-3">
+                    <div class="sidebar">
+                        <div class="widget widget-category"><h1>Quản lý</h1>
+                            <ul>
+                                <li class="level-1">Người sử dụng</li>
+                                <li class="level-2">
+                                    <a class="{% if app.request.attributes.get('_route') == 'fos_user_profile_show' %}active{% endif %}"
+                                       href="{{ path('fos_user_profile_show') }}">Thông tin người dùng</a>
+                                </li>
+                                <li class="level-2">
+                                    <a class="{% if app.request.attributes.get('_route') == 'fos_user_profile_edit' %}active{% endif %}"
+                                       href="{{ path('fos_user_profile_edit') }}">Thay đổi thông tin</a>
+                                </li>
+                                <li class="level-2">
+                                    <a class="{% if app.request.attributes.get('_route') == 'fos_user_change_password' %}active{% endif %}"
+                                       href="{{ path('fos_user_change_password') }}">Thay đổi mật khẩu</a>
+                                </li>
+                                <li class="level-2"><a class="" href="#">Đơn hàng đã đặt</a></li>
+
+                                {% if is_granted('ROLE_SALE_ASSISTANT') %}
+                                    <li class="level-1">Bán hàng</li>
+                                    <li class="level-2"><a class="" href="#">Đơn hàng chưa xử lí</a></li>
+                                    <li class="level-2"><a class="" href="#">Đơn hàng đang xử lí</a></li>
+                                {% endif %}
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-9">
+                    <div class="content-area">
+                        {% block content %}
+                        {% endblock content %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock container %}
