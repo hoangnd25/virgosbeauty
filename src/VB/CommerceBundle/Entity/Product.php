@@ -33,7 +33,7 @@ class Product
     protected $name;
 
     /**
-     * @ORM\Column(length=16)
+     * @ORM\Column(length=16,unique=true)
      * @JMS\Expose()
      * @JMS\Type("string")
      */
@@ -69,7 +69,7 @@ class Product
     protected $description;
 
     /**
-     * @ORM\Column(length=320,nullable=true)
+     * @ORM\Column(length=400,nullable=true)
      */
     protected $shortDescription;
 
