@@ -758,7 +758,7 @@ ul.inline>li, ol.inline>li {
     margin: 32px 0 0 0;
 }
 
-.products-list-head {
+.products-list-head, .blog-list-head {
     height: 150px;
     position: relative;
     background-repeat: no-repeat;
@@ -1392,5 +1392,28 @@ ul.inline>li, ol.inline>li {
             margin-bottom: 20px;
             padding-bottom: 10px;
         }
+    }
+}
+// section blog
+
+.section-blog{
+    .blog-holder{
+        margin-top: 40px;
+        .blog{
+            h3{
+                padding-bottom: 15px;
+            }
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 30px;
+        }
+        .blog:nth-last-child(1){
+            border-bottom: 0;
+        }
+    }
+}
+.section-blog-single{
+    .blog-list-head{
+        margin-bottom: 40px;
     }
 }

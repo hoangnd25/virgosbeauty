@@ -1,0 +1,17 @@
+services:
+    sonata.admin.blog:
+        class: VB\CMSBundle\Admin\BlogAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "content", label: "Blog" }
+        arguments:
+            - ~
+            - VB\CMSBundle\Entity\Blog
+            - ~
+    sonata.admin.blog_tag:
+        class: VB\CMSBundle\Admin\BlogTagAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "content", label: "Blog tags" }
+        arguments:
+            - ~
+            - VB\CMSBundle\Entity\BlogTag
+            - ~

@@ -34,10 +34,16 @@ class AppKernel extends Kernel
             new JMS\SerializerBundle\JMSSerializerBundle(),
             new Gregwar\CaptchaBundle\GregwarCaptchaBundle(),
             new Sonata\SeoBundle\SonataSeoBundle(),
+            new Sonata\CoreBundle\SonataCoreBundle(),
+            new Sonata\BlockBundle\SonataBlockBundle(),
+            new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+            new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
+            new Sonata\AdminBundle\SonataAdminBundle(),
 
             new VB\CommerceBundle\VBCommerceBundle(),
             new VB\UserBundle\VBUserBundle(),
             new VB\WebBundle\VBWebBundle(),
+            new VB\CMSBundle\VBCMSBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

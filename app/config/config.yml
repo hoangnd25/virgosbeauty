@@ -4,7 +4,7 @@ imports:
 
 framework:
     #esi:             ~
-    translator:      { fallback: %locale% }
+    translator:      { fallback: en }
     secret:          %secret%
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -53,6 +53,8 @@ doctrine:
         # if using pdo_sqlite as your database driver, add the path in parameters.yml
         # e.g. database_path: %kernel.root_dir%/data/data.db3
         # path:     %database_path%
+        types:
+            datetime: VB\WebBundle\DoctrineExtensions\DBAL\Types\UTCDateTimeType
 
     orm:
         auto_generate_proxy_classes: %kernel.debug%
@@ -137,7 +139,7 @@ knp_paginator:
 trsteel_ckeditor:
     class: Trsteel\CkeditorBundle\Form\Type\CkeditorType
     transformers: ['html_purifier']
-    toolbar: ['document', 'clipboard', 'editing', '/', 'basicstyles', 'paragraph', 'links', '/', 'insert', 'styles', 'tools']
+    toolbar: ['document', 'clipboard', 'editing', '/', 'basicstyles', 'paragraph', 'links', '/', 'insert', 'styles', 'tools','cms']
     toolbar_groups:
         document: ['Source','-','Save','-','Templates']
         clipboard: ['Cut','Copy','Paste','PasteText','PasteFromWord','-','Undo','Redo']
@@ -148,17 +150,22 @@ trsteel_ckeditor:
         insert: ['Image','Flash','Table','HorizontalRule']
         styles: ['Styles','Format']
         tools: ['Maximize', 'ShowBlocks']
+        cms: ['WPMore']
     ui_color: '#000000'
     startup_outline_blocks: true
     width: 100% #Integer or %
-    height: 300 #Integer or %
+    height: 400 #Integer or %
     language: 'en-au'
+    external_plugins:
+        wpmore:
+            path: bundles/vbweb/js/ckeditor/plugins/wpmore
 #    filebrowser_upload_url:
 #        url: relative-url.php?type=file
 #    filebrowser_image_browse_url:
 #        route: route_name
 #        route_parameters:
 #            type: image
+#    custom_config : /bundles/vbweb/js/ckeditor/ckeditor.config.js
 
 vich_uploader:
     db_driver: orm
@@ -265,3 +272,34 @@ sonata_seo:
             'xmlns':              http://www.w3.org/1999/xhtml
             'xmlns:og':           http://opengraphprotocol.org/schema/
             'prefix':   og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# product: http://ogp.me/ns/product#
+
+sonata_block:
+    default_contexts: [cms]
+    blocks:
+        # Enable the SonataAdminBundle block
+        sonata.admin.block.admin_list:
+            contexts:   [admin]
+        sonata.user.block.account:
+            contexts:   [admin]
+#        sonata.admin_doctrine_orm.block.audit:
+#            contexts:   [admin]
+
+        sonata.block.service.text:
+        sonata.block.service.rss:
+        # Your other blocks
+sonata_admin:
+    title: Admin
+    options:
+        html5_validate:                         true      # use html5 validation
+        confirm_exit:                           true      # enabled confirmation when quitting with unsaved changes
+    dashboard:
+        groups:
+            content:
+                label: Content
+                items: ~
+                roles: [ ROLE_EDITOR ]
+                label_catalogue: SonataAdminBundle
+            user:
+                items: ~
+#                roles: [ ROLE_ONE, ROLE_TWO ]
+            product: ~

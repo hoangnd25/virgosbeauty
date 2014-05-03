@@ -1,0 +1,33 @@
+{% extends '::base.html.twig' %}
+
+{% block container %}
+<section class="section-blog-single section-two-columns">
+    <div class="container">
+        <div class="row-fluid">
+            <div class="col-sm-3">
+                <div class="sidebar">
+                    <div class="widget widget-">
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-9">
+                <div class="blog-list-head">
+                    <h1>
+                        {{ blog.title }}
+                    </h1>
+                    <div class="tag-line">
+                        {% block product_head_text %}
+                            {#Nulla tellus arcu,<br>#}
+                            {#fermentum et interdum eu...#}
+                        {% endblock product_head_text%}
+                    </div>
+                </div>
+                <div class="blog-content">
+                    {{ blog.body |raw }}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock container %}

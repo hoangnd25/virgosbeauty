@@ -1,0 +1,55 @@
+{% extends '::base.html.twig' %}
+
+{% block container %}
+<section class="section-blog section-two-columns">
+    <div class="container">
+        <div class="row-fluid">
+            <div class="col-sm-3">
+                <div class="sidebar">
+                    <div class="widget widget-order">
+                        <h1>Sắp xếp</h1>
+                        <ul>
+                            <li>
+                                {{ knp_pagination_sortable(blogs, 'bài viết mới', 'b.created') }}
+                            </li>
+                            <li>
+                                {{ knp_pagination_sortable(blogs, 'xem nhiều', 'b.pageViews') }}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-9">
+                <div class="blog-list-head">
+                    <h1>
+                        Bài viết
+                    </h1>
+                    <div class="tag-line">
+                        {% block product_head_text %}
+                            {#Nulla tellus arcu,<br>#}
+                            {#fermentum et interdum eu...#}
+                        {% endblock product_head_text%}
+                    </div>
+                </div>
+                <div class="blog-holder">
+                    {% for blog in blogs %}
+                        <div class="blog">
+                            <h3><a href="{{ path('blog_show',{'slug':blog.slug}) }}">{{ blog.title }}</a></h3>
+                            <p>{{ blog.excerpt }}</p>
+                            <div class="clearfix"></div>
+                            <div class="pull-right">
+                                <a href="{{ path('blog_show',{'slug':blog.slug}) }}" class="cusmo-btn gray">Xem thêm</a>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <div class="pagination-holder">
+        {{ knp_pagination_render(blogs) }}
+    </div>
+{% endblock container %}
