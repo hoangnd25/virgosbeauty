@@ -33,7 +33,7 @@ class Product
     protected $name;
 
     /**
-     * @ORM\Column(length=16,unique=true)
+     * @ORM\Column(length=16)
      * @JMS\Expose()
      * @JMS\Type("string")
      */
