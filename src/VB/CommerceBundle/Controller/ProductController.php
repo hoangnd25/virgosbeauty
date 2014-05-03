@@ -96,6 +96,24 @@ class ProductController extends Controller
             ($category->getName()
         );
 
+        $categoryUrl = $this->getRequest()->getUri();
+        $seoPage = $this->container->get('sonata.seo.page');
+        $categoryName = ucwords(strtolower($category->getName())).' | Virgos Beauty';
+        $seoPage
+            ->setTitle($categoryName)
+//            ->addMeta('name', 'description', $product->getShortDescription())
+            ->addMeta('property', 'og:title',$categoryName )
+            ->addMeta('property', 'og:url',  $categoryUrl)
+//            ->addMeta('property', 'og:description', $product->getShortDescription())
+            ->addMeta('property', 'fb:app_id', '1499107470317043')
+        ;
+//        if($firstImage = $product->getImages()->first()){
+//            $imagePath = 'images/public/product_image/'.$firstImage->getFileName();
+//            $imagePath = $this->get('liip_imagine.cache.manager')->getBrowserPath($imagePath, 'product_image_slideshow_thumb');
+//            $seoPage->addMeta('property', 'og:image',  $imagePath);
+//        }
+        $seoPage->setLinkCanonical($categoryUrl);
+
         return array('products' => $pagination,'category'=>$category);
     }
 
@@ -175,10 +193,11 @@ class ProductController extends Controller
 
         $productUrl = $this->generateUrl('product_by_slug',array('slug'=>$product->getSlug()),true);
         $seoPage = $this->container->get('sonata.seo.page');
+        $productName = ucwords(strtolower($product->getName())).' | Virgos Beauty';
         $seoPage
-            ->setTitle($product->getName())
+            ->setTitle($productName)
             ->addMeta('name', 'description', $product->getShortDescription())
-            ->addMeta('property', 'og:title', $product->getName())
+            ->addMeta('property', 'og:title',$productName )
             ->addMeta('property', 'og:type', 'product')
             ->addMeta('property', 'og:url',  $productUrl)
             ->addMeta('property', 'og:description', $product->getShortDescription())

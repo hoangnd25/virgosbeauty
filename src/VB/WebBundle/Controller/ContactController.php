@@ -80,6 +80,17 @@ class ContactController extends Controller
                 return new RedirectResponse($this->generateUrl('contact_us'));
             }
         }
+
+        $seoPage = $this->container->get('sonata.seo.page');
+        $title = 'Liên hệ chúng tôi | Virgos Beauty';
+        $url = $this->generateUrl('contact_us',array(),true);
+        $seoPage
+            ->setTitle($title)
+            ->addMeta('property', 'og:title',$title )
+            ->addMeta('property', 'og:url',  $url)
+        ;
+        $seoPage->setLinkCanonical($url);
+
         return array('form'=>$form->createView());
     }
 }
