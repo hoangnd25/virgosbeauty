@@ -35,7 +35,6 @@ class AppKernel extends Kernel
             new Gregwar\CaptchaBundle\GregwarCaptchaBundle(),
             new Sonata\SeoBundle\SonataSeoBundle(),
 
-            new VB\BlogBundle\VBBlogBundle(),
             new VB\CommerceBundle\VBCommerceBundle(),
             new VB\UserBundle\VBUserBundle(),
             new VB\WebBundle\VBWebBundle(),
