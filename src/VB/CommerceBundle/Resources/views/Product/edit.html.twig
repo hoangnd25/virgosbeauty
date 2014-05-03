@@ -19,6 +19,7 @@
                     <form class="form-management" action="{{ path('product_edit_by_slug',{'slug':product.slug}) }}" {{ form_enctype(form) }} method="POST">
 
                         {{ form_row(form.name) }}
+                        {{ form_row(form.sku) }}
                         {{ form_row(form.price) }}
                         {{ form_row(form.old_price) }}
                         {{ form_row(form.tag_line) }}

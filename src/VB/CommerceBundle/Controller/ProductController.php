@@ -173,6 +173,30 @@ class ProductController extends Controller
             ($product->getName()
             );
 
+        $productUrl = $this->generateUrl('product_by_slug',array('slug'=>$product->getSlug()),true);
+        $seoPage = $this->container->get('sonata.seo.page');
+        $seoPage
+            ->setTitle($product->getName())
+            ->addMeta('name', 'description', $product->getShortDescription())
+            ->addMeta('property', 'og:title', $product->getName())
+            ->addMeta('property', 'og:type', 'product')
+            ->addMeta('property', 'og:url',  $productUrl)
+            ->addMeta('property', 'og:description', $product->getShortDescription())
+            ->addMeta('property', 'fb:app_id', '1499107470317043')
+            ->addMeta('property', 'product:price:amount',  $product->getPrice())
+            ->addMeta('property', 'product:price:currency',  'VND')
+        ;
+        if($product->getOldPrice()){
+            $seoPage
+            ->addMeta('property', 'product:original_price:amount',  $product->getOldPrice())
+            ->addMeta('property', 'product:original_price:currency',  'VND');
+        }
+        if($firstImage = $product->getImages()->first()){
+            $imagePath = 'images/public/product_image/'.$firstImage->getFileName();
+            $imagePath = $this->get('liip_imagine.cache.manager')->getBrowserPath($imagePath, 'product_image_slideshow_thumb');
+            $seoPage->addMeta('property', 'og:image',  $imagePath);
+        }
+        $seoPage->setLinkCanonical($productUrl);
         return array('product'=>$product);
     }
 

@@ -240,6 +240,7 @@ gregwar_captcha:
     quality: 50
 
 sonata_seo:
+    encoding: UTF-8
     page:
         title: Virgos beauty | Sản phẩm làm đẹp và chăm sóc sức khoẻ từ Úc
         metas:
@@ -256,6 +257,7 @@ sonata_seo:
                 'og:description':     Sản phẩm làm đẹp và chăm sóc sức khoẻ từ Úc
                 'og:title':           VirgosBeauty.com
                 'og:url':             http://virgosbeauty.com
+                'og:type':            product
             http-equiv:
                 'Content-Type':         text/html; charset=utf-8
                 #'X-Ua-Compatible':      IE=EmulateIE7
