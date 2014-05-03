@@ -11,6 +11,11 @@ class VariantType extends AbstractType {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('sku',null,array(
+                'widget_form_group_attr' => array(
+                    'class' => 'form-group'
+                ),
+            ))
             ->add('price',null,array(
                 'widget_form_group_attr' => array(
                     'class' => 'variant-price form-group'

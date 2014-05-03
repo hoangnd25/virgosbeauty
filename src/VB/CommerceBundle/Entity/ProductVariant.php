@@ -33,6 +33,13 @@ class ProductVariant
     protected $price;
 
     /**
+     * @ORM\Column(length=16,nullable=true)
+     * @JMS\Expose()
+     * @JMS\Type("string")
+     */
+    protected $sku;
+
+    /**
      * @ORM\Column(type="integer",length=8,nullable=true)
      */
     protected $oldPrice;
@@ -151,4 +158,21 @@ class ProductVariant
         $this->properties->removeElement($property);
         $property->setVariant(null);
     }
+
+    /**
+     * @param mixed $sku
+     */
+    public function setSku($sku)
+    {
+        $this->sku = $sku;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSku()
+    {
+        return $this->sku;
+    }
+
 }

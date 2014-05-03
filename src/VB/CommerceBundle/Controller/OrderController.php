@@ -11,6 +11,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use VB\CommerceBundle\FormType\OrderType;
 use VB\CommerceBundle\Model\OrderStatus;
 use VB\CommerceBundle\Entity\OrderItem;
+use VB\CommerceBundle\Entity\ProductVariant;
 
 class OrderController extends Controller
 {
@@ -34,11 +35,23 @@ class OrderController extends Controller
              * @var $item CartItem
              */
             if($item->getProductVariation()){
-                $variantion = $em->getRepository('VBCommerceBundle:ProductVariant')->find($item->getProductVariation()->getId());
-                $item->setProductVariation($variantion);
+                /**
+                 * @var ProductVariant $variation
+                 */
+                $variation = $em->getRepository('VBCommerceBundle:ProductVariant')->find($item->getProductVariation()->getId());
+                $item->setProductVariation($variation);
+                $item->getProduct()->setSku($variation->getSku());
+                foreach($variation->getProperties() as $variantProperty){
+                    foreach($item->getProduct()->getProperties() as $productProperty){
+                        if($productProperty->getId() == $variantProperty->getPropertyValue()->getProperty()->getId()){
+                            $productProperty->setValues(array($variantProperty->getPropertyValue()));
+                        }
+                    }
+                }
+            }else{
+                $item->getProduct()->setProperties(null);
             }
         }
-
         $form = $this->createForm(new OrderType(), null, array(
             'label' =>false
         ));
@@ -94,7 +107,8 @@ class OrderController extends Controller
 
         $orders = $em->getRepository('VBCommerceBundle:Order')->findBy(array(
             'status' => OrderStatus::RECEIVED
-        ));
+        ),
+         array('created' => 'desc'));
 
         $serializer = $this->get('jms_serializer');
 
@@ -118,7 +132,8 @@ class OrderController extends Controller
         $orders = $em->getRepository('VBCommerceBundle:Order')->findBy(array(
             'status' => OrderStatus::PROCESSING,
             'saleAssistant' => $this->getUser()
-        ));
+        ),
+            array('created' => 'desc'));
 
         $serializer = $this->get('jms_serializer');
 
@@ -142,7 +157,8 @@ class OrderController extends Controller
         $orders = $em->getRepository('VBCommerceBundle:Order')->findBy(array(
             'status' => OrderStatus::FINISHED,
             'saleAssistant' => $this->getUser()
-        ));
+        ),
+            array('created' => 'desc'));
 
         $serializer = $this->get('jms_serializer');
 
@@ -166,7 +182,8 @@ class OrderController extends Controller
         $orders = $em->getRepository('VBCommerceBundle:Order')->findBy(array(
             'status' => OrderStatus::CANCELED,
             'saleAssistant' => $this->getUser()
-        ));
+        ),
+            array('created' => 'desc'));
 
         $serializer = $this->get('jms_serializer');
 
