@@ -24,12 +24,11 @@ class HomepageController extends Controller
         $products = null;
         $qb = $em->createQueryBuilder();
         $qb->select('p')
-            ->from('VBCommerceBundle:Product','p')
-            ->join('p.categories','c')
-            ->leftJoin('p.images','i')
-            ->orderBy('p.id','desc');
+        ->from('VBCommerceBundle:Product','p')
+        ->orderBy('p.id','desc');
         $qb->setMaxResults(8);
-
-        return array('products' => $qb->getQuery()->getResult());
+        $results = $qb->getQuery()->getResult();
+        
+        return array('products' => $results);
     }
 }
