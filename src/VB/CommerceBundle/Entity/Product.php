@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use VB\CommerceBundle\Util\StringUtil;
 use JMS\Serializer\Annotation as JMS;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * @ORM\Entity
@@ -79,7 +80,8 @@ class Product
     protected $howToUse;
 
     /**
-     * @ORM\ManyToMany(targetEntity="ProductCategory", mappedBy="products",cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="ProductCategory", inversedBy="products",cascade={"persist"})
+     * @ORM\JoinTable(name="product_join_category")
      */
     protected $categories;
 
@@ -137,7 +139,24 @@ class Product
     public function setCategories($categories)
     {
         $this->categories = $categories;
+        foreach($categories as $category){
+            /**
+             * @var $category ProductCategory
+             */
+            $category->getProducts()->add($this);
+        }
     }
+
+    public function addCategory($category){
+        $this->getCategories()->add($category);
+        $category->getProducts()->add($this);
+    }
+
+    public function removeCategory($category){
+        $this->getCategories()->removeElement($category);
+        $category->getProducts()->removeElement($this);
+    }
+
 
     /**
      * @return mixed

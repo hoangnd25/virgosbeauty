@@ -132,5 +132,10 @@ class ProductImage
         return $this->product;
     }
 
+    function __toString()
+    {
+        return $this->getFileName();
+    }
+
 
 }

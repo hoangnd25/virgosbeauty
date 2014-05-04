@@ -75,8 +75,7 @@ class ProductCategory
     private $children;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Product", inversedBy="categories")
-     * @ORM\JoinTable(name="product_join_category")
+     * @ORM\ManyToMany(targetEntity="Product", mappedBy="categories")
      */
     protected $products;
 
@@ -197,4 +196,10 @@ class ProductCategory
     {
         return $this->lvl;
     }
+
+    function __toString()
+    {
+        return $this->getName();
+    }
+
 }

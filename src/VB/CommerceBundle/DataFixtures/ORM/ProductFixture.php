@@ -33,11 +33,13 @@ class ProductFixture extends AbstractFixture implements OrderedFixtureInterface
         $skinCare->getProducts()->add($sheepPlacenta);
         $sheepPlacenta->setPrice('300000');
         $sheepPlacenta->setOldPrice('350000');
+        $sheepPlacenta->setSku('sp');
         $manager->persist($sheepPlacenta);
 
         $revlonLipstick =  new Product();
         $revlonLipstick->setName('Revlon lipstick');
         $revlonLipstick->setTagLine('Chu thich');
+        $revlonLipstick->setSku('rl');
         $lipstick->getProducts()->add($revlonLipstick);
         $revlonLipstick->setPrice('200000');
         $property = new ProductProperty('color','Mau',$revlonLipstick);

@@ -1,0 +1,17 @@
+services:
+    sonata.admin.product_category:
+        class: VB\CommerceBundle\Admin\ProductCategoryAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "commerce", label: "Product category" }
+        arguments:
+            - ~
+            - VB\CommerceBundle\Entity\ProductCategory
+            - ~
+    sonata.admin.product:
+        class: VB\CommerceBundle\Admin\ProductAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "commerce", label: "Product" }
+        arguments:
+            - ~
+            - VB\CommerceBundle\Entity\Product
+            - ~

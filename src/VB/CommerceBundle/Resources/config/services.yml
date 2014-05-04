@@ -1,0 +1,6 @@
+services:
+    cart:
+        class: VB\CommerceBundle\Service\CartService
+        arguments:
+            - @jms_serializer
+            - @session

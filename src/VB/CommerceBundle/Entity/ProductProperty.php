@@ -184,4 +184,10 @@ class ProductProperty
         return $this->serializedValue;
     }
 
+    function __toString()
+    {
+        return $this->getName();
+    }
+
+
 }

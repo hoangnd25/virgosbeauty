@@ -302,4 +302,5 @@ sonata_admin:
             user:
                 items: ~
 #                roles: [ ROLE_ONE, ROLE_TWO ]
-            product: ~
+            commerce:
+                label: Ecommerce
