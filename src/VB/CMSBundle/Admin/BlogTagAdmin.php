@@ -14,7 +14,6 @@ class BlogTagAdmin extends Admin
     {
         $formMapper
             ->add('name', null, array())
-            ->add('displayName',null,array())
         ;
     }
 
@@ -31,7 +30,6 @@ class BlogTagAdmin extends Admin
     {
         $listMapper
             ->addIdentifier('name')
-            ->add('displayName')
         ;
     }
 }

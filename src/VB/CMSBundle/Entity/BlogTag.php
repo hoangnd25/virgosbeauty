@@ -24,10 +24,6 @@ class BlogTag
      */
     protected $name;
 
-    /**
-     * @ORM\Column(length=30)
-     */
-    protected $displayName;
 
     /**
      * @Gedmo\Slug(fields={"name"})
@@ -117,29 +113,10 @@ class BlogTag
         return $this->slug;
     }
 
-    /**
-     * @param mixed $displayName
-     */
-    public function setDisplayName($displayName)
-    {
-        $this->displayName = $displayName;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getDisplayName()
-    {
-        return $this->displayName;
-    }
 
     function __toString()
     {
-        if($this->getDisplayName()){
-            return $this->getDisplayName();
-        }else{
-            return $this->getName();
-        }
+        return $this->getName();
     }
 
 
