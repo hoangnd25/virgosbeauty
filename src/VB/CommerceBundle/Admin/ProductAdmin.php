@@ -72,6 +72,5 @@ class ProductAdmin extends Admin
     }
 
     protected function manageImage($product){
-        ladybug_dump_die($product);
     }
 }
