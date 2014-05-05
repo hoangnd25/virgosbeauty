@@ -55,6 +55,8 @@ class ProductAdmin extends Admin
             ->add('name')
             ->add('categories')
             ->add('price')
+            ->add('visible')
+            ->add('availableForSale')
         ;
     }
 
@@ -64,6 +66,8 @@ class ProductAdmin extends Admin
         $listMapper
             ->addIdentifier('name')
             ->add('sku',null,array('label'=>'SKU'))
+            ->add('visible')
+            ->add('availableForSale')
             ->add('price')
             ->add('oldPrice')
             ->add('categories')
