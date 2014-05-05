@@ -69,7 +69,9 @@
                                         <span>{{ product.tagLine }}</span>
                                     </div>
                                     <div class="price">
+                                        {% if product.availableForSale %}
                                         {{ product.price | number_format(0, ',', '.') }} VND
+                                        {% endif %}
                                     </div>
                                     <a class="cusmo-btn add-button" href="{{ path('cart_add',{'slug':product.slug}) }}">Thêm vào giỏ hàng</a>
                                 </div>
