@@ -49,6 +49,7 @@ class ProductController extends Controller
         $qb = $em->createQueryBuilder();
         $qb->select('p')
             ->from('VBCommerceBundle:Product','p')
+            ->where($qb->expr()->eq('p.visible',true))
             ->join('p.categories','c')
             ->leftJoin('p.images','i')
             ->orderBy('p.id','desc');
@@ -135,6 +136,7 @@ class ProductController extends Controller
         $qb = $em->createQueryBuilder();
         $qb->select('p')
             ->from('VBCommerceBundle:Product','p')
+            ->where($qb->expr()->eq('p.visible',true))
             ->join('p.categories','c')
             ->leftJoin('p.images','i')
             ->orderBy('p.id','desc');
@@ -166,7 +168,8 @@ class ProductController extends Controller
          */
         $em = $this->getDoctrine()->getManager();
         $product = $em->getRepository('VBCommerceBundle:Product')->findOneBy(array(
-            'slug'=>$slug
+            'slug'=>$slug,
+            'visible' => true
         ));
         if(!$product)
             throw new NotFoundHttpException();

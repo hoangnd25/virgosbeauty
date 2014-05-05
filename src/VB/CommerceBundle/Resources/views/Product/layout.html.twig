@@ -76,13 +76,17 @@
                                                 {{ product.shortDescription }}
                                             </div>
                                             <div class="price">
-                                                <span>{{ product.price | number_format(0, ',', '.') }} VND</span>
-                                                {% if product.oldPrice %}
-                                                <span class="old">{{ product.oldPrice | number_format(0, ',', '.') }} VND</span>
+                                                {% if product.availableForSale %}
+                                                    <span>{{ product.price | number_format(0, ',', '.') }} VND</span>
+                                                    {% if product.oldPrice %}
+                                                    <span class="old">{{ product.oldPrice | number_format(0, ',', '.') }} VND</span>
+                                                    {% endif %}
                                                 {% endif %}
                                             </div>
                                             <div class="buttons-holder">
-                                                <a rel="nofollow" class="cusmo-btn add-button" href="{{ path('cart_add',{'slug':product.slug}) }}">Thêm vào giỏ hàng</a>
+                                                {% if product.availableForSale %}
+                                                    <a rel="nofollow" class="cusmo-btn add-button" href="{{ path('cart_add',{'slug':product.slug}) }}">Thêm vào giỏ hàng</a>
+                                                {% endif %}
                                                 <a class="cusmo-btn gray add-button" href="{{ path('product_by_slug',{'slug':product.slug}) }}">
                                                     Xem thêm
                                                 </a>

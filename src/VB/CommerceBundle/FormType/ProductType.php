@@ -13,6 +13,8 @@ class ProductType extends AbstractType {
         $builder
             ->add('name',null,array())
             ->add('sku',null,array())
+            ->add('visible',null,array())
+            ->add('availableForSale',null,array())
             ->add('price',null,array())
             ->add('old_price',null,array(
                 'required' => false

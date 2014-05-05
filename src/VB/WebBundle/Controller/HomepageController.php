@@ -25,6 +25,7 @@ class HomepageController extends Controller
         $qb = $em->createQueryBuilder();
         $qb->select('p')
         ->from('VBCommerceBundle:Product','p')
+        ->where('p.visible = true')
         ->orderBy('p.id','desc');
         $qb->setMaxResults(8);
         $results = $qb->getQuery()->getResult();

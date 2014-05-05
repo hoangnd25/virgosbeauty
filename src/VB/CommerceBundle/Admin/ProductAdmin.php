@@ -16,6 +16,12 @@ class ProductAdmin extends Admin
         $formMapper
             ->with('Data')
                 ->add('name', null, array())
+                ->add('visible', null, array(
+                    'required' => false
+                ))
+                ->add('availableForSale', null, array(
+                    'required' => false
+                ))
                 ->add('categories', 'sonata_type_model', array(
                     'btn_add' =>false,
                     'multiple' => true,

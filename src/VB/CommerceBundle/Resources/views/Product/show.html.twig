@@ -73,15 +73,19 @@
                                         </div>
                                         <hr>
                                         <div class="price-holder">
+                                            {% if product.availableForSale %}
                                             <div class="price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
                                                 <span itemprop="price">{{ product.price | number_format(0, ',', '.') }} VND</span>
                                                 {% if product.oldPrice %}
                                                     <span class="old">{{ product.oldPrice | number_format(0, ',', '.') }} VND</span>
                                                 {% endif %}
                                             </div>
+                                            {% endif %}
                                         </div>
                                         <div class="buttons-holder">
-                                            <input type="submit" value="Thêm vào giỏ hàng" class="cusmo-btn add-cart-btn add-button">
+                                            {% if product.availableForSale %}
+                                                <input type="submit" value="Thêm vào giỏ hàng" class="cusmo-btn add-cart-btn add-button">
+                                            {% endif %}
                                             {#<a class="add-to-wishlist-btn" href="#"><i class="icon-plus"></i> Add to wishlist</a>#}
                                         </div>
                                     </form>

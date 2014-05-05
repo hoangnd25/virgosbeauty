@@ -60,6 +60,16 @@ class Product
     protected $price;
 
     /**
+     * @ORM\Column(type="boolean")
+     */
+    protected $visible;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    protected $availableForSale;
+
+    /**
      * @ORM\Column(type="integer",length=8,nullable=true)
      */
     protected $oldPrice;
@@ -131,6 +141,8 @@ class Product
         $this->categories = new ArrayCollection();
         $this->images = new ArrayCollection();
         $this->properties = new ArrayCollection();
+        $this->visible = true;
+        $this->availableForSale = true;
     }
 
     /**
@@ -457,6 +469,38 @@ class Product
     public function getSku()
     {
         return $this->sku;
+    }
+
+    /**
+     * @param mixed $availableForSale
+     */
+    public function setAvailableForSale($availableForSale)
+    {
+        $this->availableForSale = $availableForSale;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAvailableForSale()
+    {
+        return $this->availableForSale;
+    }
+
+    /**
+     * @param mixed $visible
+     */
+    public function setVisible($visible)
+    {
+        $this->visible = $visible;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getVisible()
+    {
+        return $this->visible;
     }
 
 }
