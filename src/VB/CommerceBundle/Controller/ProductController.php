@@ -50,8 +50,6 @@ class ProductController extends Controller
         $qb->select('p')
             ->from('VBCommerceBundle:Product','p')
             ->where($qb->expr()->eq('p.visible',true))
-            ->join('p.categories','c')
-            ->leftJoin('p.images','i')
             ->orderBy('p.id','desc');
 
         $categoryArray =  array();
