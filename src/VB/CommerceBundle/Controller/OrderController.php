@@ -8,7 +8,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use VB\CommerceBundle\Entity\ProductRequest;
 use VB\CommerceBundle\FormType\OrderType;
+use VB\CommerceBundle\FormType\ProductRequestType;
 use VB\CommerceBundle\Model\OrderStatus;
 use VB\CommerceBundle\Entity\OrderItem;
 use VB\CommerceBundle\Entity\ProductVariant;
@@ -311,5 +313,52 @@ class OrderController extends Controller
         }
 
         return array('order'=>$order);
+    }
+
+    /**
+     * @Route("/order-management/request",name="order_request")
+     * @Route("/order-management/request/{id}",name="order_request_edit")
+     * @Template()
+     */
+    function requestAction($id = null){
+        $em = $this->getDoctrine()->getManager();
+
+        $orderRequest = $em->getRepository('VBCommerceBundle:ProductRequest')->findBy(array(
+            'done' => false,
+        ));
+
+        if($id){
+            $formRequest = $em->getRepository('VBCommerceBundle:ProductRequest')->findOneBy(array(
+                'done' => false,
+                'id' => $id
+            ));
+        }else{
+            $formRequest = new ProductRequest();
+        }
+        $form = $this->createForm(new ProductRequestType(), $formRequest, array(
+            'label' =>false
+        ));
+
+        if($this->getRequest()->getMethod() == 'POST'){
+            $form->handleRequest($this->getRequest());
+            if($form->isValid()){
+                $data = $form->getData();
+
+                if($data->getId()){
+                    $formRequest->setQuantity($data->getQuantity());
+                    $formRequest->setNote($data->getNote());
+                    $formRequest->setProduct($data->getProduct());
+                    $formRequest->setNewProduct($data->getNewProduct());
+                    $em->persist($formRequest);
+                }else{
+                    $data->setUser($this->getUser());
+                    $em->persist($data);
+                }
+                $em->flush();
+                return new RedirectResponse($this->generateUrl('order_request'));
+            }
+        }
+
+        return array('requests'=>$orderRequest,'form'=>$form->createView());
     }
 }

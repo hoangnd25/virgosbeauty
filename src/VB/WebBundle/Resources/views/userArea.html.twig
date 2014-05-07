@@ -34,6 +34,9 @@
 
                                     <li class="level-2"><a class="{% if app.request.attributes.get('_route') == 'order_canceled' %}active{% endif %}"
                                                            href="{{ path('order_canceled') }}">Đơn hàng đã huỷ</a></li>
+
+                                    <li class="level-2"><a class="{% if app.request.attributes.get('_route') == 'order_request' %}active{% endif %}"
+                                                           href="{{ path('order_request') }}">Yêu cầu nhập hàng</a></li>
                                 {% endif %}
 
                             </ul>

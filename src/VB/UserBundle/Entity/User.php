@@ -86,7 +86,11 @@ class User extends BaseUser
      */
     public function getDisplayName()
     {
-        return $this->displayName;
+        if($this->displayName){
+            return $this->displayName;
+        }else{
+            return $this->username;
+        }
     }
 
     /**

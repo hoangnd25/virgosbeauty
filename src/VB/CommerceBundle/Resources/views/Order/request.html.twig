@@ -1,0 +1,67 @@
+{% extends 'VBWebBundle::userArea.html.twig' %}
+
+{% block content %}
+    <div class="">
+        <h3>Hàng đã đặt</h3>
+    </div>
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th style="width: 5%">Mã</th>
+                <th style="width: 10%">Sản phẩm</th>
+                <th style="width: 10%">Sản phẩm mới</th>
+                <th style="width: 5%">SL</th>
+                <th>Người đặt</th>
+                <th>Ghi chú</th>
+                <th style="width: 5%"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in requests %}
+                <tr>
+                    {% if item.product %}
+                        <td class="">
+                            {{ item.product.sku }}
+                        </td>
+                        <td class="">
+                            {{ item.product.name }}
+                        </td>
+                    {% else %}
+                        <td class="">
+                        </td>
+                        <td class="">
+                        </td>
+                    {% endif %}
+                    <td class="">
+                        {{ item.newProduct }}
+                    </td>
+                    <td class="">
+                        {{ item.quantity }}
+                    </td>
+                    <td class="">
+                        {{ item.user.displayName }}
+                    </td>
+                    <td class="">
+                        {{ item.note }}
+                    </td>
+                    <td class="">
+                        {% if app.user == item.user%}
+                            <a style="padding: 5px" class="btn btn-warning" href="{{ path('order_request_edit',{'id':item.id}) }}">Sửa</a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <br><br><br>
+
+    <div class="">
+        <h3>Yêu cầu nhập hàng</h3>
+    </div>
+    <form action="{{ app.request.uri }}" method="POST">
+        {{ form_row(form) }}
+        <button class="btn btn-info">Gửi yêu cầu</button>
+    </form>
+{% endblock content %}
