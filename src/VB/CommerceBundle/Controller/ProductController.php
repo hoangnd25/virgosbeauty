@@ -282,7 +282,7 @@ class ProductController extends Controller
      * @return array
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      *
-     * @Route("/p/category{categorySlug}/add",name="product_add_by_category")
+     * @Route("/p/category/{categorySlug}/add",name="product_add_by_category")
      * @Template()
      */
     public function addByCategoryAction($categorySlug){
