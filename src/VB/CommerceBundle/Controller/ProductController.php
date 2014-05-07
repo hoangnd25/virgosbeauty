@@ -49,6 +49,7 @@ class ProductController extends Controller
         $qb = $em->createQueryBuilder();
         $qb->select('p')
             ->from('VBCommerceBundle:Product','p')
+            ->join('p.categories','c')
             ->where($qb->expr()->eq('p.visible',true))
             ->orderBy('p.id','desc');
 
