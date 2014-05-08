@@ -194,7 +194,7 @@
            http://mathiasbynens.be/notes/async-analytics-snippet#dont-push-it #}
         {# more GA tweaks:
            http://html5boilerplate.com/docs/ga-augments/ #}
-        {% if google['analytics'] is defined %}
+        {% if google['analytics'] is defined and app.environment == 'prod' %}
             {#<script>#}
                 {#(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=#}
                         {#function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;#}
