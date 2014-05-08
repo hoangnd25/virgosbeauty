@@ -726,24 +726,29 @@ ul.inline>li, ol.inline>li {
 // Breadcrumb
 
 .breadcrumb-holder {
-    height: 40px;
-    padding-top: 17px;
+//    height: 40px;
+    padding-top: 15px;
     border-bottom: 4px solid #FFBB00;
     background-color: #f5f6f1;
-    padding-bottom: 35px;
-    overflow: hidden;
+    padding-bottom: 15px;
+//    overflow: hidden;
     .breadcrumb{
         margin-left: 10px;
+        line-height: 24px;
         background-color: transparent;
         padding: 0;
         border-radius: 0;
         @media (max-width: 767px) {
-            width: 150%;
+//            width: 150%;
+            margin-left: 20px;
         }
         li a,li {
             font-size: 14px;
             color: #4f4f4f;
             text-transform: capitalize;
+            @media (max-width: 767px) {
+                font-size: 12px;
+            }
         }
         a:hover{
             color: #333;
