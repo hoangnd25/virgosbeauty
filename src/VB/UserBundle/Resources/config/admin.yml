@@ -1,0 +1,9 @@
+services:
+    sonata.admin.user:
+        class: VB\UserBundle\Admin\UserAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "user", label: "User" }
+        arguments:
+            - ~
+            - VB\UserBundle\Entity\User
+            - ~

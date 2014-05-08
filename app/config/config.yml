@@ -301,6 +301,7 @@ sonata_admin:
                 label_catalogue: SonataAdminBundle
             user:
                 items: ~
+                label: User
 #                roles: [ ROLE_ONE, ROLE_TWO ]
             commerce:
                 label: Ecommerce
