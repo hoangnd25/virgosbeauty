@@ -18,34 +18,49 @@
                     </h2>
                     <form class="form-management" action="{{ path('product_edit_by_slug',{'slug':product.slug}) }}" {{ form_enctype(form) }} method="POST">
 
-                        {{ form_row(form.name) }}
-                        {{ form_row(form.sku) }}
-                        {{ form_row(form.visible) }}
-                        {{ form_row(form.availableForSale) }}
-                        {{ form_row(form.sku) }}
-                        {{ form_row(form.price) }}
-                        {{ form_row(form.old_price) }}
-                        {{ form_row(form.tag_line) }}
-                        {{ form_row(form.short_description) }}
-                        {{ form_row(form.description) }}
-                        {{ form_row(form.how_to_use) }}
-                        <div class="form-group" style=" margin-top: 20px">
-                            <label class=" control-label">
-                                Uploaded images
-                            </label>
-                            <div class="">
-                                <ul>
-                                    {% for image in product.images %}
-                                        <li class="uploaded-image-{{ image.id }}">
-                                            <img width="50px" src="/images/public/product_image/{{image.fileName }}" />
-                                            <a class="btn btn-info" href="/images/public/product_image/{{image.fileName }}">view</a>
-                                            <a class="btn btn-warning remove-image" href="{{ path('product_image_delete',{'id':image.id}) }}">delete</a>
-                                        </li>
-                                    {% endfor %}
-                                </ul>
+                        <ul class="inline nav nav-tabs" style="margin-bottom: 20px">
+                            <li class="active"><a data-toggle="tab" href="#product-info">Thông tin sản phẩm</a></li>
+                            <li><a data-toggle="tab" href="#sale-info">Giá bán</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                            <div id="product-info" class=" tab-pane active">
+                                {{ form_row(form.name) }}
+                                {{ form_row(form.sku) }}
+                                {{ form_row(form.visible) }}
+                                {{ form_row(form.tag_line) }}
+                                {{ form_row(form.short_description) }}
+                                {{ form_row(form.description) }}
+                                {{ form_row(form.how_to_use) }}
+                                {{ form_row(form.properties) }}
+                                <div class="form-group" style=" margin-top: 20px">
+                                    <label class=" control-label">
+                                        Uploaded images
+                                    </label>
+                                    <div class="">
+                                        <ul>
+                                            {% for image in product.images %}
+                                                <li class="uploaded-image-{{ image.id }}">
+                                                    <img width="50px" src="/images/public/product_image/{{image.fileName }}" />
+                                                    <a class="btn btn-info" href="/images/public/product_image/{{image.fileName }}">view</a>
+                                                    <a class="btn btn-warning remove-image" href="{{ path('product_image_delete',{'id':image.id}) }}">delete</a>
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                                {{ form_row(form.images) }}
+                            </div>
+                            <div id="sale-info"  class=" tab-pane ">
+                                {{ form_row(form.availableForSale) }}
+                                {{ form_row(form.price) }}
+                                {{ form_row(form.old_price) }}
+                                {{ form_row(form.inputPrice) }}
+                                {{ form_row(form.inputSource) }}
+                                {{ form_row(form.weight) }}
+                                {{ form_row(form.saleCommission) }}
                             </div>
                         </div>
-                        {{ form_row(form.images) }}
 
                         {{ form_rest(form)}}
                     </form>

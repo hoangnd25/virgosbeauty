@@ -15,10 +15,22 @@ class ProductType extends AbstractType {
             ->add('sku',null,array())
             ->add('visible',null,array())
             ->add('availableForSale',null,array())
-            ->add('price',null,array())
-            ->add('old_price',null,array(
-                'required' => false
+            ->add('price','money',array(
+                'precision' => 0,
+                'currency' => 'VND',
             ))
+            ->add('old_price','money',array(
+                'required' => false,
+                'precision' => 0,
+                'currency' => 'VND'
+            ))
+            ->add('inputPrice','money',array(
+                'widget_addon_prepend' => false,
+                'currency' => 'AUD'
+            ))
+            ->add('inputSource',null,array())
+            ->add('saleCommission',null,array())
+            ->add('weight',null,array())
             ->add('tag_line',null,array())
             ->add('short_description','textarea',array(
                 'attr' => array(

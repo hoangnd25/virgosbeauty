@@ -14,14 +14,8 @@ class ProductAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->with('Data')
+            ->with('Product Info')
                 ->add('name', null, array())
-                ->add('visible', null, array(
-                    'required' => false
-                ))
-                ->add('availableForSale', null, array(
-                    'required' => false
-                ))
                 ->add('categories', 'sonata_type_model', array(
                     'btn_add' =>false,
                     'multiple' => true,
@@ -31,8 +25,31 @@ class ProductAdmin extends Admin
                     )
                 ))
                 ->add('sku', null, array())
-                ->add('price', null, array())
-                ->add('oldPrice', null, array())
+                ->add('visible', null, array(
+                    'required' => false
+                ))
+                ->add('availableForSale', null, array(
+                    'required' => false
+                ))
+                ->add('price','money',array(
+                    'precision' => 0,
+                    'currency' => 'VND',
+                ))
+                ->add('old_price','money',array(
+                    'required' => false,
+                    'precision' => 0,
+                    'currency' => 'VND'
+                ))
+                ->add('inputPrice','money',array(
+                    'currency' => 'AUD'
+                ))
+                ->add('inputSource',null,array())
+                ->add('saleCommission','money',array(
+                    'required' => false,
+                    'precision' => 0,
+                    'currency' => 'VND'
+                ))
+                ->add('weight',null,array())
                 ->add('tagLine', null, array())
                 ->add('shortDescription', 'textarea', array(
                     'required' => false,
@@ -68,8 +85,16 @@ class ProductAdmin extends Admin
             ->add('sku',null,array('label'=>'SKU'))
             ->add('visible')
             ->add('availableForSale')
-            ->add('price')
-            ->add('oldPrice')
+            ->add('price','money',array(
+                'grouping' => true,
+                'precision' => 0,
+                'currency' => 'VND'
+            ))
+            ->add('oldPrice','money',array(
+                'grouping' => true,
+                'precision' => 0,
+                'currency' => 'VND'
+            ))
             ->add('categories')
         ;
     }

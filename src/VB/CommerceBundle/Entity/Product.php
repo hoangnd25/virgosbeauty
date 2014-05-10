@@ -60,12 +60,34 @@ class Product
     protected $price;
 
     /**
+     * @ORM\Column(type="decimal",length=8, nullable=true, precision=10, scale=2)
+     */
+    protected $inputPrice;
+
+    /**
+     * @ORM\Column(length=80, nullable=true)
+     */
+    protected $inputSource;
+
+    /**
+     * @ORM\Column(type="integer",length=8, nullable=true)
+     * @JMS\Type("integer")
+     * @JMS\Expose()
+     */
+    protected $saleCommission;
+
+    /**
+     * @ORM\Column(type="integer", length=4, nullable=true)
+     */
+    protected $weight;
+
+    /**
      * @ORM\Column(type="boolean")
      */
     protected $visible;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean",nullable=true)
      */
     protected $availableForSale;
 
@@ -501,6 +523,70 @@ class Product
     public function getVisible()
     {
         return $this->visible;
+    }
+
+    /**
+     * @param mixed $inputPrice
+     */
+    public function setInputPrice($inputPrice)
+    {
+        $this->inputPrice = $inputPrice;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getInputPrice()
+    {
+        return $this->inputPrice;
+    }
+
+    /**
+     * @param mixed $inputSource
+     */
+    public function setInputSource($inputSource)
+    {
+        $this->inputSource = $inputSource;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getInputSource()
+    {
+        return $this->inputSource;
+    }
+
+    /**
+     * @param mixed $saleCommission
+     */
+    public function setSaleCommission($saleCommission)
+    {
+        $this->saleCommission = $saleCommission;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSaleCommission()
+    {
+        return $this->saleCommission;
+    }
+
+    /**
+     * @param mixed $weight
+     */
+    public function setWeight($weight)
+    {
+        $this->weight = $weight;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getWeight()
+    {
+        return $this->weight;
     }
 
 }
