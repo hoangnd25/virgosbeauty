@@ -25,6 +25,7 @@ class ProductType extends AbstractType {
                 'currency' => 'VND'
             ))
             ->add('inputPrice','money',array(
+                'required' => false,
                 'widget_addon_prepend' => false,
                 'currency' => 'AUD'
             ))

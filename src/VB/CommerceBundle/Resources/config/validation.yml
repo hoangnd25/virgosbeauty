@@ -1,0 +1,31 @@
+VB\CommerceBundle\Entity\Product:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: sku
+    properties:
+        name:
+            - NotNull: ~
+            - Length:
+                min: 3
+                max: 160
+#                minMessage: "Your first name must be at least {{ limit }} characters length"
+#                maxMessage: "Your first name cannot be longer than {{ limit }} characters length"
+        sku:
+            - NotNull: ~
+            - Length:
+                min: 4
+                max: 16
+        tagLine:
+            - Length:
+                min: 0
+                max: 160
+        price:
+            - NotNull: ~
+        shortDescription:
+            - Length:
+                max: 400
+
+VB\CommerceBundle\Entity\ProductRequest:
+    properties:
+        newProduct:
+            - Length:
+                max: 160

@@ -46,7 +46,7 @@ class ProductRequest
     protected $done;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text",nullable=true)
      */
     protected $note;
 

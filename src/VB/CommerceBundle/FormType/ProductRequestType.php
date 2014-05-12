@@ -33,7 +33,10 @@ class ProductRequestType extends AbstractType {
             ))
             ->add('note','textarea',array(
                 'label' => 'Ghi chú',
-                'required' => false
+                'required' => false,
+                'attr' => array(
+                    'rows' => 4
+                )
             ))
         ;
     }

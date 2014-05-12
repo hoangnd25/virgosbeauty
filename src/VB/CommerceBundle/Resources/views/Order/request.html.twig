@@ -4,20 +4,20 @@
     <div class="">
         <h3>Hàng đã đặt</h3>
     </div>
-
-    <table class="table table-bordered table-striped">
-        <thead>
+    <div style="overflow: -moz-scrollbars-vertical;overflow: scroll;">
+        <table class="table table-bordered table-striped">
+            <thead>
             <tr>
                 <th style="width: 5%">Mã</th>
-                <th style="width: 10%">Sản phẩm</th>
+                <th style="width: 15%">Sản phẩm</th>
                 <th style="width: 20%">Sản phẩm mới</th>
                 <th style="width: 5%">SL</th>
                 <th style="width: 7%">Người đặt</th>
                 <th>Ghi chú</th>
                 <th style="width: 5%"></th>
             </tr>
-        </thead>
-        <tbody>
+            </thead>
+            <tbody>
             {% for item in requests %}
                 <tr>
                     {% if item.product %}
@@ -52,8 +52,9 @@
                     </td>
                 </tr>
             {% endfor %}
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
 
     <br><br><br>
 
