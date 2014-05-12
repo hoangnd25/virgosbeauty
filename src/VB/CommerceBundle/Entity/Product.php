@@ -167,6 +167,9 @@ class Product
         $this->availableForSale = true;
     }
 
+    public function __toString() {
+        return $this->name;
+    }
     /**
      * @param mixed $categories
      */

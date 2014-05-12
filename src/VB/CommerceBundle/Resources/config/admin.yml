@@ -15,3 +15,11 @@ services:
             - ~
             - VB\CommerceBundle\Entity\Product
             - ~
+    sonata.admin.product_request:
+        class: VB\CommerceBundle\Admin\ProductRequestAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "commerce", label: "Product request" }
+        arguments:
+            - ~
+            - VB\CommerceBundle\Entity\ProductRequest
+            - ~

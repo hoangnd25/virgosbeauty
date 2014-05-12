@@ -9,7 +9,7 @@
     "require": {
         "php": ">=5.3.3",
         "symfony/symfony": "2.3.*",
-        "doctrine/orm": ">=2.2.3,<2.4-dev",
+        "doctrine/orm": "~2.4",
         "doctrine/doctrine-bundle": "1.2.*",
         "twig/extensions": "1.0.*",
         "symfony/assetic-bundle": "2.3.*",
@@ -20,7 +20,7 @@
         "sensio/generator-bundle": "2.3.*",
         "incenteev/composer-parameter-handler": "~2.0",
         "friendsofsymfony/user-bundle": "2.0.*@dev",
-        "mopa/bootstrap-bundle": "dev-master#ca6c2d4147ba8682324049c3c4507f451260de2c",
+        "mopa/bootstrap-bundle": "dev-master",
         "twbs/bootstrap": "dev-master",
         "knplabs/knp-paginator-bundle": "dev-master",
         "friendsofsymfony/elastica-bundle": "3.0.*@dev",
@@ -41,7 +41,7 @@
         "gregwar/captcha-bundle": "dev-master",
         "sonata-project/seo-bundle": "dev-master",
         "sonata-project/admin-bundle": "dev-master",
-        "sonata-project/doctrine-orm-admin-bundle": "2.2.*@dev"
+        "sonata-project/doctrine-orm-admin-bundle": "2.3.*@dev"
     },
     "scripts": {
         "post-install-cmd": [
