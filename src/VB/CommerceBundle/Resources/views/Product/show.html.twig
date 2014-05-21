@@ -100,7 +100,7 @@
                                 <ul class="inline">
                                     <li class="active"><a data-toggle="tab" href="#description">Thông tin</a></li>
                                     <li><a data-toggle="tab" href="#how-to-use">Hướng dẫn sử dụng</a></li>
-                                    <li><a data-toggle="tab" href="#reviews">Comments</a></li>
+                                    {#<li><a data-toggle="tab" href="#reviews">Comments</a></li>#}
                                 </ul>
                             </div>
                             <div class="tab-content">
@@ -110,28 +110,27 @@
                                 <div id="how-to-use" style="margin-left: 20px;"  class=" tab-pane ">
                                     {{ product.howToUse | raw }}
                                 </div>
-                                <div id="reviews" class=" tab-pane ">
-                                    <div id="disqus_thread">
-                                    </div>
-                                    <script type="text/javascript">
-                                        var disqus_shortname = 'virgosbeauty';
-                                        var disqus_container_id = 'disqus_thread';
-                                        var disqus_developer = 0;
-                                        var disqus_identifier = '{{ app.request.getRequestURI() }}';
-                                        var disqus_config = function () {this.language = 'vi';};
+                                {#<div id="reviews" class=" tab-pane ">#}
 
-                                        /* * * DON'T EDIT BELOW THIS LINE * * */
-                                        (function() {
-                                            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                        })();
-                                    </script>
-                                    {#{{ knp_disqus_render('virgosbeauty', {'identifier': app.request.getRequestURI(), 'language': 'vi', 'limit': 10}) }}#}
-                                </div>
+                                    {#&#123;&#35;{{ knp_disqus_render('virgosbeauty', {'identifier': app.request.getRequestURI(), 'language': 'vi', 'limit': 10}) }}&#35;&#125;#}
+                                {#</div>#}
                             </div>
                         </div>
 
+                        <div id="disqus_thread" style="margin-top: 40px">
+                        </div>
+                        <script type="text/javascript">
+                            var disqus_shortname = 'virgosbeauty';
+                            var disqus_identifier = 'product-{{ product.id }}';
+                            var disqus_config = function () {this.language = 'vi';};
+
+                            /* * * DON'T EDIT BELOW THIS LINE * * */
+                            (function() {
+                                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                            })();
+                        </script>
                     </div>
                 </div>
             </div>
