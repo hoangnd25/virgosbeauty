@@ -51,33 +51,32 @@ $(document).ready(function() {
         });
     }
 
-    $.get(Routing.generate('facebook_access_token'), function(fbAccessToken) {
-        $.ajax({
-            url: "https://graph.facebook.com/1455693958001368/feed",
-            dataType: "jsonp",
-            data: {
-                access_token: fbAccessToken,
-                limit: 5
-            },
-            success: function( response ) {// server response
-                var html = '';
-                for (var i=0,len=response.data.length; i<len; i++)
-                {
-                    var entry = response.data[i];
-
-                    var img = '';
-                    if(entry.picture){
-                        img = "<img style='width: 30px' src='"+entry.picture+"'>"
-                    }
-                    html += '<li>';
-                    html += "<a href='"+entry.link+"'>"+img+" "+entry.name+"</a>";
-                    html += '</li>';
-                }
-                $('.facebook-feeds-holder').append(html);
-//            console.log(response);
-            }
-        });
-    });
+//    $.get(Routing.generate('facebook_access_token'), function(fbAccessToken) {
+//        $.ajax({
+//            url: "https://graph.facebook.com/1455693958001368/feed",
+//            dataType: "jsonp",
+//            data: {
+//                access_token: fbAccessToken,
+//                limit: 5
+//            },
+//            success: function( response ) {// server response
+//                var html = '';
+//                for (var i=0,len=response.data.length; i<len; i++)
+//                {
+//                    var entry = response.data[i];
+//
+//                    var img = '';
+//                    if(entry.picture){
+//                        img = "<img style='width: 30px' src='"+entry.picture+"'>"
+//                    }
+//                    html += '<li>';
+//                    html += "<a href='"+entry.link+"'>"+img+" "+entry.name+"</a>";
+//                    html += '</li>';
+//                }
+//                $('.facebook-feeds-holder').append(html);
+//            }
+//        });
+//    });
 
     if($('.map-holder').length>0){
         $('.map').gmap3({
