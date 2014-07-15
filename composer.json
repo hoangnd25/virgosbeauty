@@ -41,7 +41,8 @@
         "gregwar/captcha-bundle": "dev-master",
         "sonata-project/seo-bundle": "dev-master",
         "sonata-project/admin-bundle": "dev-master",
-        "sonata-project/doctrine-orm-admin-bundle": "2.3.*@dev"
+        "sonata-project/doctrine-orm-admin-bundle": "2.3.*@dev",
+        "dizda/cloud-backup-bundle": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [

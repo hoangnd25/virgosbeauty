@@ -39,6 +39,7 @@ class AppKernel extends Kernel
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
             new Sonata\AdminBundle\SonataAdminBundle(),
+            new Dizda\CloudBackupBundle\DizdaCloudBackupBundle(),
 
             new VB\CommerceBundle\VBCommerceBundle(),
             new VB\UserBundle\VBUserBundle(),

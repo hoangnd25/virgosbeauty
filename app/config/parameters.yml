@@ -22,3 +22,6 @@ parameters:
     facebook_app_secret: c92a5910c4d06630a65ff3f3c0e9701b
     google_app_id: 704193963519-9ccitlilndshd74t9suds088biaslq2v.apps.googleusercontent.com
     google_app_secret: WbFY1LySsbDRNpnzSVvUVHir
+    dizda_cloud_dropbox_user: d.pzofessor@gmail.com
+    dizda_cloud_dropbox_password: lien186
+    dizda_cloud_dropbox_remote_path: /website_backup/virgos_beauty

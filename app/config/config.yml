@@ -305,3 +305,18 @@ sonata_admin:
 #                roles: [ ROLE_ONE, ROLE_TWO ]
             commerce:
                 label: Ecommerce
+
+dizda_cloud_backup:
+    output_file_prefix: vb
+    folders: [ web/images/public/product_image ]
+    cloud_storages:
+        dropbox:
+            user:        %dizda_cloud_dropbox_user%
+            password:    %dizda_cloud_dropbox_password%
+            remote_path: %dizda_cloud_dropbox_remote_path%
+
+
+    databases:
+        mysql:
+            all_databases: false # Only required when no database is set
+            database: virgosbeauty

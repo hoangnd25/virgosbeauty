@@ -1,10 +1,78 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
     ],
-    "hash": "92c70b1df07debad72fe2c246ebd9c4c",
+    "hash": "81ed72b02e330565a991fcfa60365921",
     "packages": [
+        {
+            "name": "dizda/cloud-backup-bundle",
+            "version": "dev-master",
+            "target-dir": "Dizda/CloudBackupBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dizda/CloudBackupBundle.git",
+                "reference": "7524f52c56ac000a280a4e3b1da46feb5026ad66"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dizda/CloudBackupBundle/zipball/7524f52c56ac000a280a4e3b1da46feb5026ad66",
+                "reference": "7524f52c56ac000a280a4e3b1da46feb5026ad66",
+                "shasum": ""
+            },
+            "require": {
+                "knplabs/knp-gaufrette-bundle": "<0.3.0",
+                "php": ">=5.3.2",
+                "symfony/framework-bundle": ">=2.1"
+            },
+            "require-dev": {
+                "symfony/symfony": "v2.3.1"
+            },
+            "suggest": {
+                "matthiasplappert/cloudapp-api": "dev-master"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Dizda\\CloudBackupBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jonathan Dizdarevic",
+                    "email": "dizzda@gmail.com",
+                    "homepage": "https://twitter.com/dizzda"
+                },
+                {
+                    "name": "Contributors",
+                    "homepage": "https://github.com/dizda/CloudBackupBundle/graphs/contributors"
+                }
+            ],
+            "description": "Be able to backup your database(s) and upload it to the cloud (Dropbox, CloudApp, GoogleDrive, etc.)",
+            "homepage": "https://github.com/dizda/CloudBackupBundle",
+            "keywords": [
+                "GDrive",
+                "GoogleDrive",
+                "cloudapp",
+                "database",
+                "dropbox",
+                "dump",
+                "mongodb",
+                "mysql",
+                "symfony"
+            ],
+            "time": "2014-07-14 12:12:26"
+        },
         {
             "name": "doctrine/annotations",
             "version": "v1.1.2",
@@ -4458,12 +4526,8 @@
             "time": "2014-01-20 22:35:06"
         }
     ],
-    "packages-dev": [
-
-    ],
-    "aliases": [
-
-    ],
+    "packages-dev": [],
+    "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
         "friendsofsymfony/user-bundle": 20,
@@ -4486,12 +4550,11 @@
         "gregwar/captcha-bundle": 20,
         "sonata-project/seo-bundle": 20,
         "sonata-project/admin-bundle": 20,
-        "sonata-project/doctrine-orm-admin-bundle": 20
+        "sonata-project/doctrine-orm-admin-bundle": 20,
+        "dizda/cloud-backup-bundle": 20
     },
     "platform": {
         "php": ">=5.3.3"
     },
-    "platform-dev": [
-
-    ]
+    "platform-dev": []
 }
