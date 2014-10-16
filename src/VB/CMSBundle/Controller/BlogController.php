@@ -30,6 +30,8 @@ class BlogController extends Controller
             10/*limit per page*/
         );
 
+        $this->getBlogBreadcrumb();
+
         return array('blogs'=>$pagination);
     }
 
@@ -48,6 +50,15 @@ class BlogController extends Controller
         $em->persist($blog);
         $em->flush();
 
+        $this->getBlogBreadcrumb()->addItem($blog->getTitle());
+
         return array('blog'=>$blog);
+    }
+
+    private function getBlogBreadcrumb(){
+        $breadcrumbs = $this->get("white_october_breadcrumbs");
+        $breadcrumbs->addItem("Home", $this->get("router")->generate("homepage"));
+        $breadcrumbs->addItem("Bài viết",$this->get("router")->generate("blog"));
+        return $breadcrumbs;
     }
 }
