@@ -3,14 +3,17 @@
 namespace VB\CommerceBundle\Controller;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use VB\CommerceBundle\Entity\Order;
 use VB\CommerceBundle\Entity\ProductRequest;
 use VB\CommerceBundle\FormType\OrderType;
 use VB\CommerceBundle\FormType\ProductRequestType;
+use VB\CommerceBundle\Model\CartItem;
 use VB\CommerceBundle\Model\OrderStatus;
 use VB\CommerceBundle\Entity\OrderItem;
 use VB\CommerceBundle\Entity\ProductVariant;
@@ -91,6 +94,27 @@ class OrderController extends Controller
 
                 $this->get('cart')->clear();
                 $this->get('session')->getFlashBag()->add('success','Đặt hàng thành công');
+
+                $usersSubscribedForOrder = $em->getRepository('VBUserBundle:User')->findBy(array(
+                        'subscribeForOrder' => true
+                    ));
+
+                /** @var Order $data */
+                $message = \Swift_Message::newInstance()
+                    ->setSubject('Đơn đặt hàng mới')
+                    ->setFrom('no-reply@virgosbeauty.com')
+                    ->setBody(
+                        $this->renderView(
+                            'VBCommerceBundle:Order:orderNotification.txt.twig',
+                            array('order' => $data)
+                        )
+                    )
+                ;
+
+                foreach($usersSubscribedForOrder as $user){
+                    $message->setTo($user->getEmail());
+                    $this->get('mailer')->send($message);
+                }
 
                 return new RedirectResponse($this->generateUrl('cart_show'));
             }

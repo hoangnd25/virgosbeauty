@@ -26,6 +26,15 @@ class UserAdmin extends Admin
                 ->add('phone', null, array('required'=>false))
                 ->add('address', 'textarea', array('required'=>false))
             ->end()
+            ->with('Sales')
+                ->add('subscribeForOrder', null, array())
+            ->end()
+            ->with('User roles')
+                ->add('roles', null, array(
+                        'allow_add' => true,
+                        'allow_delete' => true
+                    ))
+            ->end()
         ;
     }
 

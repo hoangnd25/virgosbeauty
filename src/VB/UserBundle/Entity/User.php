@@ -59,10 +59,30 @@ class User extends BaseUser
      */
     protected $temporaryPassword;
 
+    /** @ORM\Column(name="subscribe_for_order", type="boolean") */
+    protected $subscribeForOrder;
+
     public function __construct()
     {
         parent::__construct();
+        $this->subscribeForOrder = false;
         $this->orders = new ArrayCollection();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSubscribeForOrder()
+    {
+        return $this->subscribeForOrder;
+    }
+
+    /**
+     * @param mixed $subscribeForOrder
+     */
+    public function setSubscribeForOrder($subscribeForOrder)
+    {
+        $this->subscribeForOrder = $subscribeForOrder;
     }
 
     /**
