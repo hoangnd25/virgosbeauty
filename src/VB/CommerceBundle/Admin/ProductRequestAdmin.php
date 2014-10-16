@@ -47,4 +47,16 @@ class ProductRequestAdmin extends Admin
             ->add('user')
         ;
     }
+
+    /**
+     * Add some fields from mapped entities; the simplest way;
+     * @return array
+     */
+    public function getExportFields() {
+        $fieldsArray = $this->getModelManager()->getExportFields($this->getClass());
+
+        $fieldsArray[] = 'name';
+
+        return $fieldsArray;
+    }
 }

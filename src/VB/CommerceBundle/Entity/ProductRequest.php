@@ -158,4 +158,11 @@ class ProductRequest
         return $this->done;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getName()
+    {
+        return $this->getProduct() ? $this->getProduct()->getName() : $this->getNewProduct();
+    }
 }
