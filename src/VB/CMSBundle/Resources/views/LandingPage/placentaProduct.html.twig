@@ -45,7 +45,7 @@
                                         {{ product.oldPrice | number_format(0, ',', '.') }} VND
                                     </div>
                                 </div>
-                                <a class="cusmo-btn" href="{{ path('product_by_slug',{'slug':product.slug}) }}">Xem thêm</a>
+                                <a target="_blank" class="cusmo-btn" href="{{ path('product_by_slug',{'slug':product.slug}) }}">Xem thêm</a>
                             </div>
                         </div>
                     {% endfor %}
@@ -87,7 +87,7 @@
                                         {{ product.oldPrice | number_format(0, ',', '.') }} VND
                                     </div>
                                 </div>
-                                <a class="cusmo-btn" href="{{ path('product_by_slug',{'slug':product.slug}) }}">Xem thêm</a>
+                                <a target="_blank" class="cusmo-btn" href="{{ path('product_by_slug',{'slug':product.slug}) }}">Xem thêm</a>
                             </div>
                         </div>
                     {% endfor %}
