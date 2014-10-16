@@ -13,12 +13,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dizda/CloudBackupBundle.git",
-                "reference": "7524f52c56ac000a280a4e3b1da46feb5026ad66"
+                "reference": "f55038face9d8ff5c1cda019c9a6f141e7878f71"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dizda/CloudBackupBundle/zipball/7524f52c56ac000a280a4e3b1da46feb5026ad66",
-                "reference": "7524f52c56ac000a280a4e3b1da46feb5026ad66",
+                "url": "https://api.github.com/repos/dizda/CloudBackupBundle/zipball/f55038face9d8ff5c1cda019c9a6f141e7878f71",
+                "reference": "f55038face9d8ff5c1cda019c9a6f141e7878f71",
                 "shasum": ""
             },
             "require": {
@@ -71,7 +71,7 @@
                 "mysql",
                 "symfony"
             ],
-            "time": "2014-07-14 12:12:26"
+            "time": "2014-09-30 08:39:27"
         },
         {
             "name": "doctrine/annotations",
@@ -4553,6 +4553,7 @@
         "sonata-project/doctrine-orm-admin-bundle": 20,
         "dizda/cloud-backup-bundle": 20
     },
+    "prefer-stable": false,
     "platform": {
         "php": ">=5.3.3"
     },

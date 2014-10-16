@@ -20,3 +20,5 @@ web/css/
 config/parameters.yml
 
 src/Local/TestBundle/Controller/DefaultController.php
+
+app/config/parameters.yml
