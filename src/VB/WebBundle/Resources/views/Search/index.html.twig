@@ -1,0 +1,15 @@
+{% extends '::base.html.twig' %}
+
+{% block container %}
+    <section class="section-search-result">
+        <div class="container">
+            <div class="row-fluid">
+                <div class="col-sm-12">
+                    <gcse:searchresults-only gname="virgosbeautysearch" webSearchResultSetSize="10"></gcse:searchresults-only>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock container %}
+{% block additional_script %}
+{% endblock %}

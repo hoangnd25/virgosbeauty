@@ -151,10 +151,15 @@
                             </div>
                             <div class="col-sm-4 col-md-3">
                                 <div class="search-field-holder">
-                                    <form>
-                                        <input class="col-sm-12" type="text" placeholder="Type and hit enter">
+                                    <form action="{{ path('search') }}" method="get">
+                                        <input name="q" id="search-box" class="col-sm-12" type="text" placeholder="Tìm kiếm" autocomplete="off" value="{{ app.request.get('q') }}">
                                         <i class="icon-search"></i>
                                     </form>
+                                    {% if app.request.attributes.get('_route') != 'search' %}
+                                        <div class="dropdown-menu search-result">
+                                            <gcse:searchresults-only gname="virgosbeautysearch" webSearchResultSetSize="3"></gcse:searchresults-only>
+                                        </div>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
@@ -217,6 +222,7 @@
                 google: { families: [ 'Open+Sans:300italic,300,600:latin,vietnamese'  ] }
             };
             (function() {
+                // webfont
                 var wf = document.createElement('script');
                 wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
                         '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
@@ -224,6 +230,16 @@
                 wf.async = 'true';
                 var s = document.getElementsByTagName('script')[0];
                 s.parentNode.insertBefore(wf, s);
+
+                // google custom search
+                var cx = '015420822473273222225:piffmmdcu90';
+                var gcse = document.createElement('script');
+                gcse.type = 'text/javascript';
+                gcse.async = true;
+                gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+                '//www.google.com/cse/cse.js?cx=' + cx;
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(gcse, s);
             })();
         </script>
         {% block foot_script_assetic %}

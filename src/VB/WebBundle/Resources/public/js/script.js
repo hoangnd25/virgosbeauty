@@ -109,4 +109,34 @@ $(document).ready(function() {
             $('.basket .dropdown-menu').prepend("<li class='empty'>Empty</li>");
         }
     }
+
+    // google custom search
+    var resultBox = $('.search-result');
+    $('#search-box').keyup(function(){
+        var searchResult = google.search.cse.element.getElement('virgosbeautysearch');
+        var query = $.trim($(this).val());
+        if(query != '' && $(window).width() > 767){
+            searchResult.execute(query);
+            if(resultBox)
+                resultBox.show();
+        }else{
+            searchResult.clearAllResults();
+            if(resultBox)
+                resultBox.hide();
+        }
+    });
+    $('#search-box').focusin(function(){
+        var query = $.trim($(this).val());
+        if(query != '' && $(window).width() > 767){
+            if(resultBox)
+                resultBox.show();
+        }
+    });
+    $('body').on('click tap', function(e) {
+        if(!$(e.target).parents('.search-field-holder').length){
+            if(resultBox)
+                resultBox.hide();
+        }
+    });
+    // end google custom search
 });
