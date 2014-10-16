@@ -1,0 +1,144 @@
+{% extends '::base.html.twig' %}
+
+{% block container %}
+<section class="section-blog section-two-columns">
+    <div class="container">
+        <div class="row-fluid">
+            <div class="col-sm-12" style="text-align: center">
+                <h3>Khuyến mãi cho sản phẩm chăm sóc da</h3> <br>
+                <img src="/images/landing/placenta/cosmetic.jpg" style="width: 320px;" alt="san pham duong da">
+                <p>VirgosBeauty đang có đợt khuyến mãi lớn cho các sản phẩm làm đẹp từ nhau thai/mỡ cừu trong đợt mùa hanh khô năm nay. có
+                    Các sản phẩm chăm sóc da gồm có kem giữ ẩm và dưỡng da, serum và thuốc uống đều được giảm giá mạnh.
+                    Đợt khuyến mãi sẽ kéo dài đến hết tháng 12</p>
+                <br><br>
+                <h4>Kem lanolin</h4> <br>
+                <p>Kem lanolin (mỡ cừu) của Healthy Care và Blossom là những sản phẩm rất được ưa chuộng cho việc giữ ẩm và bảo vệ da vào mùa hanh khô.
+                    Mỡ cừu trong kem có tác dụng bảo vệ da trước các tác hại của thời tiết mùa thu, đông,
+                    trong khi đó Vitamin E trong kem làm săn chắc da, cải thiện độ đàn hồi cũng như giữ ẩm cho da.
+                    Nhau thai cừu giúp chống nếp nhăn, nám cũng như làm đẹp da
+                </p>
+
+                <div class="row-fluid">
+                    {% for product in lanolin %}
+                        <div class="col-sm-4">
+                            <div class="product-item">
+                                <a href="{{ path('product_by_slug',{'slug':product.slug}) }}">
+                                    <div class="product-image">
+                                        {% set image = product.images | first %}
+                                        {% if image %}
+                                            {% set imagePath = 'images/public/product_image/'~image.fileName %}
+                                            <img alt="{{ product.name }}" src="{{ imagePath | imagine_filter('product_image_list_item')}}">
+                                        {% else %}
+                                            <img alt="{{ product.name }}" src="/images/no-image.jpg">
+                                        {% endif %}
+                                    </div>
+                                </a>
+                                <div class="meta">
+                                    <a href="{{ path('product_by_slug',{'slug':product.slug}) }}"><h1>{{ product.name }}</h1></a>
+                                    <div class="tag-line">
+                                        <span>{{ product.tagLine }}</span>
+                                    </div>
+                                </div>
+                                <div class="price">
+                                    {{ product.price | number_format(0, ',', '.') }} VND
+                                    <div class="old-price">
+                                        {{ product.oldPrice | number_format(0, ',', '.') }} VND
+                                    </div>
+                                </div>
+                                <a class="cusmo-btn" href="{{ path('product_by_slug',{'slug':product.slug}) }}">Xem thêm</a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <p>HC Lanolin Cream (hộp hồng) có chứa mỡ cừu và vitamin E. HC Lanolin Cream & Placenta (hộp vàng) và Blossom Lanolin Cream (hộp đỏ) có chứa mỡ cừu, vitamin E và có thêm nhau thai cừu.</p>
+
+                <br><br><br><br>
+                <h4>Dòng sản phẩm cao cấp cửa Rebirth</h4> <br>
+                <p>Dòng sản phẩm cao cấp của Rebirth gồm có kem nhau thai cừu (hộp đỏ) sử dụng cho ban ngày, thích hợp với da lão hoá.
+                    Kem emu - mỡ đà điểu (hộp xanh) sử dụng như một loại kem đêm, thích hợp cho da đã xuất hiện dấu hiệu lão hóa.
+                    Huyết thanh Rebirth giúp trị nám, giảm tàn nhang và sắc tố bất thường trên da.
+                </p>
+
+                <div class="row-fluid">
+                    {% for product in rebirth %}
+                        <div class="col-sm-4">
+                            <div class="product-item">
+                                <a href="{{ path('product_by_slug',{'slug':product.slug}) }}">
+                                    <div class="product-image">
+                                    {% set image = product.images | first %}
+                                    {% if image %}
+                                        {% set imagePath = 'images/public/product_image/'~image.fileName %}
+                                        <img alt="{{ product.name }}" src="{{ imagePath | imagine_filter('product_image_list_item')}}">
+                                    {% else %}
+                                        <img alt="{{ product.name }}" src="/images/no-image.jpg">
+                                    {% endif %}
+                                    </div>
+                                </a>
+                                <div class="meta">
+                                    <a href="{{ path('product_by_slug',{'slug':product.slug}) }}"><h1>{{ product.name }}</h1></a>
+                                    <div class="tag-line">
+                                        <span>{{ product.tagLine }}</span>
+                                    </div>
+                                </div>
+                                <div class="price">
+                                    {{ product.price | number_format(0, ',', '.') }} VND
+                                    <div class="old-price">
+                                        {{ product.oldPrice | number_format(0, ',', '.') }} VND
+                                    </div>
+                                </div>
+                                <a class="cusmo-btn" href="{{ path('product_by_slug',{'slug':product.slug}) }}">Xem thêm</a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<style>
+    .product-item{
+        text-align: center;padding: 10px 0 12px 0;border-radius: 10px;position: relative;border: 4px solid transparent;margin-bottom: 15px;
+    }
+    .product-item h1 {
+        color: #373737;font-size: 17px;font-weight: bold;line-height: 18px;margin: 12px 0 1px;text-transform: uppercase;
+    }
+    .product-image {
+        min-height: 200px;
+    }
+    .meta{
+        height: 90px;
+    }
+    @media (max-width: 767px) {
+        .meta{
+            height: 70px;
+        }
+    }
+    @media (min-width: 980px) {
+        .product-image {
+            height: 260px;
+        }
+        .meta{
+            height: 70px;
+        }
+    }
+    @media (min-width: 1200px) {
+        .product-image {
+            height: 270px;
+        }
+    }
+    .product-image img {
+        width: 100%;
+    }
+    .tag-line {
+        font-size: 13px;display: block;font-style: italic;
+    }
+    .price {
+        color: #75513b;font-size: 18px;font-weight: 600;margin: 5px 0 12px;
+    }
+    .old-price{
+        font-size: 14px;color: #A5A5A5;text-decoration: line-through;margin-left: 7px;
+    }
+
+</style>
+{% endblock container %}
