@@ -21,7 +21,7 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "friendsofsymfony/user-bundle": "2.0.*@dev",
         "mopa/bootstrap-bundle": "dev-master",
-        "twbs/bootstrap": "dev-master",
+        "twbs/bootstrap": "v3.2.0",
         "knplabs/knp-paginator-bundle": "dev-master",
         "friendsofsymfony/elastica-bundle": "3.0.*@dev",
         "raulfraile/ladybug-bundle": "dev-master",
@@ -42,7 +42,7 @@
         "sonata-project/seo-bundle": "dev-master",
         "sonata-project/admin-bundle": "dev-master",
         "sonata-project/doctrine-orm-admin-bundle": "2.3.*@dev",
-        "dizda/cloud-backup-bundle": "dev-master"
+        "dizda/cloud-backup-bundle": "1.5.5"
     },
     "scripts": {
         "post-install-cmd": [

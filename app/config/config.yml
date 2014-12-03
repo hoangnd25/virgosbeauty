@@ -206,7 +206,8 @@ liip_imagine:
                 data_root: %kernel.root_dir%/../web
     cache: default
     data_loader: default
-    controller_action:    liip_imagine.controller:filterAction
+    controller:
+        filter_action: liip_imagine.controller:filterAction
     filter_sets:
         cache: ~
         product_image_list_item:
