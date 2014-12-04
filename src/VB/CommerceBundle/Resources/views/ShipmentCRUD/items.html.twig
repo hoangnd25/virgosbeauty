@@ -60,9 +60,7 @@
                                         </td>
                                         <td>{{ item.request.note }}</td>
                                         <td>
-                                            {% if not item.request.product %}
-                                                <input type="text" value="{{ item.inputPrice }}" name="shipment[items][{{ item.id }}][inputPrice]" />
-                                            {% endif %}
+                                            <input type="text" value="{{ item.inputPrice ? item.inputPrice : item.request.product.inputPrice}}" name="shipment[items][{{ item.id }}][inputPrice]" />
                                         </td>
                                         <td>
                                             {% if not item.request.product %}

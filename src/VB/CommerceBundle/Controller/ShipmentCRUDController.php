@@ -35,9 +35,9 @@ class ShipmentCRUDController extends Controller
                 foreach($form->get('items')->getData() as $id => $data){
                     $item = $repo->find($id);
                     $item->setSaleCommission($data['saleCommission']);
+                    $item->setInputPrice($data['inputPrice']);
                     if(!$item->getRequest()->getProduct()){
                         $item->setSalePrice($data['salePrice']);
-                        $item->setInputPrice($data['inputPrice']);
                     }
                     $em->persist($item);
                 }
@@ -156,12 +156,11 @@ class ShipmentCRUDController extends Controller
         foreach($object->getItems() as $item){
             $phpExcelObject->getActiveSheet()->setCellValue('A'.$index, $item->getRequest()->getQuantity());
             $phpExcelObject->getActiveSheet()->setCellValue('B'.$index, $item->getRequest()->getName());
+            $phpExcelObject->getActiveSheet()->setCellValue('C'.$index, $item->getInputPrice());
             /** @var Product $product */
             if($product = $item->getRequest()->getProduct()){
-                $phpExcelObject->getActiveSheet()->setCellValue('C'.$index, $product->getInputPrice());
                 $phpExcelObject->getActiveSheet()->setCellValue('D'.$index, $product->getPrice());
             }else{
-                $phpExcelObject->getActiveSheet()->setCellValue('C'.$index, $item->getInputPrice());
                 $phpExcelObject->getActiveSheet()->setCellValue('D'.$index, $item->getSalePrice());
             }
             $phpExcelObject->getActiveSheet()->setCellValue('E'.$index, $item->getSaleCommission());
