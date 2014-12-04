@@ -40,6 +40,7 @@ class AppKernel extends Kernel
             new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
             new Sonata\AdminBundle\SonataAdminBundle(),
             new Dizda\CloudBackupBundle\DizdaCloudBackupBundle(),
+            new Liuggio\ExcelBundle\LiuggioExcelBundle(),
 
             new VB\CommerceBundle\VBCommerceBundle(),
             new VB\UserBundle\VBUserBundle(),

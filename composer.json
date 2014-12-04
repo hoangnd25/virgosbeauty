@@ -21,9 +21,8 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "friendsofsymfony/user-bundle": "2.0.*@dev",
         "mopa/bootstrap-bundle": "dev-master",
-        "twbs/bootstrap": "v3.2.0",
+        "twbs/bootstrap": "dev-master",
         "knplabs/knp-paginator-bundle": "dev-master",
-        "friendsofsymfony/elastica-bundle": "3.0.*@dev",
         "raulfraile/ladybug-bundle": "dev-master",
         "liip/imagine-bundle": "1.0.*@dev",
         "vich/uploader-bundle": "dev-master",
@@ -40,8 +39,9 @@
         "jms/serializer-bundle": "dev-master",
         "gregwar/captcha-bundle": "dev-master",
         "sonata-project/seo-bundle": "dev-master",
-        "sonata-project/admin-bundle": "dev-master",
-        "sonata-project/doctrine-orm-admin-bundle": "2.3.*@dev",
+        "sonata-project/admin-bundle": "2.3.*",
+        "sonata-project/doctrine-orm-admin-bundle": "2.3.*",
+        "liuggio/excelbundle": "~2.0",
         "dizda/cloud-backup-bundle": "1.5.5"
     },
     "scripts": {

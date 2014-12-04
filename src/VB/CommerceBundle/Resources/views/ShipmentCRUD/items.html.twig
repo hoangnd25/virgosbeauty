@@ -1,0 +1,117 @@
+{% extends base_template %}
+
+{% block title %}
+        Shipment items
+{% endblock%}
+
+{% block navbar_title %}
+    Shipment: {{ object.name }}
+{% endblock %}
+
+{% block actions %}
+    <li>{% include 'SonataAdminBundle:Button:list_button.html.twig' %}</li>
+{% endblock %}
+
+{% block sonata_admin_content %}
+
+{% block notice %}
+    {% include 'SonataCoreBundle:FlashMessage:render.html.twig' %}
+{% endblock notice %}
+<div class="sonata-ba-form">
+<form
+        role="form"
+        action=""
+        method="POST"
+        >
+    {% if form.vars.errors|length > 0 %}
+        <div class="sonata-ba-form-error">
+            {{ form_errors(form) }}
+        </div>
+    {% endif %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="">
+                <div class="box box-success">
+                    <div class="box-header">
+                        <h4 class="box-title">
+                            Items
+                            <a class="btn btn-info" href="{{ admin.generateObjectUrl('add-items', object) }}"><i class="fa fa-info"></i> Add Items</a>
+                        </h4>
+                    </div>
+                    <div class="box-body">
+                        <div class="sonata-ba-collapsed-fields">
+                            <div class="form-group shipment-items" id="sonata-ba-field-container">
+
+                                <table class="table table-bordered">
+                                    <tr class="sonata-ba-list-field-header">
+                                        <th class="sonata-ba-list-field-header">SA</th>
+                                        <th class="sonata-ba-list-field-header">Name</th>
+                                        <th class="sonata-ba-list-field-header">Note</th>
+                                        <th class="sonata-ba-list-field-header">Input (AUD)</th>
+                                        <th class="sonata-ba-list-field-header">Price (VND)</th>
+                                        <th class="sonata-ba-list-field-header">Commission/item</th>
+                                        <th class="sonata-ba-list-field-header"></th>
+                                    </tr>
+                                    {% for item in object.items %}
+                                    <tr>
+                                        <td>{{ item.request.user }}</td>
+                                        <td>
+                                            <a href="{{ path('admin_vb_commerce_productrequest_edit',{'id':item.request.id}) }}">{{ item.request.quantity }} x {{ item.request.name }}</a>
+                                        </td>
+                                        <td>{{ item.request.note }}</td>
+                                        <td>
+                                            {% if not item.request.product %}
+                                                <input type="text" value="{{ item.inputPrice }}" name="shipment[items][{{ item.id }}][inputPrice]" />
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if not item.request.product %}
+                                                <input type="text" value="{{ item.salePrice }}" name="shipment[items][{{ item.id }}][salePrice]" />
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            <input type="text"
+                                                   value="{{ item.saleCommission ? item.saleCommission  : item.request.product ? item.request.product.saleCommission : 0  }}"
+                                                   name="shipment[items][{{ item.id }}][saleCommission]" />
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-danger" href="{{ admin.generateObjectUrl('remove-item', object, {'itemId':item.id}) }}"><i class="fa fa-trash-o"></i></a></td>
+                                    </tr>
+                                    {% endfor %}
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{ form_widget(form._token) }}
+
+    <div class="well well-small form-actions">
+        <a class="btn btn-info" href="{{ admin.generateObjectUrl('edit', object) }}"><i class="fa fa-info"></i> View/Edit Shipment</a>
+        <button type="submit" class="btn btn-success" name="btn_update_and_edit"><i class="fa fa-save"></i> Save Items</button>
+    </div>
+</form>
+</div>
+<script>
+    $(function() {
+        $collectionHolder = $('shipment-items');
+
+        // add the "add a tag" anchor and li to the tags ul
+        $collectionHolder.append($newLinkLi);
+
+        // count the current form inputs we have (e.g. 2), use that as the new
+        // index when inserting a new item (e.g. 2)
+        $collectionHolder.data('index', $collectionHolder.find(':input').length);
+
+        $addTagLink.on('click', function(e) {
+            // prevent the link from creating a "#" on the URL
+            e.preventDefault();
+
+            // add a new tag form (see next code block)
+            addTagForm($collectionHolder, $newLinkLi);
+        });
+    });
+</script>
+{% endblock sonata_admin_content %}

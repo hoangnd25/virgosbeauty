@@ -1,0 +1,96 @@
+{% extends base_template %}
+
+{% block title %}
+        Shipment items
+{% endblock%}
+
+{% block navbar_title %}
+    Shipment: {{ object.name }} - Add items
+{% endblock %}
+
+{% block actions %}
+    <li>{% include 'SonataAdminBundle:Button:list_button.html.twig' %}</li>
+{% endblock %}
+
+{% block sonata_admin_content %}
+
+{% block notice %}
+    {% include 'SonataCoreBundle:FlashMessage:render.html.twig' %}
+{% endblock notice %}
+<div class="sonata-ba-form">
+<form
+        role="form"
+        action=""
+        method="POST"
+        >
+    {% if form.vars.errors|length > 0 %}
+        <div class="sonata-ba-form-error">
+            {{ form_errors(form) }}
+        </div>
+    {% endif %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="">
+                <div class="box box-success">
+                    <div class="box-header">
+                        <h4 class="box-title">
+                            Available items
+                        </h4>
+                    </div>
+                    <div class="box-body">
+                        <div class="sonata-ba-collapsed-fields">
+                            <div class="form-group shipment-items" id="sonata-ba-field-container">
+
+                                <table class="table table-bordered">
+                                    <tr class="sonata-ba-list-field-header">
+                                        <th class="sonata-ba-list-field-header">Qty</th>
+                                        <th class="sonata-ba-list-field-header">Product</th>
+                                        <th class="sonata-ba-list-field-header">New product</th>
+                                        <th class="sonata-ba-list-field-header">SA</th>
+                                        <th class="sonata-ba-list-field-header">Note</th>
+                                    </tr>
+                                    {% for request in requests %}
+                                    <tr class="request-item">
+                                        <td>{{ request.quantity }}</td>
+                                        <td>{{ request.product }}</td>
+                                        <td>{{ request.newProduct }}</td>
+                                        <td>{{ request.user }}</td>
+                                        <td>{{ request.note }}</td>
+                                        <input type="hidden" name="shipment[items][{{ request.id }}]" value="0">
+                                    </tr>
+                                    {% endfor %}
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{ form_widget(form._token) }}
+
+    <div class="well well-small form-actions">
+        <a class="btn btn-warning" href="{{ admin.generateObjectUrl('items', object) }}"><i class="fa fa-arrow-left"></i> Back</a>
+        <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Add</button>
+    </div>
+</form>
+</div>
+<script>
+    $(function() {
+        $('.request-item').on('click', function(e) {
+            var $input = $(this).find('input');
+            if($input.val() == 0){
+                $input.val(1)
+            }else{
+                $input.val(0)
+            }
+            $(this).toggleClass('selected-item');
+        });
+    });
+</script>
+<style>
+    .selected-item{
+        background-color: #A7DDB1;
+    }
+</style>
+{% endblock sonata_admin_content %}

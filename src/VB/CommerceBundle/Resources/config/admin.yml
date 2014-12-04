@@ -23,3 +23,21 @@ services:
             - ~
             - VB\CommerceBundle\Entity\ProductRequest
             - ~
+    sonata.admin.shipment:
+        class: VB\CommerceBundle\Admin\ShipmentAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "commerce", label: "Shipment" }
+        arguments:
+            - ~
+            - VB\CommerceBundle\Entity\Shipment
+            - VBCommerceBundle:ShipmentCRUD
+    sonata.admin.shipment_item:
+        class: VB\CommerceBundle\Admin\ShipmentItemAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "commerce", label: "ShipmentItem", show_in_dashboard: false }
+        arguments:
+            - ~
+            - VB\CommerceBundle\Entity\ShipmentItem
+            - ~
+        calls:
+            - [ setDoctrine, [ @doctrine ]]

@@ -11,6 +11,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class ProductRequest
 {
+    const STATUS_SHIPPED = 'shipped';
+    const STATUS_REQUESTED = 'requested';
+
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -46,12 +49,23 @@ class ProductRequest
     protected $done;
 
     /**
+     * @ORM\Column(length=20)
+     */
+    protected $status;
+
+    /**
      * @ORM\Column(type="text",nullable=true)
      */
     protected $note;
 
     public function __construct() {
         $this->done = false;
+        $this->status = ProductRequest::STATUS_REQUESTED;
+    }
+
+    function __toString()
+    {
+        return $this->getName();
     }
 
     /**
@@ -164,5 +178,21 @@ class ProductRequest
     public function getName()
     {
         return $this->getProduct() ? $this->getProduct()->getName() : $this->getNewProduct();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param mixed $status
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
     }
 }
