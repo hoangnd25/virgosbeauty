@@ -1,0 +1,31 @@
+parameters:
+    database_driver:   pdo_mysql
+    database_host:     127.0.0.1
+    database_port:     ~
+    database_name:     virgosbeauty
+    database_user:     root
+    database_password: ~
+
+    mailer_transport:  smtp
+    mailer_host:       smtp.zoho.com
+    mailer_user:       no-reply@virgosbeauty.com
+    mailer_password:   changePassword
+    mailer_encryption: ssl
+    mailer_auth_mode: login
+
+    locale:            vi
+    secret:            changeThisSecret
+
+    knp_paginator.template.pagination: ':Pagination:sliding.html.twig'
+    knp_disqus.api_key:    api
+    knp_disqus.secret_key: secret
+    knp_disqus.virgosbeauty.shortname: "virgosbeauty"
+
+    facebook_app_id: ~
+    facebook_app_secret: ~
+    google_app_id: ~
+    google_app_secret: ~
+
+    dizda_cloud_dropbox_user:     myDropboxUser
+    dizda_cloud_dropbox_password: MyDropboxPassword
+    dizda_cloud_dropbox_remote_path: /website_backup/virgos_beauty
