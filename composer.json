@@ -21,7 +21,7 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "friendsofsymfony/user-bundle": "2.0.*@dev",
         "mopa/bootstrap-bundle": "dev-master",
-        "twbs/bootstrap": "dev-master",
+        "twbs/bootstrap": "~3.3",
         "knplabs/knp-paginator-bundle": "dev-master",
         "raulfraile/ladybug-bundle": "dev-master",
         "liip/imagine-bundle": "1.0.*@dev",

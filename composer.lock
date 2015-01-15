@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ab37da701c026a54fcfe441c8b494656",
+    "hash": "05c507b69e0f2456ea940b1f159881ec",
     "packages": [
         {
             "name": "dizda/cloud-backup-bundle",
@@ -4306,16 +4306,16 @@
         },
         {
             "name": "twbs/bootstrap",
-            "version": "dev-master",
+            "version": "v3.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twbs/bootstrap.git",
-                "reference": "f11a3a31f1382f212f9255671535d87060078355"
+                "reference": "9a7e365c2c4360335d25246dac11afb1f577210a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/f11a3a31f1382f212f9255671535d87060078355",
-                "reference": "f11a3a31f1382f212f9255671535d87060078355",
+                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/9a7e365c2c4360335d25246dac11afb1f577210a",
+                "reference": "9a7e365c2c4360335d25246dac11afb1f577210a",
                 "shasum": ""
             },
             "replace": {
@@ -4353,7 +4353,7 @@
                 "responsive",
                 "web"
             ],
-            "time": "2014-12-12 22:31:30"
+            "time": "2014-11-12 17:03:16"
         },
         {
             "name": "twig/extensions",
@@ -4765,7 +4765,6 @@
     "stability-flags": {
         "friendsofsymfony/user-bundle": 20,
         "mopa/bootstrap-bundle": 20,
-        "twbs/bootstrap": 20,
         "knplabs/knp-paginator-bundle": 20,
         "raulfraile/ladybug-bundle": 20,
         "liip/imagine-bundle": 20,
