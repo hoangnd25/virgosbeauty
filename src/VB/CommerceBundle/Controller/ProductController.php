@@ -98,7 +98,7 @@ class ProductController extends Controller
 
         $categoryUrl = $this->getRequest()->getUri();
         $seoPage = $this->container->get('sonata.seo.page');
-        $categoryName = ucwords(strtolower($category->getName())).' | Virgos Beauty';
+        $categoryName = ucwords(strtolower($category->getName())).' - Virgos Beauty';
         $seoPage
             ->setTitle($categoryName)
 //            ->addMeta('name', 'description', $product->getShortDescription())
@@ -195,14 +195,15 @@ class ProductController extends Controller
 
         $productUrl = $this->generateUrl('product_by_slug',array('slug'=>$product->getSlug()),true);
         $seoPage = $this->container->get('sonata.seo.page');
-        $productName = ucwords(strtolower($product->getName())).' | Virgos Beauty';
+        $productName = ucwords(strtolower($product->getName())).' - '.ucfirst($product->getCategories()->first()->getName());
+        $productDescription = $product->getTagLine().'. '.$product->getShortDescription();
         $seoPage
             ->setTitle($productName)
-            ->addMeta('name', 'description', $product->getShortDescription())
+            ->addMeta('name', 'description', $productDescription)
             ->addMeta('property', 'og:title',$productName )
             ->addMeta('property', 'og:type', 'product')
             ->addMeta('property', 'og:url',  $productUrl)
-            ->addMeta('property', 'og:description', $product->getShortDescription())
+            ->addMeta('property', 'og:description', $productDescription)
             ->addMeta('property', 'fb:app_id', '1499107470317043')
             ->addMeta('property', 'product:price:amount',  $product->getPrice())
             ->addMeta('property', 'product:price:currency',  'VND')
