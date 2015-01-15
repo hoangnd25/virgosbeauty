@@ -24,7 +24,7 @@
         "twbs/bootstrap": "~3.3",
         "knplabs/knp-paginator-bundle": "dev-master",
         "raulfraile/ladybug-bundle": "dev-master",
-        "liip/imagine-bundle": "1.0.*@dev",
+        "liip/imagine-bundle": "dev-master",
         "vich/uploader-bundle": "dev-master",
         "knplabs/knp-gaufrette-bundle": "0.2.*@dev",
         "knplabs/gaufrette": "0.2.*@dev",
