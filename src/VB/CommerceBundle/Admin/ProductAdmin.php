@@ -60,6 +60,8 @@ class ProductAdmin extends Admin
                 ->add('howToUse', 'ckeditor', array())
             ->end()
             ->with('SEO')
+                ->add('seoTitle', null, array())
+                ->add('seoDescription', 'textarea', array())
             ->end()
         ;
     }

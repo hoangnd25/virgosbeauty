@@ -210,15 +210,13 @@ class ProductController extends Controller
 
         $productUrl = $this->generateUrl('product_by_slug',array('slug'=>$product->getSlug()),true);
         $seoPage = $this->container->get('sonata.seo.page');
-        $productName = ucwords(strtolower($product->getName())).' - '.ucfirst($product->getCategories()->first()->getName());
-        $productDescription = $product->getTagLine().'. '.$product->getShortDescription();
         $seoPage
-            ->setTitle($productName)
-            ->addMeta('name', 'description', $productDescription)
-            ->addMeta('property', 'og:title',$productName )
+            ->setTitle($product->getSeoTitle())
+            ->addMeta('name', 'description', $product->getSeoDescription())
+            ->addMeta('property', 'og:title',$product->getSeoTitle() )
             ->addMeta('property', 'og:type', 'product')
             ->addMeta('property', 'og:url',  $productUrl)
-            ->addMeta('property', 'og:description', $productDescription)
+            ->addMeta('property', 'og:description', $product->getSeoDescription())
             ->addMeta('property', 'fb:app_id', '1499107470317043')
             ->addMeta('property', 'product:price:amount',  $product->getPrice())
             ->addMeta('property', 'product:price:currency',  'VND')

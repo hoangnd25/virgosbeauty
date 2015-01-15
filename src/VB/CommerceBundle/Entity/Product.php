@@ -143,6 +143,16 @@ class Product
     protected $variants;
 
     /**
+     * @ORM\Column(length=160,nullable=true)
+     */
+    protected $seoTitle;
+
+    /**
+     * @ORM\Column(length=400,nullable=true)
+     */
+    protected $seoDescription;
+
+    /**
      * @var datetime $created
      *
      * @Gedmo\Timestampable(on="create")
@@ -590,6 +600,50 @@ class Product
     public function getWeight()
     {
         return $this->weight;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSeoTitle()
+    {
+        if($this->seoDescription){
+            return $this->seoTitle;
+        }else{
+            if(!empty($this->categories)){
+                return ucwords(strtolower($this->name)).' - '.ucfirst($this->categories->first()->getName());
+            }else{
+                return ucwords(strtolower($this->name));
+            }
+        }
+    }
+
+    /**
+     * @param mixed $seoTitle
+     */
+    public function setSeoTitle($seoTitle)
+    {
+        $this->seoTitle = $seoTitle;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSeoDescription()
+    {
+        if($this->seoDescription){
+            return $this->seoDescription;
+        }else{
+            return $this->tagLine.'. '.ucfirst($this->shortDescription);
+        }
+    }
+
+    /**
+     * @param mixed $seoDescription
+     */
+    public function setSeoDescription($seoDescription)
+    {
+        $this->seoDescription = $seoDescription;
     }
 
 }
