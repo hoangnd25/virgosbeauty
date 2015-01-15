@@ -32,7 +32,7 @@ class SitemapService implements SitemapListenerInterface
                 ->join('p.categories','c')
                 ->leftJoin('p.images','i')
                 ->orderBy('p.id','desc');
-            $products = $qb->getResult();
+            $products = $qb->getResults();
 
             foreach($products as $product){
                 $url = $this->router->generate('product_by_slug', array('slug' => $product->getSlug()), true);
@@ -54,7 +54,7 @@ class SitemapService implements SitemapListenerInterface
                 ->from('VBCMSBundle:Blog','b')
                 ->where('b.hidden = false')
                 ->orderBy('b.created','desc');
-            $articles = $qb->getResult();
+            $articles = $qb->getResults();
 
             foreach($articles as $article){
                 $url = $this->router->generate('blog_show', array('slug' => $article->getSlug()), true);
