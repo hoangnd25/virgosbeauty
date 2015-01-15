@@ -56,7 +56,8 @@ class SitemapService implements SitemapListenerInterface
                 ->from('VBCMSBundle:Blog','b')
                 ->where('b.hidden = false')
                 ->orderBy('b.created','desc');
-            $products = $qb->getQuery()->getResult();
+
+            $articles = $qb->getQuery()->getResult();
 
             foreach($articles as $article){
                 $url = $this->router->generate('blog_show', array('slug' => $article->getSlug()), true);
