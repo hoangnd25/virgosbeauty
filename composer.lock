@@ -4,21 +4,21 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "b663ba620c0fea5d293b99dcdfb3c51c",
+    "hash": "ab37da701c026a54fcfe441c8b494656",
     "packages": [
         {
             "name": "dizda/cloud-backup-bundle",
-            "version": "1.5.5",
+            "version": "1.6.1",
             "target-dir": "Dizda/CloudBackupBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dizda/CloudBackupBundle.git",
-                "reference": "f55038face9d8ff5c1cda019c9a6f141e7878f71"
+                "reference": "f0b7f57ad3726a3c09b84906945be530d2489ce5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dizda/CloudBackupBundle/zipball/f55038face9d8ff5c1cda019c9a6f141e7878f71",
-                "reference": "f55038face9d8ff5c1cda019c9a6f141e7878f71",
+                "url": "https://api.github.com/repos/dizda/CloudBackupBundle/zipball/f0b7f57ad3726a3c09b84906945be530d2489ce5",
+                "reference": "f0b7f57ad3726a3c09b84906945be530d2489ce5",
                 "shasum": ""
             },
             "require": {
@@ -27,9 +27,11 @@
                 "symfony/framework-bundle": ">=2.1"
             },
             "require-dev": {
+                "google/apiclient": "@dev",
                 "symfony/symfony": "v2.3.1"
             },
             "suggest": {
+                "happyr/google-site-authenticator-bundle": "To enable upload dumps on google drive.",
                 "matthiasplappert/cloudapp-api": "dev-master"
             },
             "type": "symfony-bundle",
@@ -71,7 +73,7 @@
                 "mysql",
                 "symfony"
             ],
-            "time": "2014-09-30 08:39:27"
+            "time": "2014-12-12 18:45:26"
         },
         {
             "name": "doctrine/annotations",
