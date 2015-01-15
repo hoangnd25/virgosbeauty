@@ -59,18 +59,19 @@
                     <div class="products-list products-holder">
                         {% block product_list %}
                             {% for product in products %}
+                                {% if product.visible %}
                                 <div class="list-item">
                                     <div class="row-fluid item-row">
                                         <div class="col-sm-4">
                                             <div class="thumb">
                                                 <a href="{{ path('product_by_slug',{'slug':product.slug}) }}">
-                                                {% set image = product.images | first %}
-                                                {% if image %}
-                                                    {% set imagePath = 'images/public/product_image/'~image.fileName %}
-                                                    <img alt="{{ product.name }}" src="{{ imagePath | imagine_filter('product_image_list_item')}}">
-                                                {% else %}
-                                                    <img alt="{{ product.name }}" src="/images/no-image.jpg">
-                                                {% endif %}
+                                                    {% set image = product.images | first %}
+                                                    {% if image %}
+                                                        {% set imagePath = 'images/public/product_image/'~image.fileName %}
+                                                        <img alt="{{ product.name }}" src="{{ imagePath | imagine_filter('product_image_list_item')}}">
+                                                    {% else %}
+                                                        <img alt="{{ product.name }}" src="/images/no-image.jpg">
+                                                    {% endif %}
                                                 </a>
                                             </div>
                                         </div>
@@ -90,7 +91,7 @@
                                                 {% if product.availableForSale %}
                                                     <span>{{ product.price | number_format(0, ',', '.') }} VND</span>
                                                     {% if product.oldPrice %}
-                                                    <span class="old">{{ product.oldPrice | number_format(0, ',', '.') }} VND</span>
+                                                        <span class="old">{{ product.oldPrice | number_format(0, ',', '.') }} VND</span>
                                                     {% endif %}
                                                 {% endif %}
                                             </div>
@@ -107,6 +108,7 @@
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>
+                                {% endif %}
                             {% endfor %}
 
                             <div class="google-ads">
