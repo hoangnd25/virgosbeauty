@@ -101,7 +101,7 @@ class ProductController extends Controller
         $seoPage = $this->container->get('sonata.seo.page');
         $categoryName = ucwords(strtolower($category->getName())).' - Danh mục sản phẩm';
         if(intval($page) > 1)
-            $categoryName += ' - Trang '.$page;
+            $categoryName .= ' - Trang '.$page;
         $seoPage
             ->setTitle($categoryName)
 //            ->addMeta('name', 'description', $product->getShortDescription())
@@ -155,7 +155,7 @@ class ProductController extends Controller
 
         $title = 'Các sản phẩm của Virgos Beauty';
         if(intval($page) > 1)
-            $title += ' - Trang '.$page;
+            $title .= ' - Trang '.$page;
         $seoPage = $this->container->get('sonata.seo.page');
         $seoPage
             ->setTitle($title)
