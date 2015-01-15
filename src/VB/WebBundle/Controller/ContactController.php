@@ -82,7 +82,7 @@ class ContactController extends Controller
         }
 
         $seoPage = $this->container->get('sonata.seo.page');
-        $title = 'Liên hệ chúng tôi | Virgos Beauty';
+        $title = 'Liên hệ chúng tôi';
         $url = $this->generateUrl('contact_us',array(),true);
         $seoPage
             ->setTitle($title)

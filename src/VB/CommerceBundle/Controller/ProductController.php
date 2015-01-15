@@ -63,10 +63,11 @@ class ProductController extends Controller
 
         $qb->add('where', $qb->expr()->in('c.id', $categoryArray));
 
+        $page = $this->get('request')->query->get('page', 1);
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
             $qb->getQuery(),
-            $this->get('request')->query->get('page', 1)/*page number*/,
+            $page/*page number*/,
             10/*limit per page*/
         );
 
@@ -98,7 +99,9 @@ class ProductController extends Controller
 
         $categoryUrl = $this->getRequest()->getUri();
         $seoPage = $this->container->get('sonata.seo.page');
-        $categoryName = ucwords(strtolower($category->getName())).' - Virgos Beauty';
+        $categoryName = ucwords(strtolower($category->getName())).' - Danh mục sản phẩm';
+        if(intval($page) > 1)
+            $categoryName += ' - Trang '.$page;
         $seoPage
             ->setTitle($categoryName)
 //            ->addMeta('name', 'description', $product->getShortDescription())
@@ -140,12 +143,24 @@ class ProductController extends Controller
             ->leftJoin('p.images','i')
             ->orderBy('p.id','desc');
 
+        $page = $this->get('request')->query->get('page', 1);
+
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
             $qb->getQuery(),
-            $this->get('request')->query->get('page', 1)/*page number*/,
+            $page/*page number*/,
             10/*limit per page*/
         );
+
+
+        $title = 'Các sản phẩm của Virgos Beauty';
+        if(intval($page) > 1)
+            $title += ' - Trang '.$page;
+        $seoPage = $this->container->get('sonata.seo.page');
+        $seoPage
+            ->setTitle($title)
+            ->addMeta('property', 'og:title', $title)
+        ;
 
         $breadcrumbs = $this->get("white_october_breadcrumbs");
         $breadcrumbs->addItem("Home", $this->get("router")->generate("homepage"));
