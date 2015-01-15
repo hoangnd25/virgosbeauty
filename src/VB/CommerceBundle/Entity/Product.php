@@ -610,7 +610,7 @@ class Product
         if($this->seoDescription){
             return $this->seoTitle;
         }else{
-            if(!empty($this->categories)){
+            if($this->categories->first()){
                 return ucwords(strtolower($this->name)).' - '.ucfirst($this->categories->first()->getName());
             }else{
                 return ucwords(strtolower($this->name));
