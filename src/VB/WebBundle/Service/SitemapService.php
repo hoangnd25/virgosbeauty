@@ -2,6 +2,7 @@
 
 namespace VB\WebBundle\Service;
 
+use Doctrine\ORM\QueryBuilder;
 use Symfony\Component\Routing\RouterInterface;
 
 use Presta\SitemapBundle\Service\SitemapListenerInterface;
@@ -25,6 +26,7 @@ class SitemapService implements SitemapListenerInterface
         if (is_null($section) || $section == 'default') {
 
             // add products
+            /** @var QueryBuilder $qb */
             $qb = $this->doctrine->getManager()->createQueryBuilder();
             $qb->select('p')
                 ->from('VBCommerceBundle:Product','p')
@@ -32,7 +34,7 @@ class SitemapService implements SitemapListenerInterface
                 ->join('p.categories','c')
                 ->leftJoin('p.images','i')
                 ->orderBy('p.id','desc');
-            $products = $qb->getResult();
+            $products = $qb->getQuery()->getResult();
 
             foreach($products as $product){
                 $url = $this->router->generate('product_by_slug', array('slug' => $product->getSlug()), true);
@@ -54,7 +56,7 @@ class SitemapService implements SitemapListenerInterface
                 ->from('VBCMSBundle:Blog','b')
                 ->where('b.hidden = false')
                 ->orderBy('b.created','desc');
-            $articles = $qb->getResult();
+            $products = $qb->getQuery()->getResult();
 
             foreach($articles as $article){
                 $url = $this->router->generate('blog_show', array('slug' => $article->getSlug()), true);
