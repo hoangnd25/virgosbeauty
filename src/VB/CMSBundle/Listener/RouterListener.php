@@ -1,6 +1,6 @@
 <?php
 
-namespace App\CMSBundle\Listener;
+namespace VB\CMSBundle\Listener;
 
 use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Routing\Router;

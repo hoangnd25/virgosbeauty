@@ -1,6 +1,7 @@
-vb.router_listener:
-    class: VB\CMSBundle\Listener\RouterListener
-    arguments: [@router, @doctrine, @validator]
-    tags:
-        - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest, priority: 32 }
-        - { name: monolog.logger, channel: request }
+services:
+    vb_cms.router_listener:
+        class: VB\CMSBundle\Listener\RouterListener
+        arguments: [@router, @doctrine, @validator]
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest, priority: 32 }
+            - { name: monolog.logger, channel: request }
