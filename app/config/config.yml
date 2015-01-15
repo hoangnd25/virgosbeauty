@@ -169,8 +169,7 @@ trsteel_ckeditor:
 
 vich_uploader:
     db_driver: orm
-    gaufrette: true
-    storage: vich_uploader.storage.gaufrette
+    storage:   gaufrette
     mappings:
         product_image:
             uri_prefix: /images/product
@@ -250,7 +249,7 @@ gregwar_captcha:
 sonata_seo:
     encoding: UTF-8
     page:
-        title: Virgos beauty | Sản phẩm làm đẹp và chăm sóc sức khoẻ từ Úc
+        title: Virgos beauty - Sản phẩm làm đẹp và chăm sóc sức khoẻ từ Úc
         metas:
             name:
                 keywords:  >

@@ -42,7 +42,8 @@
         "sonata-project/admin-bundle": "2.3.*",
         "sonata-project/doctrine-orm-admin-bundle": "2.3.*",
         "liuggio/excelbundle": "~2.0",
-        "dizda/cloud-backup-bundle": "1.5.5"
+        "dizda/cloud-backup-bundle": "1.5.5",
+        "presta/sitemap-bundle": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [

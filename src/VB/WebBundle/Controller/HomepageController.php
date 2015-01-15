@@ -11,7 +11,7 @@ class HomepageController extends Controller
 {
     /**
      * @return \Symfony\Component\HttpFoundation\Response
-     * @Route("/", name="homepage")
+     * @Route("/", name="homepage", options={"sitemap" = {"priority" = 0.9, "changefreq" = "daily"}} )
      * @Template()
      */
     public function indexAction()

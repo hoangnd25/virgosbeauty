@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 class ContactController extends Controller
 {
     /**
-     * @Route("/contact-us",name="contact_us")
+     * @Route("/contact-us",name="contact_us", options={"sitemap" = {"priority" = 0.7, "changefreq" = "weekly"}})
      * @Template()
      */
     public function indexAction()

@@ -17,4 +17,12 @@
         </service>
     </services>
     -->
+
+    <services>
+        <service id="vb.sitemap.listener" class="VB\WebBundle\Service\SitemapService">
+            <tag name="presta.sitemap.listener" />
+            <argument type="service" id="router"/>
+            <argument type="service" id="doctrine"/>
+        </service>
+    </services>
 </container>

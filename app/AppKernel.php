@@ -41,6 +41,7 @@ class AppKernel extends Kernel
             new Sonata\AdminBundle\SonataAdminBundle(),
             new Dizda\CloudBackupBundle\DizdaCloudBackupBundle(),
             new Liuggio\ExcelBundle\LiuggioExcelBundle(),
+            new Presta\SitemapBundle\PrestaSitemapBundle(),
 
             new VB\CommerceBundle\VBCommerceBundle(),
             new VB\UserBundle\VBUserBundle(),
